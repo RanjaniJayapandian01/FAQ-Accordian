@@ -1,0 +1,15 @@
+
+src folder -  the app component, script , template, styles, images are stored.
+main - entry point for the app. It cpmplies app with JIT compiler, bootstraps the application's root module
+tsconfig.json - Typescript compiler configuration compile ts to json
+package.json - custom scripts are added, thrid party packages are listed. Contains dependencies, scripts, name, version.
+node modules - folder created by Node.js and puts all the thrid party modules listed in package.json
+app.module.ts - is the root module explains how to assemble application
+module is a class decorated with @NgNodule decorator. Similarly modules and components have decorator that are added explicity to specify what they are.
+@NgModule - is a function that takes 
+
+command 
+node -v : to identify the node version v20.15.1
+npm -v : node package manager version number 10.7.0 
+npm install -g typescript : to install typesccript
+npm install -g @angular/cli : to install angular cli
