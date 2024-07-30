@@ -1,15 +1,59 @@
 
+node -v : to identify the node version v20.15.1. 
+npm -v : node package manager version number 10.7.0. if not installed use https://nodejs.org/en to install current version. Node js is a package ecosystem name npm (node package manager).
+It is a command line utility that interacts with repository of open source projects to install the libraries, packages. 
+npm install -g typescript : to install typesccript
+npm install -g @angular/cli : to install angular cli. angular cli version is 18.1.2. Angular CLI  is a command line interface tool that is used to create, build and deploy angular apps.
+command 
+ng -v : to get complete result of node, npm, angular version. ng version
+ng new AngularDemo_01 : create a new angular project and skeleto application. 
+                        ng - used ot call Angular CLI
+                        new - creates a angular workspace and skeleton with multiple libraries
+                        AngularDemo_01 - project name
+cd foldername : to change path
+ng serve or ng serve -o : to launches the server. Will automatically open the browser on http://localhost:4200/
+npm start
+
 src folder -  the app component, script , template, styles, images are stored.
 main - entry point for the app. It cpmplies app with JIT compiler, bootstraps the application's root module
 tsconfig.json - Typescript compiler configuration compile ts to json
+angular.json - configure angular cli. set default or configure files to include when project is build
 package.json - custom scripts are added, thrid party packages are listed. Contains dependencies, scripts, name, version.
 node modules - folder created by Node.js and puts all the thrid party modules listed in package.json
-app.module.ts - is the root module explains how to assemble application
-module is a class decorated with @NgNodule decorator. Similarly modules and components have decorator that are added explicity to specify what they are.
-@NgModule - is a function that takes 
+tslint.json - used when running  ng lint. Linting helps keep your code style consistent.(automated checking of your source code for programmatic and stylistic errors.)
+Readme.md - basic documentation of app
+index.html - consist of selector to render the view  <app-root></app-root>
 
-command 
-node -v : to identify the node version v20.15.1
-npm -v : node package manager version number 10.7.0 
-npm install -g typescript : to install typesccript
-npm install -g @angular/cli : to install angular cli
+main.ts - like all other programs, angular has a main entry point of application. i.e main.ts . It contains below lines to start(bootstraps) the application.i.e AppModule
+platformBrowserDynamic().bootstrapModule(AppModule, {
+  ngZoneEventCoalescing: true
+})
+
+app.module.ts - is the root module explains how to assemble application.
+module is a class decorated with @NgNodule decorator. Similarly modules and components have decorator that are added explicity to specify what they are.
+@NgModule - is a function that takes four array variables
+            declarations - which components, directives, pipes is related to this module. As we create new component, it will be added in this section
+            imports      - what other module whose exported class has to be imported so that its feature can be imported in the current component classes. ex: BrowserModule (required for every browser app, contains common module, ngif, ngfor), AppRouting  
+                             BrowserModule from @angular/platform-browser. Some other examples as FormsModule, HttpClientModule
+            bootstrap    - tells which component has to executed when the application is launched. ex: AppComponent
+            providers    - application wide services to use
+
+Appmodule in turn makes call to AppComponent, which is a root component of the application and makes it ready to use.
+  bootstrap: [AppComponent]
+
+app.component.ts - Component - consist of three parameters. @Component decorator is used to identify that the particular class is component.
+It is the basic building block for ngular app.
+selector - custom tag to render the html of the associated component.
+templateUrl - contains path of the html file associated with current component
+styleUrl - has the css file path to be applied for the html template.
+watchmode- if typescript recomplies whenever the file changes is detected
+
+
+
+Building components
+Build Directives
+Data Binding
+Angular forms and validations
+Read data using services
+Routing
+Modify data using servicesEnhance UI , pipe and styles
