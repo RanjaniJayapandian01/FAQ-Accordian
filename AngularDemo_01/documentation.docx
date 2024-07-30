@@ -42,12 +42,26 @@ Appmodule in turn makes call to AppComponent, which is a root component of the a
   bootstrap: [AppComponent]
 
 app.component.ts - Component - consist of three parameters. @Component decorator is used to identify that the particular class is component.
-It is the basic building block for ngular app.
+It is the basic building block for angular app.
 selector - custom tag to render the html of the associated component.
 templateUrl - contains path of the html file associated with current component
 styleUrl - has the css file path to be applied for the html template.
-watchmode- if typescript recomplies whenever the file changes is detected
+a ts file whose class is decorated with @Component is called as Angular Component.
+metadata - extra data defined for the angular class.{ parameter defined in @Component}
+Template - view for the application created in html
+            Inline Template - when the html is declared in the ts file 
+            External Template - when html file is defined in seperate file and referred using templateurl property.
+Class - code with properties and method used to support the view. defined in Type script.
 
+export - make a class available/ accessible in other files
+import - used to import features to the current file from external files where it will defined as export
+
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {Component} from '@angular/core';
+
+Notes: 
+watchmode- if typescript recomplies whenever the file changes is detected
 
 
 Building components

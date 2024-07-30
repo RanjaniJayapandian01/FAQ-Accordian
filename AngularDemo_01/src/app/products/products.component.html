@@ -1,0 +1,15 @@
+<p>products works!</p>
+<div>
+    <ul>
+        <li *ngFor="let item of productArray; let i = index">
+           <span [ngStyle]="styles"> {{item}} </span>
+        </li>
+    </ul>
+    <div *ngIf="showMessage">
+        {{message}}
+        <button (click)="showMessage =! showMessage">
+            Toggle Message
+        </button>
+
+    </div>
+</div>
