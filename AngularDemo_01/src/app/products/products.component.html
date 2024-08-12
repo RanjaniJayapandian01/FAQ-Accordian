@@ -1,10 +1,15 @@
 <p>products works!</p>
 <div>
+    <!--Structural Attribute-->
+    <!--*ngFor-->
     <ul>
-        <li *ngFor="let item of productArray; let i = index">
-           <span [ngStyle]="styles"> {{item}} </span>
+        <li *ngFor="let item of products; let i = index">
+            <!--Attribute Directive [ngStyle]-->
+           <span [ngStyle]="{'background-color': item.available === true ? 'green' : 'red'}"> {{item.productName}} </span>
         </li>
     </ul>
+    <!--*ngIf-->
+    <p>The products are Available</p>
     <div *ngIf="showMessage">
         {{message}}
         <button (click)="showMessage =! showMessage">
