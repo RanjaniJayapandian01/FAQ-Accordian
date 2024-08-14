@@ -6,6 +6,10 @@ import { Component } from '@angular/core';
   styleUrl: './books.component.css'
 })
 export class BooksComponent {
-
-}
+    title : string = 'We have reached Book Component';
+    display : boolean = false;
+    onClick(){
+      this.display =true;
+    }
+  }
 
