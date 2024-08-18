@@ -3,7 +3,7 @@ export class ProductService{
     /**
      *
      */
-    public  products: Product[] = [];
+    products: Product[] = [];
     constructor() {
     this.products.push(new Product("Learning Angular", true));
     this.products.push(new Product("Pro Typescript", false));

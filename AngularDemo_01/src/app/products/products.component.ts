@@ -14,6 +14,7 @@ export class ProductsComponent {
   public  products: Product[] = [];
   showMessage : boolean= true;
   productAvailable : boolean =true;
+  imageUrl: string= "/assets/cockapoo-puppy-dogs.jpg";
   message: string = 'Hello, this message is conditionally displayed!';
   constructor(productService: ProductService) {
     //p1: Product = new Product("Learning Angular", true);
