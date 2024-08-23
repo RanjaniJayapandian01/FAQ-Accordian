@@ -1,0 +1,6 @@
+.btn.disabled {
+    background-color: #d6d6d6; /* Light grey background */
+    border-color: #b3b3b3; /* Grey border */
+    color: #8c8c8c; /* Grey text */
+    cursor: not-allowed; /* Change cursor to indicate it's not clickable */
+}

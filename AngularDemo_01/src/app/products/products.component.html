@@ -20,5 +20,5 @@
     <img src="{{imageUrl}}"/>
     <!--CSS Class Binding-->
     <br>
-    <button class="btn btn-primary">Submit</button>
+    <button class="btn btn-primary" [class.disabled]= "isValid" (click)="OnClickEvent($event)">Submit</button>
 </div>

@@ -16,6 +16,7 @@ export class ProductsComponent {
   productAvailable : boolean =true;
   imageUrl: string= "/assets/cockapoo-puppy-dogs.jpg";
   message: string = 'Hello, this message is conditionally displayed!';
+  isValid : boolean =false;
   constructor(productService: ProductService) {
     //p1: Product = new Product("Learning Angular", true);
  //   this.products.push(new Product("Learning Angular", true));
@@ -32,6 +33,10 @@ export class ProductsComponent {
       'margin': '80px'
     };
   }
+  OnClickEvent($event : Event){
+    console.log("Submit button invoked successfully");
+  }
+
 }
 export class Product{
   productName!: string;
