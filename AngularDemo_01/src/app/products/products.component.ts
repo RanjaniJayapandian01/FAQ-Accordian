@@ -17,6 +17,7 @@ export class ProductsComponent {
   imageUrl: string= "/assets/cockapoo-puppy-dogs.jpg";
   message: string = 'Hello, this message is conditionally displayed!';
   isValid : boolean =false;
+  prodList : any;
   constructor(productService: ProductService) {
     //p1: Product = new Product("Learning Angular", true);
  //   this.products.push(new Product("Learning Angular", true));
@@ -24,7 +25,7 @@ export class ProductsComponent {
    // this.products.push(new Product("ASP.NET", false));      
 
     this.products=productService.getProducts();
-
+    this.prodList=productService.getProductsV2();
   }
   get styles() {
     return {

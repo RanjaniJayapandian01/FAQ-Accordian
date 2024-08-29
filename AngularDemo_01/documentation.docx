@@ -71,3 +71,28 @@ Angular forms and validations
 Read data using services
 Routing
 Modify data using servicesEnhance UI , pipe and styles
+
+
+Structural Directive:
+ngIf - <element *ngIf="boolean expression; else variable>{{}} </element>
+        <ng-template #variable></ng-template>
+ngfor - <element *ngFor="let p of list"> {{p.x}}</element>
+ngSwitch - [ngSwitch]="value" <element *ngSwitchCase=""> <element *ngSwitchDefault>
+ngswitchdefault can be placed anywhere in the switch and can be more than one
+
+array.length - return total number of elements
+
+Sending data to child component
+@Input decorator is used to receive the parent class property value to the child class element.
+The @Input() decorator in a child component or directive signifies that the property can receive its value from its parent component.
+<childselector [target@Input in child]="src propertyin the parent selector / element"></childselector>
+
+Pipes: 
+Used to transform input data to desired output. Date, Currency, Lowercase, uppercase are some of the examples of pipes.
+ex: {{ data.releasedDate | date}}
+
+
+
+Events:
+click, onkeyup, oncopy
+https://www.w3docs.com/snippets/javascript/how-to-disable-text-selection-copy-cut-paste-and-right-click-on-a-web-page.html#example-8

@@ -9,7 +9,9 @@ import { EformComponent } from './eform/eform.component';
 import { StarComponent } from './star/star.component';
 import { StarFillComponent } from './star/starfill.component';
 import { RatingComponent } from './star/rating.component';
-
+import { ArticleComponent } from './products/article.component';
+import { ExerciseComponent } from './exercise/exercise.component';
+import { TruncatePipe } from './truncate.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,10 @@ import { RatingComponent } from './star/rating.component';
     EformComponent,
     StarComponent,
     StarFillComponent,
-    RatingComponent
+    RatingComponent,
+    ArticleComponent,
+    ExerciseComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
     selector: "rating",
@@ -21,13 +21,19 @@ import {Component} from '@angular/core';
   <ng-container *ngIf="rating<5; else elseBlock5" ><app-star (click) = onClick(5)></app-star>
   </ng-container>
   <ng-template #elseBlock5> <app-starfill (click) = onClick(4)></app-starfill></ng-template>
+{{numOfReviews}}
     ` 
 
 })
 export class RatingComponent{
     //Event Binding
-    rating : number=0;
+    @Input('rating-value') rating : number=0;
+    @Input() numOfReviews=0;
+
     onClick(ratingValue: any){
         this.rating=ratingValue;
     }
+
+    // input, output directives
+
 }
