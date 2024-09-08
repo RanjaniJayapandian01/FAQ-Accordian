@@ -17,6 +17,7 @@ export class ProductsComponent {
   imageUrl: string= "/assets/cockapoo-puppy-dogs.jpg";
   message: string = 'Hello, this message is conditionally displayed!';
   isValid : boolean =false;
+  defaulttext? : string = "Type here...";
   prodList : any;
   constructor(productService: ProductService) {
     //p1: Product = new Product("Learning Angular", true);

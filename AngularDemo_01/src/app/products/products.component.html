@@ -22,7 +22,8 @@
     <!--CSS Class Binding-->
     <br>
     <button class="btn btn-primary" [class.disabled]= "isValid" (click)="OnClickEvent($event)">Submit</button>
-
+    <!-- attribute Binding -->
+     <input [value]="defaulttext" [attr.aria-hidden]="true">
     <!-- Working with components -->
      <h2>Products</h2>
      <ng-container *ngIf="prodList.length>0; else template">
@@ -33,5 +34,12 @@
     <ng-template #template>
         No products found
     </ng-template>
-    
+    <bs-jumbotron [title]="message">
+        <div class="Example"> This is a simple hero unit a simple jumbotron style component for caling extra attention to fetatured content</div>
+        <div class="header">Header: Multiple Insertion points Example</div>
+        <div class="body"> It is achieved using select attribute with classname with period prefixed</div>
+        <div class="description"> To more detailed about the jumbtron <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/"> click here</a></div>
+    </bs-jumbotron>
+
+    <user-form></user-form>
 </div>

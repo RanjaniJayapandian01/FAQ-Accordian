@@ -17,7 +17,7 @@ export class ProductService{
     getProductsV2() {
         return [
         { 
-           imageUrl: "http://loremflickr.com/150/150?random=1",
+           imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh43Ngze5aBiyqCJWTJwyA1UyMncJ3Xcs1Fw&s",
             productName: "Product 1",
             releasedDate: "May 31, 2016",
             description: "Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.",        
@@ -25,7 +25,7 @@ export class ProductService{
             numOfReviews: 2
         },
         { 
-           imageUrl: "http://loremflickr.com/150/150?random=2",
+           imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-BhSrDQbUH2ALG35Erin1K2V2L4iXEg-Egg&s",
             productName: "Product 2",
             releasedDate: "October 31, 2016",
             description: "Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.",        
@@ -33,7 +33,7 @@ export class ProductService{
             numOfReviews: 12          
         },
         {                 
-            imageUrl: "http://loremflickr.com/150/150?random=3",
+            imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1PMJKS9sbGqi8X45YjLZxJwh7-qNCZxoXqg&s",
             productName: "Product 3",
             releasedDate: "July 30, 2016",
             description: "Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.",        

@@ -8,5 +8,26 @@
 </head>
 <body>
     <div class="unselectable">This text is un selectable</div>
+    
+        
+    <div class="card-grid">
+            <ng-container *ngFor="let plant of totalPlantList">
+        <div class="card">
+            <img class="card-image" bind-src="plant.imgUrl" alt="Photo of {{ plant.name }}">
+            <div class="card-content">
+              <h3 class="card-title">{{ plant.name }}</h3>
+              <h4 class="card-subtitle">{{ plant.description }}</h4>  
+              <h6> {{(plant.price) > 0 ?  'Price is ' + ((plant.price) | currency : 'INR': 'symbol' : '1.2-4' ): 'None'}}</h6>   
+              <rating [rating-value]="plant.rating"></rating>
+              
+            </div>
+            <div class="card-actions">
+              <button class="btn">More Info</button>
+            </div>
+        
+        </div>
+        </ng-container>
+    </div>
+
 </body>
 </html>

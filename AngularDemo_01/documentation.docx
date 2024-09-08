@@ -96,3 +96,14 @@ ex: {{ data.releasedDate | date}}
 Events:
 click, onkeyup, oncopy
 https://www.w3docs.com/snippets/javascript/how-to-disable-text-selection-copy-cut-paste-and-right-click-on-a-web-page.html#example-8
+
+form element is container different types of element  - text, radio, checkbox, submit
+<form> <div class="form-group"> <input class="form-control" ..> </div> </form>
+
+for - id works together, where for is added to the label element and the same value is mentioned in the input property id attribute.
+<label for="country">Country</label>
+<select class="form-control" id="country" [(ngModel)]="country" name="country">
+                <option *ngFor="let c of countries" [value]="c"> {{c}}</option>
+</select>
+
+ngmodel - name works together to perform two way data binding and register the control with the form

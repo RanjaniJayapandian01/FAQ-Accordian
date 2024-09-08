@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductsComponent } from './products/products.component';
@@ -12,6 +13,10 @@ import { RatingComponent } from './star/rating.component';
 import { ArticleComponent } from './products/article.component';
 import { ExerciseComponent } from './exercise/exercise.component';
 import { TruncatePipe } from './truncate.pipe';
+import { JumbotronComponent } from './products/bs-jumbotron.component';
+import { UserFormComponent } from './products/user-form.component';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,11 +28,14 @@ import { TruncatePipe } from './truncate.pipe';
     RatingComponent,
     ArticleComponent,
     ExerciseComponent,
-    TruncatePipe
+    TruncatePipe,
+    JumbotronComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
