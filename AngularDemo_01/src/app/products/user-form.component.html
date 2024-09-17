@@ -8,24 +8,46 @@
 <body>
     <div class="container">
         <h1>User Form</h1>
-        <form >
+        <form (ngSubmit)="onSubmit()" #userForm="ngForm">
             <div class="form-group">
                 <label for="firstName"> First Name</label>
-                <input type="text" class="form-control" id="firstName" required [(ngModel)]="firstName" name="firstName" >
+                <input type="text" class="form-control" id="firstName" required  [(ngModel)]="model.firstName" name="firstName" #firstName="ngModel" >
+                <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">First Name is Required</div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" required [(ngModel)]="model.lastName" name="lastName" #lastName="ngModel" minlength="2">
+                <div *ngIf="lastName.touched && lastName.errors">
+                    <div class="alert alert-danger" *ngIf="lastName?.errors?.['required']">Last Name is required</div>
+                    <div class="alert alert-danger" *ngIf="lastName.errors?.['minlength']">Last Name should be minimum 2 characters</div>
+                </div>
+                
+                <!-- <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">Last Name is Required</div> -->
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" class="form-control" id="email" required [(ngModel)]="email" name="email">
+                <input type="text" class="form-control" id="email" required [(ngModel)]="model.email" name="email" #email="ngModel">
+                <div class="alert alert-danger" *ngIf="email.touched && email.invalid">Email is Required</div>
             </div> 
             <div class="form-group">
                 <label for="country">Country</label>
-                <select class="form-control" id="country" [(ngModel)]="country" name="country">
+                <select class="form-control" id="country" [(ngModel)]="model.country" name="country" #country="ngModel">
                     <option *ngFor="let c of countries" [value]="c"> {{c}}</option>
                 </select>
+                <div class="alert alert-danger" *ngIf="country.touched && country.invalid">Country is Required</div>
             </div>
-            <button type="submit" class="btn btn-default"> Submit</button>
+            <button type="submit" class="btn btn-default" [disabled]="!userForm.valid"> Submit</button>
         </form>
     
+    </div>
+    <div [hidden]="!submitted">
+        <p>You have submmited the following data</p>
+        First Name: {{model.firstName}}
+        Last Name : {{model.lastName}}
+        Country: {{model.country}}
+        Email: {{model.email}}
+        <button class="btn btn-default" (click)="submitted=false">Remove</button>
+
     </div>
 </body>
 </html>

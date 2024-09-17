@@ -15,7 +15,10 @@ import { ExerciseComponent } from './exercise/exercise.component';
 import { TruncatePipe } from './truncate.pipe';
 import { JumbotronComponent } from './products/bs-jumbotron.component';
 import { UserFormComponent } from './products/user-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { PasswordValidator } from './login/password-validator.component';
 
 @NgModule({
   declarations: [
@@ -30,12 +33,14 @@ import { FormsModule } from '@angular/forms';
     ExerciseComponent,
     TruncatePipe,
     JumbotronComponent,
-    UserFormComponent
+    UserFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

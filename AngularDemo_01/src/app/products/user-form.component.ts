@@ -7,9 +7,9 @@ import { User } from "./user";
 })
 export class UserFormComponent{
     countries=['India', 'United States', 'Africa'];
-    model = new User('', '', '');
+    model = new User('', '', '','');
     submitted = false;
-    onSumit(){
+    onSubmit(){
         this.submitted=true;
     }
 }

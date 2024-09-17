@@ -37,6 +37,12 @@ export class Plant{
 
       
     }
+    GenerateAdditionalInfo(name:  string){
+      if(name=='Lily')
+      window.open('https://en.wikipedia.org/wiki/Lilium', '_blank');
+      if(name =='Cactus')
+        window.open('https://en.wikipedia.org/wiki/Cactus', '_blank');
 
+    }
 
 }

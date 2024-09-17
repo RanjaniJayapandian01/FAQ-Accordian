@@ -101,9 +101,69 @@ form element is container different types of element  - text, radio, checkbox, s
 <form> <div class="form-group"> <input class="form-control" ..> </div> </form>
 
 for - id works together, where for is added to the label element and the same value is mentioned in the input property id attribute.
-<label for="country">Country</label>
-<select class="form-control" id="country" [(ngModel)]="country" name="country">
-                <option *ngFor="let c of countries" [value]="c"> {{c}}</option>
-</select>
+<div class="form-group">
+                <label for="country">Country</label>
+                <select class="form-control" id="country" [(ngModel)]="model.country" name="country">
+                    <option *ngFor="let c of countries" [value]="c"> {{c}}</option>
+                </select>
+</div>
 
-ngmodel - name works together to perform two way data binding and register the control with the form
+ngmodel - name works together to perform two way data binding and register the control with the form.
+If any control has ngModel it provides a way for Two way Binding between form and control, Also if track chnage state and validity of the control using ng css classes like
+if user has touched the control, ng-touched = true ng-untouched = false
+if the value of the control is changed, ng-dirty = true ng-pristine = false
+if the value of the control is valid, ng-valid =true ng-invalid = false
+These classes are used to avoid auto display of alerts even before the user enters values
+use #variable="ngModel" in the input element / control and access the ng css classes using variable like variable.touched
+example : 
+ <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email" required [(ngModel)]="model.email" name="email" #email="ngModel">
+                <div class="alert alert-danger" *ngIf="email.touched && email.invalid">Email is Required</div>
+</div> 
+
+variable.errors.['minlength'] : html atribute like minlength, mavlength, required can alos be used with the form validation
+example:
+<div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" required [(ngModel)]="model.lastName" name="lastName" #lastName="ngModel" minlength="2">
+                <div *ngIf="lastName.touched && lastName.errors">
+                    <div class="alert alert-danger" *ngIf="lastName?.errors?.['required']">Last Name is required</div>
+                    <div class="alert alert-danger" *ngIf="lastName.errors?.['minlength']">Last Name should be minimum 2 characters</div>
+                </div>
+                
+                <!-- <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">Last Name is Required</div> -->
+            </div>
+
+To control the entire form use (ngSubmit) ="method" like below
+        <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+
+11.9.2024
+Event Binding
+syntax: (eventname)= "method($event)"
+$event is the event object that hold event trigger information (InputEvent> taregt> value)
+The data follows from html template to component class
+example: excercise.component.ts
+<div class="card-actions">
+              <button class="btn" (click) = "plant.GenerateAdditionalInfo(plant.name)">More Info</button>
+            </div>
+    window.open(url, '_blank'); // Opens the URL in a new tab
+    // or use `window.location.href = url;` to navigate in the same tab
+GenerateAdditionalInfo(name:  string){
+      if(name=='Lily')
+      window.open('https://en.wikipedia.org/wiki/Lilium', '_blank');
+      if(name =='Cactus')
+        window.open('https://en.wikipedia.org/wiki/Cactus', '_blank');
+
+    }
+15.09.2024
+Model Driven Forms
+It make use of library like Form Group, Form Control, Validators(if needed), ReactiveForms Module.
+create a instance form group variable and include formcontrol parameters.
+Use the same variable name to bind with the form element. [formGroup]="formgroupvariablename"
+and formControl="form control parametername" . Make sure to verify the case because it is case sensitive.
+For validation use form.controls.parametername.touched , valid, errors
+Include (ngSubmit)="methodname" for submit
+
+Question:
+1. we have used model.properties to access the class properties. what if there are multiple classes in the typescript file
