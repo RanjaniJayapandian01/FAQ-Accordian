@@ -1,8 +1,9 @@
 
 node -v : to identify the node version v20.15.1. 
 npm -v : node package manager version number 10.7.0. if not installed use https://nodejs.org/en to install current version. Node js is a package ecosystem name npm (node package manager).
-It is a command line utility that interacts with repository of open source projects to install the libraries, packages. 
-npm install -g typescript : to install typesccript
+It is a command line utility that interacts with repository of open source projects to install the libraries, packages.
+npm install : to add node modules
+npm install -g typescript : to install typescript
 npm install -g @angular/cli : to install angular cli. angular cli version is 18.1.2. Angular CLI  is a command line interface tool that is used to create, build and deploy angular apps.
 command 
 ng -v : to get complete result of node, npm, angular version. ng version
@@ -158,12 +159,50 @@ GenerateAdditionalInfo(name:  string){
     }
 15.09.2024
 Model Driven Forms
-It make use of library like Form Group, Form Control, Validators(if needed), ReactiveForms Module.
+Form Builder: It make use of library like Form Group, Form Control, Validators(if needed), ReactiveForms Module.
 create a instance form group variable and include formcontrol parameters.
 Use the same variable name to bind with the form element. [formGroup]="formgroupvariablename"
 and formControl="form control parametername" . Make sure to verify the case because it is case sensitive.
 For validation use form.controls.parametername.touched , valid, errors
 Include (ngSubmit)="methodname" for submit
+example : login
+
+FormControl
+Definition: Represents a single form field or input element.
+Usage: Manages the value and validation state of an individual form input (like a text box or checkbox).
+Example: You can create a FormControl for an email input like this:
+typescript
+
+emailControl = new FormControl('', Validators.required);
+FormGroup
+Definition: A collection of FormControls, essentially representing a group of related form fields.
+Usage: Used to manage the state and validation of multiple form inputs as a single entity.
+Example: You can create a FormGroup for a login form that includes both email and password controls:
+typescript
+
+loginForm = new FormGroup({
+  email: new FormControl('', Validators.required),
+  password: new FormControl('', Validators.required),
+});
+FormBuilder
+Definition: A service that simplifies the creation of FormGroups and FormControls.
+Usage: Provides a more concise way to build complex forms, making the code cleaner and more readable.
+Example: Using FormBuilder to create the same login form:
+typescript
+
+constructor(private fb: FormBuilder) {}
+
+loginForm = this.fb.group({
+  email: ['', Validators.required],
+  password: ['', Validators.required],
+});
+
+
+Custom Validators:
+create methods to validate inputby passing form control as input parameter and evaluate the input values. The validation function returns
+return null | return validatorMethod : value
+
+
 
 Question:
 1. we have used model.properties to access the class properties. what if there are multiple classes in the typescript file

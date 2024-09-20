@@ -8,10 +8,14 @@
 </head>
 <body>
     <div class="unselectable">This text is un selectable</div>
-    
-        
+    <div class="search-container">
+      <input type="text" placeholder="Search for the plant..." class="search-box" id="searchInput" [(ngModel)]="searchValue" (input)="searchPlantsByName()">
+      <!-- <button class="search-button" (click)="searchPlantsByName(searchValue)">Search</button> -->
+          </div>
+    <div><h3 [hidden]="!isSearch">Search results for keyword {{searchValue}}</h3>            </div>
+      
     <div class="card-grid">
-            <ng-container *ngFor="let plant of totalPlantList">
+            <ng-container *ngFor="let plant of filteredPlants">
         <div class="card">
             <img class="card-image" bind-src="plant.imgUrl" alt="Photo of {{ plant.name }}">
             <div class="card-content">
@@ -19,10 +23,15 @@
               <h4 class="card-subtitle">{{ plant.description }}</h4>  
               <h6> {{(plant.price) > 0 ?  'Price is ' + ((plant.price) | currency : 'INR': 'symbol' : '1.2-4' ): 'None'}}</h6>   
               <rating [rating-value]="plant.rating"></rating>
-              
+              <br>
+              <input type="button" value="-" class="button-minus border rounded-circle  icon-shape icon-sm mx-1 " (click)="changeQuantity(plant, -1)">
+              <input type="number" step="1" [max]="plant.stock" [value]="plant.qtyOrdered" [(ngModel)]="plant.qtyOrdered" class="quantity-field border-0 text-center w-25" readonly>
+              <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm" (click)="changeQuantity(plant, 1)">     
+
             </div>
+
             <div class="card-actions">
-              <button class="btn" (click) = "plant.GenerateAdditionalInfo(plant.name)">More Info</button>
+              <button class="btn" (click) = "GenerateAdditionalInfo(plant.name)">More Info</button>
             </div>
         
         </div>

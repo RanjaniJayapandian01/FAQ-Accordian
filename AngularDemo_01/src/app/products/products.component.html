@@ -24,6 +24,10 @@
     <button class="btn btn-primary" [class.disabled]= "isValid" (click)="OnClickEvent($event)">Submit</button>
     <!-- attribute Binding -->
      <input [value]="defaulttext" [attr.aria-hidden]="true">
+    <!--Two Way Data Binding-->
+    <br>
+     <input type="text" [value]="searchText" (input)="updateSearchText($event)">
+     <p>The text you have entered in the box is : {{searchText}}</p>
     <!-- Working with components -->
      <h2>Products</h2>
      <ng-container *ngIf="prodList.length>0; else template">

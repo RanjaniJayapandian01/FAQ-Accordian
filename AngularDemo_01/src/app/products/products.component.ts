@@ -19,6 +19,7 @@ export class ProductsComponent {
   isValid : boolean =false;
   defaulttext? : string = "Type here...";
   prodList : any;
+  searchText: string="Product1";
   constructor(productService: ProductService) {
     //p1: Product = new Product("Learning Angular", true);
  //   this.products.push(new Product("Learning Angular", true));
@@ -38,6 +39,11 @@ export class ProductsComponent {
   OnClickEvent($event : Event){
     console.log("Submit button invoked successfully");
   }
+  updateSearchText(event : any){
+    console.log(event);
+    this.searchText=event.target.value;
+  }
+
 
 }
 export class Product{
