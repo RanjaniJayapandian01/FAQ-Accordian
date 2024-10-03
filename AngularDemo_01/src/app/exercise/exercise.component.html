@@ -8,32 +8,48 @@
 </head>
 <body>
     <div class="unselectable">This text is un selectable</div>
+    
     <div class="search-container">
       <input type="text" placeholder="Search for the plant..." class="search-box" id="searchInput" [(ngModel)]="searchValue" (input)="searchPlantsByName()">
       <!-- <button class="search-button" (click)="searchPlantsByName(searchValue)">Search</button> -->
           </div>
-    <div><h3 [hidden]="!isSearch">Search results for keyword {{searchValue}}</h3>            </div>
-      
+    <div><h3 *ngIf="searchValue != ''">Search results for keyword {{searchValue}}</h3>            </div>
+    <div class="filter-container" >
+    <h5>Plants</h5><app-filter  [dropdown-options]="plantTypes" (newItemEvent)="HandleFilterSelection($event , 'planttype')" ></app-filter>
+    <!-- <h5>Price</h5><app-filter [dropdown-options]="priceRange"  (newItemEvent)="HandleFilterSelection($event , 'price')"></app-filter> -->
+    <h5>Avaliability</h5><app-filter [dropdown-options]="avaliability" (newItemEvent)="HandleFilterSelection($event , 'stock')"></app-filter>
+    <i class="bi bi-cart"></i>
+    </div>
     <div class="card-grid">
             <ng-container *ngFor="let plant of filteredPlants">
         <div class="card">
-            <img class="card-image" bind-src="plant.imgUrl" alt="Photo of {{ plant.name }}">
+            <div>
+              <img class="card-image img-plant" bind-src="plant.imgUrl" alt="Photo of {{ plant.name }}">
+            </div>
             <div class="card-content">
-              <h3 class="card-title">{{ plant.name }}</h3>
+              <h3 class="card-title">{{ plant.name }}</h3>           
               <h4 class="card-subtitle">{{ plant.description }}</h4>  
-              <h6> {{(plant.price) > 0 ?  'Price is ' + ((plant.price) | currency : 'INR': 'symbol' : '1.2-4' ): 'None'}}</h6>   
-              <rating [rating-value]="plant.rating"></rating>
-              <br>
-              <input type="button" value="-" class="button-minus border rounded-circle  icon-shape icon-sm mx-1 " (click)="changeQuantity(plant, -1)">
-              <input type="number" step="1" [max]="plant.stock" [value]="plant.qtyOrdered" [(ngModel)]="plant.qtyOrdered" class="quantity-field border-0 text-center w-25" readonly>
-              <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm" (click)="changeQuantity(plant, 1)">     
+              <!-- <div class="card-data"> -->
+
+                <h6> {{plant.stock> 0 && (plant.price) > 0 ?  'Price is ' + ((plant.price) | currency : 'INR': 'symbol' : '1.2-4' ): 'None'}}</h6>   
+                <rating [rating-value]="plant.rating"></rating>
+                <br>
+                <div *ngIf="plant.stock > 0">                
+                <input type="button" value="-" class="button-minus border rounded-circle  icon-shape icon-sm mx-1 " (click)="changeQuantity(plant, -1)">
+                <input type="number" step="1"  [max]="plant.stock" [value]="plant.qtyOrdered"  [(ngModel)]="plant.qtyOrdered" class="quantity-field border-0 text-center w-25" readonly>
+                <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm" (click)="changeQuantity(plant, 1)">     
+                </div>   
+                <div [ngStyle]="{fontWeight: 'bold', color: plant.stock > 0 ? 'green' : 'red' }">
+                  {{plant.stock > 0 ? "Available in stock" : "Not available in stock"}}
+                </div>
+
+              <!-- </div> -->
 
             </div>
-
-            <div class="card-actions">
-              <button class="btn" (click) = "GenerateAdditionalInfo(plant.name)">More Info</button>
-            </div>
-        
+            <div class="d-flex justify-content-center">
+              <button class="btn card-actions mr-2" (click) = "GenerateAdditionalInfo(plant.name)">More Info</button>
+              <button class="btn btn-primary add-cart" [hidden]="plant.stock<=0"    (click)="AddToCart(plant)" ><i class="fas fa-shopping-cart "></i> Add to Cart</button>
+          </div>
         </div>
         </ng-container>
     </div>

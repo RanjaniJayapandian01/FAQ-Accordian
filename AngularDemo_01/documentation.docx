@@ -206,3 +206,23 @@ return null | return validatorMethod : value
 
 Question:
 1. we have used model.properties to access the class properties. what if there are multiple classes in the typescript file
+
+03-10-2024
+Spread Operator
+The syntax [...this.cartItems] uses the spread operator in JavaScript (and TypeScript). Here’s what it does:
+
+2. Why Use a Shallow Copy?
+Preventing Side Effects: When you create a new array, any changes to that new array won’t affect the original array. This is particularly important in Angular, where changes to input properties may not trigger change detection if the reference does not change.
+Immutability: By creating a new reference for the array, you can work with a more functional programming style, reducing potential side effects from mutations of shared state.
+
+3. Use in Angular Components
+In the context of your Angular application, using [...this.cartItems] is particularly useful for:
+Updating State: When you update filteredCartItems in your CartComponent, using the spread operator ensures that it points to a new array reference. This triggers Angular's change detection to recognize that something has changed.
+Input Properties: If you're passing cartItems as an input to another component and you modify the array, creating a new reference helps ensure that the changes are reflected correctly across your application.
+
+const originalArray = [1, 2, 3];
+const newArray = [...originalArray];
+
+console.log(newArray); // Output: [1, 2, 3]
+console.log(originalArray === newArray); // Output: false (they are different references)
+

@@ -1,0 +1,65 @@
+<!-- <div class="filter-bar">
+    <span class="filter-label">Filter:</span>
+    
+    <div class="filter-item" *ngFor="let filter of filterOptions">
+      <span (click)="toggleFilter(filter)" class="filter-name">
+        {{ filter.name }} <span class="arrow">{{ filter.open ? '▲' : '▼' }}</span>
+      </span>
+      <div class="dropdown-content" *ngIf="filter.open">
+        Add filter specific content here
+        <ng-container *ngIf="filter.name === 'Price'">
+          <div class="price-range">
+            <p>The highest price is Rs. 500.00</p>
+            <input type="number" placeholder="From ₹" (change)="setPriceRange('from', $event)" />
+            <input type="number" placeholder="To ₹" (change)="setPriceRange('to', $event)" />
+            <button class="reset-btn" (click)="resetPriceFilter()">Reset</button>
+          </div>
+        </ng-container>
+        Add other dropdown contents for other filters
+      </div>
+    </div>
+  
+    <div class="sort-by">
+      <span>Sort by:</span>
+      <span (click)="toggleSortOptions()" class="sort-name">
+        {{ selectedSort }} <span class="arrow">{{ sortOpen ? '▲' : '▼' }}</span>
+      </span>
+      <div class="dropdown-content" *ngIf="sortOpen">
+        <ul>
+          <li *ngFor="let sortOption of sortOptions" (click)="selectSortOption(sortOption)">
+            {{ sortOption }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <span class="product-count">{{ productCount }} products</span>
+  </div>
+   -->
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" (click)="toggleDropdown()"> {{ selectedItems.length ? selectedItems.join(', ') : 'Select options' }}
+      <span class="caret"></span>
+    </button>
+  
+    <div class="dropdown-menu" [class.show]="isOpen">
+      <!-- Select All / Deselect All Checkboxes and Search Box -->
+      <div class="dropdown-item d-flex align-items-center">
+        <div class="form-check mr-2">
+          <input type="checkbox" class="form-check-input" id="selectAll"(change)="selectAllToggle($event)"/>
+        </div>
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" (input)="filterOptions()" placeholder="Search..."/>
+      </div>
+      <div class="dropdown-divider"></div>
+  
+      <!-- Dynamically Generated Options with Filter -->
+      <div class="dropdown-item" *ngFor="let option of filteredOptions">
+        <div class="form-check">
+          <input  class="form-check-input" type="checkbox" [id]="option" [value]="option" [(ngModel)]="selectedOptions[option]" (change)="onSelectionChange(option, $event)"/>
+          <label class="form-check-label" [for]="option">{{ option }}</label>
+        </div>
+      </div>
+
+    </div>
+
+</div>
+  

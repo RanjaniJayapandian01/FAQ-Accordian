@@ -19,6 +19,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { PasswordValidator } from './login/password-validator.component';
+import { FilterComponent } from './filter/filter.component';
+import { CartComponent } from './cart/cart.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import { PasswordValidator } from './login/password-validator.component';
     TruncatePipe,
     JumbotronComponent,
     UserFormComponent,
-    LoginComponent
+    LoginComponent,
+    FilterComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,9 @@ import { PasswordValidator } from './login/password-validator.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -24,12 +24,14 @@
 </head>
 <body>
   <main class="main">
+    
     <h1>{{title}}</h1>
     <!-- <app-products></app-products>  -->
     <!-- <rating></rating> -->
     <!-- <app-eform></app-eform> -->
      <!-- <app-login></app-login> -->
-     <app-exercise></app-exercise>
+     <app-exercise [updatecartList]="cartItemsFromApp" (totalCartItems)="sendDataToCart($event)" ></app-exercise>
+     <app-cart [cartItems]="cartItemsFromApp" (changeCartData)="RemoveCartItems($event)" ></app-cart>
     </main>
 </body>
 </html>
