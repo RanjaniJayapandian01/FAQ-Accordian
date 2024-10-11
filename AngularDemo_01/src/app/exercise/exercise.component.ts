@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { ExerciseService } from './exercise.service';
 import { CartItem } from '../cart/cart.component';
-
+import {Plant} from './../models/Plant';
 @Component({
   selector: 'app-exercise',
   templateUrl: './exercise.component.html',
@@ -21,7 +21,8 @@ export class ExerciseComponent {
      addToCart: number=0;
      searchValue: string ="";
      isSearch : boolean =false;   
-     
+     selectedPlant : any;
+     featuredPlantList: Plant[];
      @Output()
      totalCartItems = new EventEmitter<any>();
      
@@ -32,6 +33,8 @@ export class ExerciseComponent {
      constructor(exservice : ExerciseService ) {
       this.totalPlantList = exservice.getPlants();
       this.filteredPlants= this.totalPlantList;
+
+      this.featuredPlantList=exservice.getFeaturedPlants();
      }
      AddToCart(plant: Plant){
       let cartObj : CartItem;
@@ -102,30 +105,4 @@ export class ExerciseComponent {
     //   }
     // }
     
-}
-export class Plant{
-    name : string;
-    description : string;
-    imgUrl: string;
-    price : number;
-    rating : number;
-    discount : number;
-    stock: number;
-    qtyOrdered : number;
-    type: string;
-    /**
-     *
-     */
-    constructor(name: string, description: string, imgUrl : string, price : number, rating : number, discount : number, quantityAvailable : number, type : string) {
-      this.name=name;
-      this.description=description;
-      this.imgUrl= imgUrl;
-      this.price=price;
-      this.rating= rating;
-      this.discount = discount;
-      this.stock=quantityAvailable; 
-      this.qtyOrdered=1;
-      this.type=type;
-    }    
-
 }

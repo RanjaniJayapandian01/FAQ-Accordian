@@ -22,6 +22,8 @@ import { PasswordValidator } from './login/password-validator.component';
 import { FilterComponent } from './filter/filter.component';
 import { CartComponent } from './cart/cart.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { PlantComponent } from './plant/plant.component';
+import { FeaturedPlantsComponent } from './featured-plants/featured-plants.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     UserFormComponent,
     LoginComponent,
     FilterComponent,
-    CartComponent
+    CartComponent,
+    PlantComponent,
+    FeaturedPlantsComponent
   ],
   imports: [
     BrowserModule,

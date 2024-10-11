@@ -33,6 +33,12 @@
     height: auto;
     object-fit: contain;
   }
+  .featured-plant-container{
+    background-color: #333;
+    margin: 20px auto;
+    padding: 20px 10px;
+    display: flex;
+  }
   
   .card-content {
     padding: 16px;
@@ -128,4 +134,80 @@
   max-width: 100%; /* Set the desired width */
   height: 250px; /* Set the desired height */
   /* object-fit: cover; Optional: crops and centers the image if the aspect ratio differs */
+}
+
+
+
+
+.featured-products {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.product-name {
+  font-size: 1.2em;
+  margin: 10px 0 5px;
+}
+
+.product-description {
+  font-size: 0.9em;
+  color: #666;
+  margin: 5px 0;
+}
+
+.product-price {
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.product-rating,
+.product-stock {
+  font-size: 0.9em;
+  color: #888;
+}
+
+.order-button {
+  background-color: #FF7A59;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.order-button:hover {
+  background-color: #e67e22;
 }

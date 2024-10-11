@@ -1,5 +1,5 @@
 // src/app/cart/cart.component.ts
-import { Component, EventEmitter, Input, OnInit, Output, OutputEmitterRef, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, OutputEmitterRef, SimpleChanges, ViewChild } from '@angular/core';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -9,6 +9,10 @@ export class CartComponent implements OnInit {
   @Input()
   cartItems: CartItem[] = [];  
   filteredCartItems : CartItem[] = this.cartItems;
+  isCartEmpty: boolean = true; // Change this based on your cart state
+
+  @ViewChild('searchText') searchValue: ElementRef;
+
   @Output()
   changeCartData =new EventEmitter<any>();
   ngOnInit(): void {
@@ -35,10 +39,20 @@ export class CartComponent implements OnInit {
     console.log("From Cart remove",this.cartItems);
     this.changeCartData.emit(this.cartItems);
   }
-  UpdateTableData(input: HTMLInputElement){
-    console.log(input.value);
-    if(input.value.length>0){
-      this.filteredCartItems=this.cartItems.filter(plant => plant.name.toLowerCase().includes(input.value.toLowerCase()));
+  // UpdateTableData(input: HTMLInputElement){
+  //   console.log(input.value);
+  //   if(input.value.length>0){
+  //     this.filteredCartItems=this.cartItems.filter(plant => plant.name.toLowerCase().includes(input.value.toLowerCase()));
+  //   }
+  //   else{
+  //     this.filteredCartItems= [...this.cartItems]; 
+  //   }
+  // }
+
+  UpdateTableData(){
+
+    if(this.searchValue.nativeElement.value.length>0){
+      this.filteredCartItems=this.cartItems.filter(plant => plant.name.toLowerCase().includes(this.searchValue.nativeElement.value.toLowerCase()));
     }
     else{
       this.filteredCartItems= [...this.cartItems]; 

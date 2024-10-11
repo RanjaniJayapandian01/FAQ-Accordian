@@ -1,3 +1,4 @@
+
 @font-face {
     font-family: "WorkSans";
     src: url('/assets/fonts/WorkSans-VariableFont_wght.ttf') format('truetype');
@@ -20,23 +21,123 @@ body{
     display: grid;
     place-content: center;
     min-height: 100vh;
-    font-size: 1rem;
+    font-size: 4rem;
     line-height: 1.5rem;
 }
 
-img, svg{
-    max-width: 100%;
+.form-container {
+    width: 650px;
+    padding: 30px;
+    background-color: hsl(0, 0%, 100%);
+    border-radius: 15px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .form-group {
+    width: 100%;
+  }
+  
+  .name_inputs {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .name_inputs input {
+    width: 100%;
+  }
+  
+label{
+    font-size: 20px;
+  }
+  
+button{
+    justify-items: center;
 }
-/* 
-@media(max-width: 700px){
-    body{
-        background-image: url('/assets/images/background-pattern-mobile.svg')  format('truetype');;
-        min-width: 375px;
-    }
-} */
 
+  input:not([type="checkbox"]):not([type="radio"]) {
+    border: 1px solid hsl(281, 76%, 75%);
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 8px 0;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  input:not([type="checkbox"]):not([type="radio"]):hover, textarea:hover {
+    border: 1px solid hsl(276, 72%, 79%);
+  }
+  
+  input:not([type="checkbox"]):not([type="radio"]):focus, textarea:focus {
+    outline: 1px solid hsl(276, 72%, 79%);
+  }
+  
+  textarea {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    resize: none;
+    margin: 8px 0;
+    border:  1px solid hsl(276, 72%, 79%);
+    cursor: pointer;
+  }
+  #query {
+    display: flex;
+    gap: 10px;
+    margin: 8px 0;
+  }
+  
+  .q_type {
+    border:  1px solid hsl(276, 72%, 79%);
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .q_type label, .q_type input, .q_type {
+    cursor: pointer;
+  }
 
-    body{
-        background-image: url('/assets/images/background-pattern-desktop.svg')  format('truetype');;
-    }
-
+  input[type=radio] {
+    accent-color:  1px solid hsl(276, 72%, 79%);
+  }
+  
+  h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  /* button {
+    font-weight: bold;
+    color: hsl(0, 0%, 100%);    
+    padding: 15px 0;
+    border-radius: 5px;
+    border: 1px solid hsl(187, 24%, 22%);
+    margin-top: 8px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color:  1px solid hsl(276, 72%, 79%);
+  } */
+  
+  .checkbox > div {
+    display: flex;
+    margin-bottom: 8px;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  input[type=checkbox] {
+    accent-color:  1px solid hsl(276, 72%, 79%);
+    width: 15px;
+  }
+  

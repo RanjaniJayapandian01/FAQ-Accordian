@@ -4,10 +4,14 @@
 
 <div class="cart">
     <h2>Your Cart</h2>
+
     <div class="search-container">
+    <!-- <input type="text" class="search-box "  placeholder="Filter by Plant Name..." #searchText>
+    <button class="btn search-button"  (click)="UpdateTableData(searchText)">Search</button> -->
     <input type="text" class="search-box "  placeholder="Filter by Plant Name..." #searchText>
-    <button class="btn search-button"  (click)="UpdateTableData(searchText)">Search</button>
+    <button class="btn search-button"  (click)="UpdateTableData()">Search</button> 
    </div>
+   <ng-container *ngIf="filteredCartItems.length>0; else elseBlock">
     <table class="cart-container">
       <thead>
         <tr>
@@ -36,6 +40,13 @@
         
       </tbody>
     </table>
+  </ng-container>
+  <ng-template #elseBlock>
+    <div>Your cart is empty.</div>
+  </ng-template>
+
+  
+
     <!-- <div *ngIf="cartItems.length === 0">Your cart is empty.</div> -->
   </div>
   

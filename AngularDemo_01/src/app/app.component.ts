@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Input, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, SimpleChanges, ViewChild } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CartItem } from './cart/cart.component';
+import { ExerciseComponent } from './exercise/exercise.component';
+import { Plant } from './models/Plant';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +15,8 @@ export class AppComponent {
 
   cartItemsFromApp: CartItem[]=[];
   changeCartDataInOrgin=new EventEmitter<any>();
+  @ViewChild('exerciseComponent') exerciseComp : ExerciseComponent; // or   @ViewChild(ExerciseComponent) exerciseComp : ExerciseComponent;
+
   sendDataToCart(cartitem: CartItem){
     // this.cartItemsFromApp.splice(0, this.cartItemsFromApp.length);
     // this.cartItemsFromApp.push(plants);
