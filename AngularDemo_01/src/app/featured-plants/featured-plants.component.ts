@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ContentChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-featured-plants',
@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './featured-plants.component.css'
 })
 export class FeaturedPlantsComponent {
+  @ContentChild('TotalFeaturedProducts') totalItems: ElementRef;
 
+  GetChildContent(){
+    console.log(this.totalItems.nativeElement);
+  }
 }

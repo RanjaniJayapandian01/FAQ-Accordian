@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 import { ProductService } from './products.service';
 
 @Component({
@@ -20,11 +20,12 @@ export class ProductsComponent {
   defaulttext? : string = "Type here...";
   prodList : any;
   searchText: string="Product1";
+
+  
+  arrayOfElements: string[]=["ABC"];
+  messageForNOCtest: string;
+  toDestroy: boolean = false;
   constructor(productService: ProductService) {
-    //p1: Product = new Product("Learning Angular", true);
- //   this.products.push(new Product("Learning Angular", true));
-  //  this.products.push(new Product("Pro Typescript", false));
-   // this.products.push(new Product("ASP.NET", false));      
 
     this.products=productService.getProducts();
     this.prodList=productService.getProductsV2();
@@ -44,6 +45,19 @@ export class ProductsComponent {
     this.searchText=event.target.value;
   }
 
+  ChangeInputByClick(val : HTMLInputElement){
+
+    this.arrayOfElements.push(val.value);
+    this.messageForNOCtest=val.value;
+    console.log("Product Component input val:",  this.messageForNOCtest);
+  }
+  ChangeInputByHardcodedValue(){
+    this.messageForNOCtest='test';
+  }
+
+  ToRemoveComponent(){
+    this.toDestroy=!this.toDestroy;
+  }
 
 }
 export class Product{

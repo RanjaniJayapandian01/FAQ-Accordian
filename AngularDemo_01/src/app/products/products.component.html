@@ -1,5 +1,28 @@
+<h1>Product Component</h1>
 <p>products works!</p>
 <div>
+
+    <!--Angular Life Cycle Hook-->
+    <!--NgOnChanges , NgOnInit, NgDoCheck-->
+    <input type="text" #inputRef>
+    <button class="btn btn-primary" (click)="ChangeInputByClick(inputRef)">Submit</button>
+    <br>
+    <!-- <button class="btn btn-primary" (click)="ChangeInputByHardcodedValue()">Submit</button> -->
+     <h1>Demo component</h1>
+       <!--NgOnDestroy-->
+    <app-demo [name]="messageForNOCtest" *ngIf="!toDestroy">
+        <h4>--NgAfterContentInit NgAfterContentChecked--</h4>       
+        <div #demodivRef>This is div tag from the ng content</div>
+        <p>This is p tag from the ng content p1</p>
+        <p>This is p tag from the ng content p2</p>
+        <div> This Message is updating from Product component {{messageForNOCtest}}</div>
+    </app-demo>
+     <!-- ngDoChangesWorks only for value type-->
+    <!-- <app-demo  [arr]="arrayOfElements"></app-demo> -->
+
+    <button (click)="ToRemoveComponent()">Remove</button>
+
+    <hr>
     <!--Structural Attribute-->
     <!--*ngFor-->
     <ul>
@@ -38,12 +61,16 @@
     <ng-template #template>
         No products found
     </ng-template>
-    <bs-jumbotron [title]="message">
-        <div class="Example"> This is a simple hero unit a simple jumbotron style component for caling extra attention to fetatured content</div>
-        <div class="header">Header: Multiple Insertion points Example</div>
-        <div class="body"> It is achieved using select attribute with classname with period prefixed</div>
-        <div class="description"> To more detailed about the jumbtron <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/"> click here</a></div>
+    <bs-jumbotron [title]="message" #jumboComponent>
+        <div class="Example"  #bsjumbotrondiv> This is a simple hero unit a simple jumbotron style component for caling extra attention to fetatured content</div>
+        <div class="header" #bsjumbotrondiv>Header: Multiple Insertion points Example</div>
+        <div class="body" #bsjumbotrondiv> It is achieved using select attribute with classname with period prefixed</div>
+        <div class="description" #bsjumbotrondiv> To more detailed about the jumbtron <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/"> click here</a></div>
     </bs-jumbotron>
-
+    <bs-jumbotron #jumboComponent></bs-jumbotron>
     <user-form></user-form>
+
+
+
+    
 </div>

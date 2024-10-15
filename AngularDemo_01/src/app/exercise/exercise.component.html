@@ -22,7 +22,7 @@
     </div>
     <div class="card-grid">
             <ng-container *ngFor="let plant of filteredPlants">
-        <div class="card" >
+        <div class="card" card-hover>
             <div>
               <img class="card-image img-plant" bind-src="plant.imgUrl" alt="Photo of {{ plant.name }}">
             </div>
@@ -61,17 +61,18 @@
   <app-featured-plants>
     <div class="featured-products">
 
-    <div class="product-grid">
-      <div class="product-card" *ngFor="let plant of featuredPlantList">
+    <div class="product-grid" #TotalFeaturedProducts>
+      <div class="product-card" *ngFor="let plant of featuredPlantList"  card-hover>
         <img [src]="plant.imgUrl" alt="{{ plant.name }}" class="product-image" />
         <h3 class="product-name">{{ plant.name }}</h3>
         <p class="product-description">{{ plant.description }}</p>
         <!-- <p class="product-price">{{ plant.price | currency }}</p>
         <p class="product-rating">Rating: {{ plant.rating }} ⭐</p>
         <p class="product-stock">In Stock: {{ plant.stock }}</p> -->
-        <!-- <button class="order-button">Order Now</button> -->
+        <!-- <button class="order-button" (click)>Order Now</button>  -->
       </div>
     </div>
+   
   </div>
   </app-featured-plants>
 
