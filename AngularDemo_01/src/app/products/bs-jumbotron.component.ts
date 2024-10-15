@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, ContentChildren, ElementRef, Input, QueryList } from "@angular/core";
 
 @Component({
     selector: 'bs-jumbotron',
@@ -15,10 +15,27 @@ import { Component, Input } from "@angular/core";
     <p>It uses utility classes for typography and spacing ..</p>
     <ng-content select=".description"></ng-content>
     <a class="btm btn-primary btn-lg" href="#" role="button">Learn More</a>
+    <button  (click)="ShowElements()">Show More</button>
     </div>
     `,
 })
 
 export class JumbotronComponent{
        @Input('title') title : string ="Hey!!!";
+
+       @ContentChildren('bsjumbotrondiv') divElementsFromProducts : QueryList<ElementRef>;
+       @ContentChildren('jumboComponent') jumbocomponents : QueryList<JumbotronComponent>;
+
+       ShowElements(){
+        this.divElementsFromProducts.forEach(element => {
+            console.log(element.nativeElement);
+        });
+
+        this.divElementsFromProducts.forEach(
+            element => {
+                console.log(element.nativeElement);
+            }
+        );
+
+       }
 }

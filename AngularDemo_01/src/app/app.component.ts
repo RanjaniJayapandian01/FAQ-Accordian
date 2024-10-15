@@ -34,4 +34,9 @@ export class AppComponent {
   //   }
   // }
 
+  // ngAfterViewInit(){
+  //   console.log("ngAfterViewInit Hook is called in app component");
+
+//}
+
 }

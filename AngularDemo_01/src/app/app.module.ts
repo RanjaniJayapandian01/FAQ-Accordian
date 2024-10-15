@@ -24,7 +24,8 @@ import { CartComponent } from './cart/cart.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { PlantComponent } from './plant/plant.component';
 import { FeaturedPlantsComponent } from './featured-plants/featured-plants.component';
-
+import { DemoComponent } from './products/demo-component';
+import {CardHoverComponent} from './CustomDirectives/card-hover.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,9 @@ import { FeaturedPlantsComponent } from './featured-plants/featured-plants.compo
     FilterComponent,
     CartComponent,
     PlantComponent,
-    FeaturedPlantsComponent
+    FeaturedPlantsComponent,
+    DemoComponent,
+    CardHoverComponent
   ],
   imports: [
     BrowserModule,
