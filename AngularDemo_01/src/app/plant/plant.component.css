@@ -1,3 +1,13 @@
+:host {
+    display: block;
+    padding: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Additional styles */
+
+
 body {
     font-family: Arial, sans-serif;
     background-color: #eef2f3;

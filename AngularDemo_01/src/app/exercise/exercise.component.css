@@ -1,3 +1,4 @@
+
 .unselectable{
     -webkit-user-select: none;
     -webkit-touch-callout: none;
@@ -166,9 +167,9 @@ h2 {
   transition: transform 0.2s;
 }
 
-/* .product-card:hover {
+.product-card:hover {
   transform: scale(1.05);
-} */
+}
 
 .product-image {
   width: 100%;

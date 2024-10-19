@@ -70,7 +70,17 @@
     <bs-jumbotron #jumboComponent></bs-jumbotron>
     <user-form></user-form>
 
+    <!--Property Binding using Directive-->
 
+    <div>
+        <!-- <button pb-directive [bGColor]="'#e2b1fd'" [txtColor]="'#310249'">This is a Button for Testing Property Binding</button> -->
+        <br>
+        <!-- <button pb-directive [txtColor]="'#310249'" >SUBMIT</button> -->
+        <!-- <button [pb-directive]="'#e2b1fd'" [txtColor]="'#01031a'" [title]="'This is button title'">This is a Button for Testing Property Binding</button> -->
+
+        <button [pb-directive]="{bGColor: '#aaed7e',txtColor: '#29570b'}">This is a Button for Testing Property Binding</button>
+
+    </div>
 
     
 </div>

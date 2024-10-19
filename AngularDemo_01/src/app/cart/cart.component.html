@@ -12,7 +12,7 @@
     <button class="btn search-button"  (click)="UpdateTableData()">Search</button> 
    </div>
    <ng-container *ngIf="filteredCartItems.length>0; else elseBlock">
-    <table class="cart-container">
+    <table class="cart-container" >
       <thead>
         <tr>
           <th>Plant Name</th>
@@ -32,8 +32,8 @@
           <td>{{ item.discount }}%</td>
           <td>{{ calculateTotal(item) }}</td>
           <td>
-            <button (click)="removeItem(item.id)">
-              <i class="fa fa-trash"></i> <!-- Font Awesome icon -->
+            <button (click)="removeItem(item.id)" appFocusEffect>
+              <i class="fa fa-trash"></i> <!-- Font Awesome icon -->  Remove
             </button>
           </td>
         </tr>

@@ -26,6 +26,8 @@ import { PlantComponent } from './plant/plant.component';
 import { FeaturedPlantsComponent } from './featured-plants/featured-plants.component';
 import { DemoComponent } from './products/demo-component';
 import {CardHoverComponent} from './CustomDirectives/card-hover.directive';
+import { TextboxFocusDirectiveTsDirective } from './CustomDirectives/textbox-focus.directive';
+import { PropertyDirective } from './CustomDirectives/cssproperty-bind.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,9 @@ import {CardHoverComponent} from './CustomDirectives/card-hover.directive';
     PlantComponent,
     FeaturedPlantsComponent,
     DemoComponent,
-    CardHoverComponent
+    CardHoverComponent,
+    TextboxFocusDirectiveTsDirective,
+    PropertyDirective
   ],
   imports: [
     BrowserModule,

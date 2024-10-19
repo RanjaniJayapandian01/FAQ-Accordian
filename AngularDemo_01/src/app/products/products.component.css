@@ -1,3 +1,12 @@
+:host {
+    display: block;
+    padding: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Additional styles */
+
 .btn.disabled {
     background-color: #d6d6d6; /* Light grey background */
     border-color: #b3b3b3; /* Grey border */
