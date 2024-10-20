@@ -2,12 +2,12 @@
 <div class="blog-container">
     <h1 class="blog-title">Plant Shop Blog</h1>
     <div class="blog-posts">
-      <div *ngFor="let post of posts" class="blog-post" >
+      <div *ngFor="let post of posts"  [temp-class]="{ 'blog-post-hide' : !compareDates(post.date), 'blog-post' : true   }">
         <h2 class="post-title">{{ post.title }}</h2>
         <p class="post-content">{{ post.content }}</p>
         <div class="post-footer">
           <span class="post-category">{{ post.category }}</span>
-          <span class="post-date">{{ getCurrentDate() }}</span>
+          <span class="post-date">{{ post.date}}</span>
         </div>
       </div>
     </div>

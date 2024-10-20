@@ -30,6 +30,7 @@ import { TextboxFocusDirectiveTsDirective } from './CustomDirectives/textbox-foc
 import { PropertyDirective } from './CustomDirectives/cssproperty-bind.directive';
 import { DisableElement } from './CustomDirectives/disable-element.directive';
 import { BlogComponentComponent } from './blog/blog-component.component';
+import { TemplateComponent } from './CustomDirectives/template-class.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,8 @@ import { BlogComponentComponent } from './blog/blog-component.component';
     TextboxFocusDirectiveTsDirective,
     PropertyDirective,
     DisableElement,
-    BlogComponentComponent
+    BlogComponentComponent,
+    TemplateComponent
   ],
   imports: [
     BrowserModule,
