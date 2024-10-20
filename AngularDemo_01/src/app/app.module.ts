@@ -28,6 +28,8 @@ import { DemoComponent } from './products/demo-component';
 import {CardHoverComponent} from './CustomDirectives/card-hover.directive';
 import { TextboxFocusDirectiveTsDirective } from './CustomDirectives/textbox-focus.directive';
 import { PropertyDirective } from './CustomDirectives/cssproperty-bind.directive';
+import { DisableElement } from './CustomDirectives/disable-element.directive';
+import { BlogComponentComponent } from './blog/blog-component.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +52,9 @@ import { PropertyDirective } from './CustomDirectives/cssproperty-bind.directive
     DemoComponent,
     CardHoverComponent,
     TextboxFocusDirectiveTsDirective,
-    PropertyDirective
+    PropertyDirective,
+    DisableElement,
+    BlogComponentComponent
   ],
   imports: [
     BrowserModule,

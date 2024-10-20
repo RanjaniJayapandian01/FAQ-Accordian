@@ -20,9 +20,9 @@
     <h5>Avaliability</h5><app-filter [dropdown-options]="avaliability" (newItemEvent)="HandleFilterSelection($event , 'stock')"></app-filter>
     <i class="bi bi-cart"></i>
     </div>
-    <div class="card-grid">
+    <div class="card-grid" >
             <ng-container *ngFor="let plant of filteredPlants">
-        <div class="card" card-hover>
+        <div class="card" card-hover [disableElement]="plant.stock<=0">
             <div>
               <img class="card-image img-plant" bind-src="plant.imgUrl" alt="Photo of {{ plant.name }}">
             </div>

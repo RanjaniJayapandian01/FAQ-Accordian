@@ -29,6 +29,15 @@
     background-color: #fff;
   }
   
+  .card-disable{
+    opacity: 0.5; /* Makes the card look faded */
+    pointer-events: none; /* Prevents any interactions with the card */
+    filter: grayscale(100%); /* Makes the card look gray */
+    /* You can also add other styles, like a different background color */
+    background-color: #f0f0f0; /* Light gray background */
+
+  }
+
   .card-image {
     width: 100%;
     height: auto;
