@@ -226,3 +226,13 @@ const newArray = [...originalArray];
 console.log(newArray); // Output: [1, 2, 3]
 console.log(originalArray === newArray); // Output: false (they are different references)
 
+destructuring array
+obj : object
+for(var item in Object.entries(obj))
+  let[variable1, variable2]= item
+
+How Structural directive works: angular identifies a directive is structural by the decorator * ex: *ngIf, *ngFor
+when directive of this type identified , then angular will wrap up the element within this html element into the ng-template 
+*ngIf ====
+
+<ng-template [ngIf]="booleanexpression">

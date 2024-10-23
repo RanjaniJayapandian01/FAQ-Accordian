@@ -17,8 +17,8 @@ import { JumbotronComponent } from './products/bs-jumbotron.component';
 import { UserFormComponent } from './products/user-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { PasswordValidator } from './login/password-validator.component';
+import { LoginComponent } from './user/login/login.component';
+import { PasswordValidator } from './user/login/password-validator.component';
 import { FilterComponent } from './filter/filter.component';
 import { CartComponent } from './cart/cart.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -31,6 +31,9 @@ import { PropertyDirective } from './CustomDirectives/cssproperty-bind.directive
 import { DisableElement } from './CustomDirectives/disable-element.directive';
 import { BlogComponentComponent } from './blog/blog-component.component';
 import { TemplateComponent } from './CustomDirectives/template-class.directive';
+import { StyleComponent } from './CustomDirectives/template-style.directive';
+import { FaqAccordianComponent } from './faq-accordian/faq-accordian.component';
+import { UserComponent } from './user/user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +59,10 @@ import { TemplateComponent } from './CustomDirectives/template-class.directive';
     PropertyDirective,
     DisableElement,
     BlogComponentComponent,
-    TemplateComponent
+    TemplateComponent,
+    StyleComponent,
+    FaqAccordianComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

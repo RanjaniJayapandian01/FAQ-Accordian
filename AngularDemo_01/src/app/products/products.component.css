@@ -13,3 +13,27 @@
     color: #8c8c8c; /* Grey text */
     cursor: not-allowed; /* Change cursor to indicate it's not clickable */
 }
+
+
+
+
+
+.marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.marquee p {
+    display: inline-block;
+    animation: scroll 10s linear infinite;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}

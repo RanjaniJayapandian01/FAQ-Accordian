@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, SimpleChanges, ViewChild } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { CartItem } from './cart/cart.component';
+
 import { ExerciseComponent } from './exercise/exercise.component';
 import { Plant } from './models/Plant';
+import { CartItem } from './models/CartItem';
 
 @Component({
   selector: 'app-root',

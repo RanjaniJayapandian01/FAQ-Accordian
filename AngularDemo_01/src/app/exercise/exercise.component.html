@@ -27,10 +27,13 @@
               <img class="card-image img-plant" bind-src="plant.imgUrl" alt="Photo of {{ plant.name }}">
             </div>
             <div class="card-content">
-              <h3 class="card-title">{{ plant.name }}</h3>           
+              <div class="plant-info">
+                <h3 class="card-title">{{ plant.name }}</h3>      
+                <i class="fas fa-save save-icon" title="Save" (click)="SaveUserPreference(plant)" [ngStyle]="{'color' : CheckIsPrefered(plant) ? 'green' : 'black'}"></i>  
+              </div>
               <h4 class="card-subtitle">{{ plant.description }}</h4>  
               <!-- <div class="card-data"> -->
-
+                
                 <h6> {{plant.stock> 0 && (plant.price) > 0 ?  'Price is ' + ((plant.price) | currency : 'INR': 'symbol' : '1.2-4' ): 'None'}}</h6>   
                 <rating [rating-value]="plant.rating"></rating>
                 <br>
@@ -64,7 +67,7 @@
     <div class="product-grid" #TotalFeaturedProducts>
       <div class="product-card" *ngFor="let plant of featuredPlantList"  card-hover>
         <img [src]="plant.imgUrl" alt="{{ plant.name }}" class="product-image" />
-        <h3 class="product-name">{{ plant.name }}</h3>
+        <h3 class="product-name">{{ plant.name }}   <i class="fas fa-save save-icon" title="Save" (click)="SaveUserPreference(plant)" [ngStyle]="{'color' : CheckIsPrefered(plant) ? 'green' : 'black'}"></i>  </h3>
         <p class="product-description">{{ plant.description }}</p>
         <!-- <p class="product-price">{{ plant.price | currency }}</p>
         <p class="product-rating">Rating: {{ plant.rating }} ⭐</p>

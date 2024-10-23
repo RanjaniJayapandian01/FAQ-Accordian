@@ -1,40 +1,38 @@
 import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { ExerciseService } from './exercise.service';
-import { CartItem } from '../cart/cart.component';
+
 import {Plant} from './../models/Plant';
+import { userPreferences } from '../models/userPreferences';
+import { PlantService } from '../Services/plant.service';
+import { CartItem } from '../models/CartItem';
 @Component({
   selector: 'app-exercise',
   templateUrl: './exercise.component.html',
   styleUrl: './exercise.component.css',
-  providers: [ExerciseService],
+  providers: [ExerciseService,PlantService],
 })
 export class ExerciseComponent {
-
-    @Input()
-    updatecartList: CartItem[]=[]
-     cartList : CartItem[]=[];
-     cobj: CartItem;
-     plantTypes: string[]=["Herbs", "Shrubs", "Medicinal Plants", "Climbers", "Creepers" ];
-     priceRange : string[]=["100-200", "250-500", "500-1000"];
-     avaliability : string[] =["In Stock", "Out of Stock"];
-     totalPlantList? : Plant[];
-     addToCart: number=0;
-     searchValue: string ="";
-     isSearch : boolean =false;   
-     selectedPlant : any;
-     featuredPlantList: Plant[];
-     @Output()
-     totalCartItems = new EventEmitter<any>();
-     
-     /**
-      *
-      */
-     filteredPlants? : Plant[]
-     constructor(exservice : ExerciseService ) {
+@Input()  updatecartList: CartItem[]=[]
+          cartList : CartItem[]=[];
+          cobj: CartItem;
+          plantTypes: string[]=["Herbs", "Shrubs", "Medicinal Plants", "Climbers", "Creepers" ];
+          priceRange : string[]=["100-200", "250-500", "500-1000"];
+          avaliability : string[] =["In Stock", "Out of Stock"];
+          totalPlantList? : Plant[];
+          addToCart: number=0;
+          searchValue: string ="";
+          isSearch : boolean =false;   
+          selectedPlant : any;
+          featuredPlantList: Plant[];
+          filteredPlants? : Plant[]
+          userPreferenceItems: userPreferences[];
+@Output() totalCartItems = new EventEmitter<any>();
+          
+     constructor(private exservice : ExerciseService, private plantservice : PlantService ) {
       this.totalPlantList = exservice.getPlants();
       this.filteredPlants= this.totalPlantList;
-
       this.featuredPlantList=exservice.getFeaturedPlants();
+      this.userPreferenceItems=plantservice.getUserPreferences();
      }
      AddToCart(plant: Plant){
       let cartObj : CartItem;
@@ -44,6 +42,7 @@ export class ExerciseComponent {
       this.cobj=cartObj;
       this.totalCartItems.emit(this.cobj);
      }
+     
      HandleFilterSelection(type : string[], x : string ){
         console.log(type);
         console.log(x);
@@ -61,7 +60,6 @@ export class ExerciseComponent {
         }
 
      }
-     
    
      GenerateAdditionalInfo(name:  string){
       if(name=='Lily')
@@ -105,4 +103,18 @@ export class ExerciseComponent {
     //   }
     // }
     
+    SaveUserPreference(obj: Plant){
+      const prefPlant = this.userPreferenceItems.find(p => p.plant.id === obj.id);           
+      if (prefPlant) {
+          prefPlant.IsSaved = !prefPlant.IsSaved; // Update the isSaved property
+      }    
+      else{
+      let likedPlantByUser : userPreferences= { userId: 100, plant : obj, IsSaved: true}
+      this.userPreferenceItems.push(likedPlantByUser);
+      }      
+    }
+    
+    CheckIsPrefered( plant){
+    return  this.userPreferenceItems.some( x => (JSON.stringify(x.plant) === JSON.stringify(plant) && x.IsSaved === true));        
+    }
 }

@@ -1,5 +1,7 @@
 // src/app/cart/cart.component.ts
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, OutputEmitterRef, SimpleChanges, ViewChild } from '@angular/core';
+import { CartItem } from '../models/CartItem';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -61,22 +63,3 @@ export class CartComponent implements OnInit {
 }
 
 
-
-
-export class CartItem{
-  private static nextId: number = 1; // Static variable to hold the next ID
-  id : number;
-  name : string;
-  quantity: number;
-  price: number;
-  discount: number;
-
-  constructor( name: string, price : number, quantity : number, discount: number) {
-    this.id = CartItem.nextId++; // Assign the next ID and increment
-    this.name = name;
-    this.price = price;
-    this.quantity = quantity;
-    this.discount = discount;
-
-  }
-}

@@ -221,3 +221,26 @@ h2 {
 .order-button:hover {
   background-color: #e67e22;
 }
+
+
+/* Add to plant-card.component.css */
+.plant-info {
+  display: flex;
+  align-items: center; /* Vertically centers the items */
+  justify-content: flex-start; /* Aligns items to the left */
+}
+
+.card-title {
+  margin-right: 8px; /* Space between title and icon */
+  flex: 1; /* Allows the title to take available space */
+}
+
+.save-icon {
+  font-size: 24px; /* Adjust the icon size as needed */
+  color: black; /* Icon color */
+  transition: color 0.3s;
+}
+
+.save-icon:hover {
+  color: #45a049; /* Change color on hover */
+}
