@@ -34,6 +34,7 @@ import { TemplateComponent } from './CustomDirectives/template-class.directive';
 import { StyleComponent } from './CustomDirectives/template-style.directive';
 import { FaqAccordianComponent } from './faq-accordian/faq-accordian.component';
 import { UserComponent } from './user/user.component';
+import { AdminComponent } from './user/admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +63,8 @@ import { UserComponent } from './user/user.component';
     TemplateComponent,
     StyleComponent,
     FaqAccordianComponent,
-    UserComponent
+    UserComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

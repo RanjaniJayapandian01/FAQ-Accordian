@@ -45,7 +45,8 @@
      <app-plant *ngIf="exerciseComponent.selectedPlant"   [exePlantComp]="exerciseComp"></app-plant>
      <app-cart [cartItems]="cartItemsFromApp" (changeCartData)="RemoveCartItems($event)" ></app-cart>
      <app-eform></app-eform>
-
+    <app-admin></app-admin>
+    <app-user></app-user>
       <!-- <app-blog-component></app-blog-component> -->
     </main>
 </body>
