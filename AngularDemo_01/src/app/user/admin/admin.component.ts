@@ -1,7 +1,7 @@
-import { Component } from "@angular/core";
-import { UserService } from "../Services/user.service";
-import { UserProfile } from "../models/userProfile";
-import { User } from "../products/user";
+import { Component, EventEmitter, Inject } from "@angular/core";
+import { UserService } from "../../Services/user.service";
+import { UserProfile } from "../../models/userProfile";
+import { User } from "../../products/user";
 
 @Component({
     selector: 'app-admin',
@@ -20,6 +20,7 @@ import { User } from "../products/user";
         <th>Start Date</th>
         <th>Expiry Date</th>
         <th>Subscription Type</th>
+        <th>View User</th>
       </tr>
     </thead>
     <tbody>
@@ -32,6 +33,10 @@ import { User } from "../products/user";
         <td>{{ user.startDate | date:'longDate' }}</td>
         <td>{{ user.endDate | date:'longDate' }}</td>
         <td>{{ user.subscriptionType }}</td>
+        <td><i (click)="ShowSelectedUser(user)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+  <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+</svg></i></td>
       </tr>
     </tbody>
   </table>
@@ -145,7 +150,7 @@ tbody tr:hover {
   background-color: #f1f1f1;
 }
 
-    `
+    `,
 })
 export class AdminComponent{
   
@@ -156,13 +161,17 @@ export class AdminComponent{
      custType: string[] = ['Free', 'Basic', 'Premium'];
      plan: string[] = ['Quarterly', 'Monthly', 'Yearly'];
      model : any;
-    constructor(private userService: UserService) {
+
+    constructor(@Inject('USER_TOKEN') private userService: UserService) {
         this.users= this.userService.getUserList();  
-       // this.model  = new UserProfile((this.users && this.users.length >0) ? this.users.length+1 :  1 ,'','','','', new Date(),new Date(),false,'');
+       this.model  = new UserProfile((this.users && this.users.length >0) ? this.users.length+1 :  1 ,'','','','', new Date(),new Date(),false,'');
        this.initializeModel();
         console.log(this.users.length)      ;
     }
     
+    ngOnInit(){
+      this.users= this.userService.getUserList();  
+    }
     initializeModel() {
         this.model = new UserProfile(
             this.getNextUserId(),
@@ -184,5 +193,13 @@ export class AdminComponent{
         console.log("user created");        
         this.userService.AddUser(this.model);
         this.initializeModel(); // Reinitialize model for the next user
+        console.log('admin component', this.users);
+        //this.users=this.userService.getUserList();
     }
+
+
+    ShowSelectedUser(userObj: UserProfile){
+      this.userService.getSelectedUser(userObj);
+    }
+
 }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 
@@ -34,7 +34,11 @@ import { TemplateComponent } from './CustomDirectives/template-class.directive';
 import { StyleComponent } from './CustomDirectives/template-style.directive';
 import { FaqAccordianComponent } from './faq-accordian/faq-accordian.component';
 import { UserComponent } from './user/user.component';
-import { AdminComponent } from './user/admin.component';
+import { AdminComponent } from './user/admin/admin.component';
+import { UserService } from './Services/user.service';
+import { LoggerService } from './Services/logger.service';
+
+export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +77,8 @@ import { AdminComponent } from './user/admin.component';
     ReactiveFormsModule
   ],
   providers: [
+    {provide: 'USER_TOKEN', useClass: UserService},
+    LoggerService,
     provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]

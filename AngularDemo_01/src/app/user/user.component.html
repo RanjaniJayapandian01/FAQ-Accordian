@@ -1,4 +1,4 @@
-<p>user works!</p>
+<!-- <p>user works!</p>
 <div class="user-list">
     <h2>User List</h2>
     <table>
@@ -27,4 +27,21 @@
         </tr>
       </tbody>
     </table>
+</div> -->
+
+
+<div class="user-profile-container" *ngIf="selectedUser">
+  
+      <div>
+      <img class="user-image" src="https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png" alt="user logo" width="260px" height="200px">
+      </div>
+      <div class="user-detail-info">
+        <h2>User Detail</h2>
+        <p><b>User :</b> {{selectedUser.userName}}</p>
+        <p><b>Email Id :</b> {{selectedUser.emailId}}</p>
+        <p><b>customerType :</b> {{selectedUser.customerType}}</p>
+        <p><b>Subscription Status :</b> {{selectedUser.subscription}}</p>
+        <p><b>subscriptionType :</b> {{selectedUser.subscriptionType}}</p>
+      </div>
+  
 </div>

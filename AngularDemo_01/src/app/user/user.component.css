@@ -1,4 +1,4 @@
-.user-list {
+/* .user-list {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -40,4 +40,29 @@
   tbody tr:hover {
     background-color: #f1f1f1;
   }
-  
+   */
+   .user-profile-container{
+    margin: 10px 50px;
+    width: 90%;
+    padding: 20px 500px;
+    display: flex;
+   }
+
+   .user-image{
+    align-items: center;
+    width: 300px;
+    height: 240px;
+    border-radius: 50%;
+    margin: 40px auto;
+  }
+.user-detail-avatar-image{
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    margin: 20px auto;
+}
+.user-detail-info{
+  align-items: center;
+    margin: 20px 50px;
+    padding: 30px 20px;
+}
