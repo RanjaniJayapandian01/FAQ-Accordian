@@ -1,6 +1,6 @@
-import { Component, ElementRef, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { ProductService } from './products.service';
-import { debounceTime, distinctUntilChanged, filter, Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, from, fromEvent, Observable, of } from 'rxjs';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -28,21 +28,28 @@ export class ProductsComponent {
   messageForNOCtest: string;
   toDestroy: boolean = false;
   data :any[] =[];
-
+  array1: any[]=[1,2,3,4,5];
+  array2: any[]=["Observables" ,"Observer", "Event Emitter"];
   searchParameter =new FormControl();
 
-  observable =new Observable(
-    x=> {
-      setTimeout(()=>{ x.next(1)}, 1000);
-      setTimeout(()=>{x.next(2)}, 2000);
-        setTimeout(()=>{x.next(3)}, 3000);
-         // setTimeout(()=>{x.error(new Error())}, 4000);
-            setTimeout(()=>{x.next(5)}, 5000);
-              setTimeout(()=>{x.next(6)}, 6000);
-                setTimeout(()=>{x.next(7)}, 7000);
-                setTimeout(()=>{x.complete()}, 3000);
-    }
-  );
+  // observable =new Observable(
+  //   x=> {
+  //     setTimeout(()=>{ x.next(1)}, 1000);
+  //     setTimeout(()=>{x.next(2)}, 2000);
+  //       setTimeout(()=>{x.next(3)}, 3000);
+  //        // setTimeout(()=>{x.error(new Error())}, 4000);
+  //           setTimeout(()=>{x.next(5)}, 5000);
+  //             setTimeout(()=>{x.next(6)}, 6000);
+  //               setTimeout(()=>{x.next(7)}, 7000);
+  //               setTimeout(()=>{x.complete()}, 3000);
+  //   }
+  // );
+
+  //observable=of(this.array1, this.array2, 6, 7, "tring");
+  observable=from(this.array1);
+
+
+@ViewChild('elementRef') btnElement : ElementRef;
 
   constructor(productService: ProductService) {
 
@@ -80,8 +87,26 @@ export class ProductsComponent {
   }
 
   getAsyncData(){
-    this.observable.subscribe( (x : any) => this.data.push(x));
+    this.observable.subscribe( {next(x : any){ this.data=(x); console.log(this.data);}, 
+    error(err: Error){ alert(err.message);} , 
+    complete() { alert("The observable sends complete");} });
   }
+
+
+
+  ButtonClicked(){
+     let cnt: number=0;
+      let observableEvent= fromEvent(this.btnElement.nativeElement, 'click').subscribe(data => {
+        let childEle= document.createElement('div');
+        childEle.innerText = 'Item' + (++cnt);
+        document.getElementById("container").appendChild(childEle);            
+      });
+      
+  }
+  ngAfterViewInit(){
+    this.ButtonClicked();
+  }
+
 }
 export class Product{
   productName!: string;

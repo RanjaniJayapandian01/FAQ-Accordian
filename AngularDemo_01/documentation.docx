@@ -41,6 +41,7 @@ module is a class decorated with @NgNodule decorator. Similarly modules and comp
 
 Appmodule in turn makes call to AppComponent, which is a root component of the application and makes it ready to use.
   bootstrap: [AppComponent]
+  It is the bootstraping module and is available in all ang application.
 
 app.component.ts - Component - consist of three parameters. @Component decorator is used to identify that the particular class is component.
 It is the basic building block for angular app.
@@ -241,3 +242,81 @@ when directive of this type identified , then angular will wrap up the element w
 cloned repo on 011-11-2024 
 
 test 2
+
+Angular Framework is a open source, front end technology supports, desktop, mobile based apps, DI, e2e tooling are some of its notable features
+known for its below features
+1. Cross Browser Compatibilty
+2. Typescript support - superset of Js, a Microsoft extension. annotation, decorators, generics. It is strongly typed langauge.
+this file is compiled to js with help of npm, bower, webpack , gulp.
+Static typing
+ECMAScript Compatibility
+Decorators
+Modules and Namespaces
+Type Inference
+
+3. Component based architecture for easy maintainence - each component is isolated from other component . Every app has a root comp and its child comp
+4. Support Mobile Applications
+
+The primary purpose of Angular is to help in creating Single Page Applications (SPAs). A collection of built-in modules from Angular make the creation of single page applications much easier. Additionally, Angular is also recognized as a complete web framework 
+because of the features like modular CLI, type safety and built-in data streaming.
+
+If user interactions are handled without completly refreshing page is called Single page applications. Makes it faster
+It does not request the entire new page from the browser. SPA provide a good user experience by asynchronously.
+
+Advantages:
+DI, Communication between service, event handler, animation,  validation, Two way DB, MVC, create custom directives, service
+
+Provider - is service that may be customised. It helps loose coupling, maintainability, reusablity, It used to inject in component
+
+Difference between Angular JS, Angulat
+        AngularJs                   Angular
+language        Js                   TS
+device        not supports mobile    supports mobile
+Architecture        MVC                   Component based
+                bidirectional           unidirectional
+
+
+
+Core elements of Angular
+Component
+service
+Modules
+templates
+modules, decorators
+
+Why client side architecture
+
+responsivesness in UI lags
+Single page application
+Seperation concern
+Ecosystem - tooling - modules, packages, debug
+Collaboration, code resuability
+
+
+Command to update angular version
+ng update @angular/cli @angular/core
+
+Angular JS - MVC Architecture, Modularity
+Angular 2 - Component, Mobile Based
+Angular 4 - Smaller and Faster, HttpClientModule
+Angular 5 - Router Life Cycle, Compiler Improvements
+Angular 6 - Angular Elemet, RXJS Support
+Angular 7 - Bundle Budgets, CLI Prompts
+Angular 8 - Bazel Support, Angaulr Firebase
+Angular 9 - Improved build with AOT, Ivy Renderer
+Angular 10 - Performance improvement, TS 3.9 Support
+Angular 11 - Improved HMR, TS 4.0, ESLint
+Angular 12 - TS 4.2, Webpack 5 support
+Angular 13 - TS 4.4 RxJs 7.4
+Angular 14 - extended developer disagnostics, standalone components
+Angular 15 - Stable standalone API, Single File components
+Angular 16
+
+
+angualr bundle budget feature enable to check the size of the angular app.
+
+Yes, Angular uses Angular Universal module which is used for server-side rendering of Angular applications.
+Using Angular Universal has the following benefits:
+
+Users will instantaneously be able to see the application view which provides better experience for the new users
+Since most of the search engines accept pages that are using HTML, Universal can guarantee that the content will be accessible to all search engines, improving SEO.
