@@ -37,6 +37,8 @@ import { UserComponent } from './user/user.component';
 import { AdminComponent } from './user/admin/admin.component';
 import { UserService } from './Services/user.service';
 import { LoggerService } from './Services/logger.service';
+import { NewTaskComponent } from './products/new-task.component';
+import { ShowTaskComponent } from './products/show-task.component';
 
 export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
 @NgModule({
@@ -68,7 +70,9 @@ export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
     StyleComponent,
     FaqAccordianComponent,
     UserComponent,
-    AdminComponent
+    AdminComponent,
+    NewTaskComponent,
+    ShowTaskComponent
   ],
   imports: [
     BrowserModule,

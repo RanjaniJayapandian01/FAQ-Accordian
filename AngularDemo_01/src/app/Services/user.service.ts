@@ -2,6 +2,7 @@ import { EventEmitter, Injectable } from "@angular/core";
 import { UserProfile } from "../models/userProfile";
 import { LoggerService } from "./logger.service";
 import { User } from "../products/user";
+import { Subject } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -93,5 +94,12 @@ export class UserService{
 
     getSelectedUser(obj : UserProfile){
       this.shareSelectedUser.emit(obj);
+    }
+
+    // this was added for testing
+    //addTask : EventEmitter<string> =new EventEmitter<string>();
+    addTask =new Subject();
+    ShareNewTask(val: string){
+      this.addTask.next(val);
     }
 }

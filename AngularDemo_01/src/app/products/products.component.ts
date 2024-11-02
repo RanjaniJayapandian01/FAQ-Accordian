@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { ProductService } from './products.service';
-import { debounceTime, distinctUntilChanged, filter, from, fromEvent, Observable, of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, from, fromEvent, map, Observable, of } from 'rxjs';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -46,10 +46,13 @@ export class ProductsComponent {
   // );
 
   //observable=of(this.array1, this.array2, 6, 7, "tring");
-  observable=from(this.array1);
-
-
-@ViewChild('elementRef') btnElement : ElementRef;
+  //observable=from(this.array1);
+  p : Promise<string[]>=new Promise((resolve, reject)=>{
+    resolve(["Ar", "He", "Ne", "Kr" ,"Ze"]);
+  })
+  observable = from(this.p).pipe(map( x => x.map( g => g.concat('Inert Gas')) ) , map( x=> x.filter(  text => text[1] === 'e' )));
+  
+  @ViewChild('elementRef') btnElement : ElementRef;
 
   constructor(productService: ProductService) {
 
@@ -103,6 +106,7 @@ export class ProductsComponent {
       });
       
   }
+
   ngAfterViewInit(){
     this.ButtonClicked();
   }
