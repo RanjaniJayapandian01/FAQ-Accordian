@@ -85,5 +85,8 @@
         <p>This is scrolling text information!</p>
     </div>
     
-    
+    <button class="btn btn-primary" (click)="getAsyncData()">Get Observable data</button>
+    <div *ngFor="let i of data">{{i}}</div>
+    <br/>
+    <input class="form-control" type="search" [formControl]="searchParameter">
 </div>

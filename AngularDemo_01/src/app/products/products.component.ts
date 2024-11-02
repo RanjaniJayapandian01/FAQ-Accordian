@@ -1,5 +1,7 @@
 import { Component, ElementRef, Input } from '@angular/core';
 import { ProductService } from './products.service';
+import { debounceTime, distinctUntilChanged, filter, Observable } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
@@ -25,10 +27,28 @@ export class ProductsComponent {
   arrayOfElements: string[]=["ABC"];
   messageForNOCtest: string;
   toDestroy: boolean = false;
+  data :any[] =[];
+
+  searchParameter =new FormControl();
+
+  observable =new Observable(
+    x=> {
+      setTimeout(()=>{ x.next(1)}, 1000);
+      setTimeout(()=>{x.next(2)}, 2000);
+        setTimeout(()=>{x.next(3)}, 3000);
+         // setTimeout(()=>{x.error(new Error())}, 4000);
+            setTimeout(()=>{x.next(5)}, 5000);
+              setTimeout(()=>{x.next(6)}, 6000);
+                setTimeout(()=>{x.next(7)}, 7000);
+                setTimeout(()=>{x.complete()}, 3000);
+    }
+  );
+
   constructor(productService: ProductService) {
 
     this.products=productService.getProducts();
     this.prodList=productService.getProductsV2();
+    this.searchParameter.valueChanges.pipe(debounceTime(300), filter((x)=> x.length >=3), distinctUntilChanged()).subscribe(x=>{console.log(x)});
   }
   get styles() {
     return {
@@ -59,6 +79,9 @@ export class ProductsComponent {
     this.toDestroy=!this.toDestroy;
   }
 
+  getAsyncData(){
+    this.observable.subscribe( (x : any) => this.data.push(x));
+  }
 }
 export class Product{
   productName!: string;
