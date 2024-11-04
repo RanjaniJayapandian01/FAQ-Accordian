@@ -39,6 +39,7 @@ import { UserService } from './Services/user.service';
 import { LoggerService } from './Services/logger.service';
 import { NewTaskComponent } from './products/new-task.component';
 import { ShowTaskComponent } from './products/show-task.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
 @NgModule({
@@ -76,9 +77,10 @@ export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     {provide: 'USER_TOKEN', useClass: UserService},

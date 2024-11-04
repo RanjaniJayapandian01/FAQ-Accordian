@@ -14,9 +14,13 @@
     cursor: not-allowed; /* Change cursor to indicate it's not clickable */
 }
 
+.ghContainer{
+    background-color: plum;
+}
 
-
-
+.inputSearch{
+    width: 400px;
+}
 
 .marquee {
     overflow: hidden;

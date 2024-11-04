@@ -1,13 +1,15 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, Input, ViewChild } from '@angular/core';
 import { ProductService } from './products.service';
-import { debounceTime, distinctUntilChanged, filter, from, fromEvent, map, Observable, of } from 'rxjs';
+import { AsyncSubject, BehaviorSubject, debounceTime, distinctUntilChanged, filter, from, fromEvent, map, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { FormControl } from '@angular/forms';
+import { ajax } from 'rxjs/ajax';
+import { GitHubService, GitHubUser } from '../Services/github.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
-  providers: [ProductService]
+  providers: [ProductService, GitHubService]
 })
 
 
@@ -58,7 +60,7 @@ export class ProductsComponent {
 
     this.products=productService.getProducts();
     this.prodList=productService.getProductsV2();
-    this.searchParameter.valueChanges.pipe(debounceTime(300), filter((x)=> x.length >=3), distinctUntilChanged()).subscribe(x=>{console.log(x)});
+    
   }
   get styles() {
     return {
@@ -110,6 +112,91 @@ export class ProductsComponent {
   ngAfterViewInit(){
     this.ButtonClicked();
   }
+
+
+
+  // Observables Vs Subject
+  // 1. Unicast vs multicast
+  
+  // ngOnInit(){
+  // const obs=new Observable( (observer) => { observer.next(Math.random())});
+  // const subject = new Subject();
+  //   obs.subscribe( (x) =>  console.log('This is observable call-1',x));
+  //   obs.subscribe( (a) =>  console.log('This is observable call-2',a));
+
+  //   subject.subscribe( (y)=> console.log('This is subscribe call-1',y));
+  //   subject.subscribe( (z)=> console.log('This is subscribe call-2',z));
+
+  //   subject.next(Math.random());
+
+  // }
+
+ // 2. Subject as both data provider and data consumer
+ 
+ //ngOnInit(){
+    // let data = ajax('https://randomuser.me/api/');
+    // data.subscribe(x=> console.log(x));
+    // data.subscribe(x=> console.log(x));
+    // data.subscribe(x=> console.log(x));
+
+    // let info=ajax('https://randomuser.me/api/');
+    // const sub=new Subject();    
+    // sub.subscribe(x=> console.log('This is Observable subscribe',x));
+    // sub.subscribe(x=> console.log('This is Observable subscribe',x));
+    // sub.subscribe(x=> console.log('This is Observable subscribe',x));
+
+    // info.subscribe(sub);
+ // }
+
+   // Getting Data from RestFul APIs with Observables
+   /*ghService: GitHubService = inject(GitHubService);
+   isLoading = true;
+   users: null = null; // Assuming a single user is returned
+   ngOnInit(){
+    //this.searchParameter.valueChanges.pipe(debounceTime(300), filter((x)=> x.length >=3), distinctUntilChanged()).subscribe(x=>{console.log(x)});
+
+    this.searchParameter.valueChanges.pipe(debounceTime(300), filter((x)=> x.length >=3), distinctUntilChanged()).subscribe(value=>
+      this.ghService.getGitHubUserData(value).subscribe(
+      (x : any)=> {
+          console.log(x);
+          this.isLoading=false;
+          this.users = x.items;
+
+      },
+      (error) => {
+        console.error('Error fetching user data', error);
+        this.isLoading = false; // Stop loading on error
+    }
+
+    ));
+
+    }*/
+
+
+    // subject and its types
+
+    ngOnInit(){
+
+        const subject = new AsyncSubject(); // initial value is not mandatory it takes, buffer size, freq
+
+        subject.subscribe(x =>  console.log('RS Subscriber 0', x));
+
+        subject.next(300);
+
+        subject.subscribe(x =>  console.log('RS Subscriber 1', x));
+
+        subject.next(2022);
+
+        subject.subscribe(x =>  console.log('RS Subscriber 2', x));
+
+        subject.next(2023);
+
+        subject.subscribe(x =>  console.log('RS Subscriber 3', x));
+
+        subject.next(2024);
+
+        subject.complete();
+    }
 
 }
 export class Product{

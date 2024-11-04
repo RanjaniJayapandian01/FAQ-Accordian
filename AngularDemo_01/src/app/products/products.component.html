@@ -84,12 +84,10 @@
     <div class="marquee">
         <p>This is scrolling text information!</p>
     </div>
-   <!--Observables--> 
-    <button class="btn btn-primary" (click)="getAsyncData()">Get Observable data</button>
-    <div *ngFor="let i of data">{{i}}</div>
-    <br/>
-    <input class="form-control" type="search" [formControl]="searchParameter">
 
+    <!--Observables--> 
+    <button class="btn btn-primary" (click)="getAsyncData()">Get Observable data</button>
+   
 
     <div id="container">
         <div></div>
@@ -99,4 +97,30 @@
 
 
     
+    <!-- <div class="ghContainer">
+    
+            <div *ngFor="let i of data">{{i}}</div>
+            <br/>
+            <input class="form-control inputSearch" type="search" [formControl]="searchParameter">
+
+            <h3>GitHub User Results</h3>
+            <div *ngIf="isLoading">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+            <div *ngFor="let user of users">
+            <div class="media">
+                <a href="{{user.html_url}}">
+                    <img src="{{user.avatar_url}}" type="image"   class="mr-4" alt="..." width="64" height="64"/> </a>
+                    <div class="media-body">
+                        <h5 class="mt-0"> {{user.login}}</h5>
+                        
+                    </div>
+                </div>
+            </div>
+    </div> -->
+
+
+
 </div>

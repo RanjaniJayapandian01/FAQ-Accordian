@@ -320,3 +320,12 @@ Using Angular Universal has the following benefits:
 
 Users will instantaneously be able to see the application view which provides better experience for the new users
 Since most of the search engines accept pages that are using HTML, Universal can guarantee that the content will be accessible to all search engines, improving SEO.
+
+
+Below are few limitations that apply to declarable classes in Angular such as:
+
+Module scope
+Unique naming
+Unique selector names
+Directive selector restrictions
+Template encapsulation
