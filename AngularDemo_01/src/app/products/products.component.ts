@@ -1,6 +1,6 @@
 import { Component, ElementRef, inject, Input, ViewChild } from '@angular/core';
 import { ProductService } from './products.service';
-import { AsyncSubject, BehaviorSubject, debounceTime, distinctUntilChanged, filter, from, fromEvent, map, Observable, of, ReplaySubject, Subject } from 'rxjs';
+import { AsyncSubject, BehaviorSubject, debounceTime, distinctUntilChanged, filter, from, fromEvent, interval, map, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { ajax } from 'rxjs/ajax';
 import { GitHubService, GitHubUser } from '../Services/github.service';
@@ -97,8 +97,6 @@ export class ProductsComponent {
     complete() { alert("The observable sends complete");} });
   }
 
-
-
   ButtonClicked(){
      let cnt: number=0;
       let observableEvent= fromEvent(this.btnElement.nativeElement, 'click').subscribe(data => {
@@ -114,8 +112,7 @@ export class ProductsComponent {
   }
 
 
-
-  // Observables Vs Subject
+    /* Observables Vs Subject
   // 1. Unicast vs multicast
   
   // ngOnInit(){
@@ -146,10 +143,10 @@ export class ProductsComponent {
     // sub.subscribe(x=> console.log('This is Observable subscribe',x));
 
     // info.subscribe(sub);
- // }
-
-   // Getting Data from RestFul APIs with Observables
-   /*ghService: GitHubService = inject(GitHubService);
+  }
+    */
+    /* Getting Data from RestFul APIs with Observables
+    //ghService: GitHubService = inject(GitHubService);
    isLoading = true;
    users: null = null; // Assuming a single user is returned
    ngOnInit(){
@@ -171,32 +168,64 @@ export class ProductsComponent {
     ));
 
     }*/
+    /* subject and its types
 
+    // ngOnInit(){
 
-    // subject and its types
+    //     const subject = new AsyncSubject(); 
+    //     // initial value is not mandatory it takes, buffer size, freq
+    //     //const subject = new BehaviouralSubject();
+    //     //const subject = new ReplaySubject();
+    //     subject.subscribe(x =>  console.log('RS Subscriber 0', x));
+    //     subject.next(300);
+    //     subject.subscribe(x =>  console.log('RS Subscriber 1', x));
+    //     subject.next(2022);
+    //     subject.subscribe(x =>  console.log('RS Subscriber 2', x));
+    //     subject.next(2023);
+    //     subject.subscribe(x =>  console.log('RS Subscriber 3', x));
+    //     subject.next(2024);
+    //     subject.complete();
+     }
+    */
 
-    ngOnInit(){
+    /*Promise vs Observable */
+    // ngOnInit(){
+    //   const promi=new Promise((resolve, reject) => {
+    //   console.log("Promise is called");
+    //   resolve(1000);
+    //   resolve(10000);
+    //   resolve(100000);
+    //   resolve(1000000);
+    // });
+    // promi.then(x=> {console.log(x);});
+    // const obs=new Observable( (stream) => {
+    //     console.log("Observable is called");
+    //     stream.next(2000);
+    //     stream.next(3000);
+    //     stream.next(4000);
+    //     stream.next(5000);
+    //     stream.next(6000);
+    //   });
+    
+    // obs.subscribe((data) => console.log(data));
+    // }
 
-        const subject = new AsyncSubject(); // initial value is not mandatory it takes, buffer size, freq
-
-        subject.subscribe(x =>  console.log('RS Subscriber 0', x));
-
-        subject.next(300);
-
-        subject.subscribe(x =>  console.log('RS Subscriber 1', x));
-
-        subject.next(2022);
-
-        subject.subscribe(x =>  console.log('RS Subscriber 2', x));
-
-        subject.next(2023);
-
-        subject.subscribe(x =>  console.log('RS Subscriber 3', x));
-
-        subject.next(2024);
-
-        subject.complete();
+    
+    counter=interval(1000); // returns a observable for every 1sec
+    ctr: number=0;
+    subscriber;
+    array: number[]=[];
+    subscribeObs(){
+      this.subscriber=this.counter.subscribe(() => {
+        this.array.push(this.ctr);
+        ++this.ctr;
+      })
     }
+
+    unSubscribeObs(){
+      this.subscriber.unsubscribe();
+    }
+
 
 }
 export class Product{

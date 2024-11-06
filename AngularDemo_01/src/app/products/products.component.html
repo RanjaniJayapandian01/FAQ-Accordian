@@ -120,7 +120,12 @@
                 </div>
             </div>
     </div> -->
-
-
-
+    <br/>
+    <button class="btn btn-primary" (click)="subscribeObs()">Method to subscribe</button>
+    <button class="btn btn-primary" (click)="unSubscribeObs()">Method to unsubscribe</button>
+    <div style="background-color: azure;">
+        <div *ngFor="let i of array">
+            {{i}}
+        </div>
+    </div>
 </div>
