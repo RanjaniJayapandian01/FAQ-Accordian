@@ -16,7 +16,7 @@ import { TruncatePipe } from './truncate.pipe';
 import { JumbotronComponent } from './products/bs-jumbotron.component';
 import { UserFormComponent } from './products/user-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './user/login/login.component';
 import { PasswordValidator } from './user/login/password-validator.component';
 import { FilterComponent } from './filter/filter.component';
@@ -40,6 +40,9 @@ import { LoggerService } from './Services/logger.service';
 import { NewTaskComponent } from './products/new-task.component';
 import { ShowTaskComponent } from './products/show-task.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NotFoundComponent } from './exercise/notfound.component';
+import { HeaderComponent } from './header.component';
+import { FooterComponent } from './footer.component';
 
 export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
 @NgModule({
@@ -73,14 +76,17 @@ export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
     UserComponent,
     AdminComponent,
     NewTaskComponent,
-    ShowTaskComponent
+    ShowTaskComponent,
+    NotFoundComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {provide: 'USER_TOKEN', useClass: UserService},

@@ -105,6 +105,8 @@ import { User } from "../../products/user";
   </div>
 </div>
 
+
+<app-user></app-user>
     `,
     styles:`
  .user-list {

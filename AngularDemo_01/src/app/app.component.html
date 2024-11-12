@@ -24,9 +24,9 @@
 </head>
 <body>
   <main class="main">
-    
-    <h1>{{title}}</h1>
-    
+<app-header></app-header>
+<router-outlet></router-outlet>
+<app-footer></app-footer>
     <!-- <div class="theme-toggle">
       <label class="toggle">
         <input type="checkbox" (change)="toggleTheme()" [checked]="isDarkTheme" />
@@ -34,18 +34,19 @@
       </label>
       <span>{{ isDarkTheme ? 'Dark Mode' : 'Light Mode' }}</span>
     </div> -->
-    
-
-    <app-products></app-products> 
+    <!-- <app-products></app-products>  -->
    
-    <app-new-task></app-new-task>
-    <app-show-task></app-show-task>
+    <!-- <app-new-task></app-new-task>
+    <app-show-task></app-show-task> -->
     <!-- <rating></rating>
     <app-eform></app-eform> -->
      <!-- <app-login></app-login> -->
+
      <!-- <app-exercise [updatecartList]="cartItemsFromApp" (totalCartItems)="sendDataToCart($event)" #exerciseComponent></app-exercise>
      <app-plant *ngIf="exerciseComponent.selectedPlant"   [exePlantComp]="exerciseComp"></app-plant>
      <app-cart [cartItems]="cartItemsFromApp" (changeCartData)="RemoveCartItems($event)" ></app-cart>
+
+     
      <app-eform></app-eform>
     <app-admin></app-admin>
     <app-user></app-user> -->
@@ -53,4 +54,4 @@
     </main>
 </body>
 </html>
-<router-outlet />
+

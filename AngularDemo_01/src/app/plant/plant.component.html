@@ -1,31 +1,275 @@
-<p>plant works!</p>
-<!-- 
-<div class="plant-card">
-    <img src="plant-image.jpg" alt="Plant Image" class="plant-image">
-    <h2 class="plant-name">Plant Name</h2>
-    <p class="plant-description">This is a brief description of the plant, highlighting its care needs, appearance, and any other interesting facts.</p>
-    
-    <div class="plant-info">
-        <span class="plant-price">$29.99</span>
-        <span class="plant-quantity">Quantity: 5</span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+<ng-container *ngIf="plantSelected">
+    <div class="plant-container">
+        <div class="plant-col1">
+            <img [src]="plantSelected.imgUrl">
+        </div>
+        <div class="plant-col2">
+            <h1>{{plantSelected.name}}</h1>
+            <rating></rating>
+            
+            <div class="options">
+                <h3>Select Plant Size</h3>
+                <div class="size-options">
+                    <button>Small</button>
+                    <button>Medium</button>
+                </div>
+                <h3>Select Planter</h3>
+                <div class="planter-options">
+                    <button>GroPot</button>
+                    <button>Roma</button>
+                    <button>Lagos</button>
+                    <button>Krish</button>
+                    <button>Jar</button>
+                    <button>Atlantis</button>
+                    <button>Spiro</button>
+                    <button>Diamond</button>
+                </div>
+                <h3>Color - Ivory</h3>
+                <div class="color-picker">
+                    <span class="color-ivory"></span>
+                </div>
+                <div class="gift-option">
+                    <input type="checkbox" id="gift">
+                    <label for="gift">This is a Gift</label>
+                </div>
+            </div>
+
+
+            <div class="quantity">
+                <button class="decrease">-</button>
+                <span>1</span>
+                <button class="increase">+</button>
+            </div>
+            <div class="buttons">
+                <button class="add-to-cart">ADD TO CART</button>
+                <button class="buy-now">BUY IT NOW</button>
+            </div>
+            <div class="delivery-check">
+                <input type="text" placeholder="Enter PIN code">
+                <button>CHECK</button>
+            </div>
+
+
+
+
+
+        </div>
     </div>
 
-    <h3 class="features-title">Features:</h3>
-    <ul class="plant-features">
-        <li>Feature 1: Drought-resistant</li>
-        <li>Feature 2: Easy to care for</li>
-        <li>Feature 3: Attracts pollinators</li>
-    </ul>
 
-    <button class="add-to-cart">Add to Cart</button>
-</div> -->
-
+</ng-container>
+</body>
+</html>
 <!-- 
-    <div class="container">
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peace Lily Plant</title>
+    <style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f8f8f8;
+}
+
+.product-page {
+    display: flex;
+    max-width: 800px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-image img {
+    max-width: 300px;
+    border-radius: 8px;
+}
+
+.product-details {
+    padding: 0 20px;
+    width: 100%;
+}
+
+.product-details h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.rating span {
+    color: #f7b500;
+    font-size: 16px;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #888;
+    margin-right: 10px;
+}
+
+.new-price {
+    font-size: 24px;
+    color: #29942d;
+    margin-right: 10px;
+}
+
+.sale-badge {
+    background-color: #ffd700;
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.options h3 {
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.size-options button,
+.planter-options button {
+    background-color: #fff;
+    border: 1px solid #29942d;
+    color: #29942d;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.size-options button:hover,
+.planter-options button:hover {
+    background-color: #29942d;
+    color: #fff;
+}
+
+.color-picker .color-ivory {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #f0ead6;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+}
+
+.gift-option {
+    margin-top: 10px;
+}
+
+.gift-option label {
+    font-size: 14px;
+    color: #555;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.quantity button {
+    width: 30px;
+    height: 30px;
+    background-color: #29942d;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.quantity span {
+    font-size: 16px;
+    margin: 0 10px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.add-to-cart,
+.buy-now {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+}
+
+.add-to-cart {
+    background-color: #29942d;
+    color: #fff;
+}
+
+.buy-now {
+    background-color: #fff;
+    color: #29942d;
+    border: 1px solid #29942d;
+}
+
+.delivery-check {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.delivery-check input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.delivery-check button {
+    background-color: #29942d;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="product-page">
         <div class="product-image">
-            <img src="peace-lily-plant.jpg" alt="Peace Lily Plant">
+            <img src="plant.jpg" alt="Peace Lily Plant">
         </div>
-        
         <div class="product-details">
             <h1>Peace Lily Plant</h1>
             <div class="rating">
@@ -33,44 +277,49 @@
             </div>
             <div class="price">
                 <span class="old-price">₹399</span>
-                <span class="sale-price">₹278</span>
+                <span class="new-price">₹299</span>
                 <span class="sale-badge">SALE</span>
             </div>
-            
-            <div class="select-options">
-                <div class="select-size">
-                    <label>Select Plant Size</label>
-                    <button class="size-option">Small</button>
-                    <button class="size-option">Medium</button>
+            <div class="options">
+                <h3>Select Plant Size</h3>
+                <div class="size-options">
+                    <button>Small</button>
+                    <button>Medium</button>
                 </div>
-                <div class="select-planter">
-                    <label>Select Planter</label>
-                    <div class="planter-options">
-                        <button>GroPot</button>
-                        <button>Roma</button>
-                        <button>Lagos</button>
-                        <button>Krish</button>
-                        <button>Jar</button>
-                        <button>Atlantis</button>
-                        <button>Spiro</button>
-                        <button>Diamond</button>
-                    </div>
+                <h3>Select Planter</h3>
+                <div class="planter-options">
+                    <button>GroPot</button>
+                    <button>Roma</button>
+                    <button>Lagos</button>
+                    <button>Krish</button>
+                    <button>Jar</button>
+                    <button>Atlantis</button>
+                    <button>Spiro</button>
+                    <button>Diamond</button>
                 </div>
-                <div class="select-color">
-                    <label>Color</label>
-                    <button class="color-option">Ivory</button>
+                <h3>Color - Ivory</h3>
+                <div class="color-picker">
+                    <span class="color-ivory"></span>
+                </div>
+                <div class="gift-option">
+                    <input type="checkbox" id="gift">
+                    <label for="gift">This is a Gift</label>
                 </div>
             </div>
-            
             <div class="quantity">
-                <button class="quantity-btn">-</button>
-                <span class="quantity-value">1</span>
-                <button class="quantity-btn">+</button>
+                <button class="decrease">-</button>
+                <span>1</span>
+                <button class="increase">+</button>
             </div>
-            
-            <div class="action-buttons">
-                <button class="add-to-garden">ADD TO MY GARDEN</button>
+            <div class="buttons">
+                <button class="add-to-cart">ADD TO CART</button>
                 <button class="buy-now">BUY IT NOW</button>
             </div>
+            <div class="delivery-check">
+                <input type="text" placeholder="Enter PIN code">
+                <button>CHECK</button>
+            </div>
         </div>
-    </div> -->
+    </div>
+</body>
+</html> -->

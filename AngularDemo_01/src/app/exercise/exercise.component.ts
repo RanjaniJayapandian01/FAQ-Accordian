@@ -1,10 +1,12 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
 import { ExerciseService } from './exercise.service';
 
 import {Plant} from './../models/Plant';
 import { userPreferences } from '../models/userPreferences';
 import { PlantService } from '../Services/plant.service';
 import { CartItem } from '../models/CartItem';
+import { Router } from '@angular/router';
+import { query } from '@angular/animations';
 @Component({
   selector: 'app-exercise',
   templateUrl: './exercise.component.html',
@@ -116,5 +118,14 @@ export class ExerciseComponent {
     
     CheckIsPrefered( plant){
     return  this.userPreferenceItems.some( x => (JSON.stringify(x.plant) === JSON.stringify(plant) && x.IsSaved === true));        
+    }
+
+    router= inject(Router);
+
+    GetSelectedPlantInfo(plant: Plant){
+
+      const productdata= JSON.stringify(plant);
+      console.log(productdata);
+      this.router.navigate(['plants'], {queryParams: { data: productdata}});
     }
 }
