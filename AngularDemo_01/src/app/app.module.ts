@@ -85,7 +85,7 @@ export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
     FooterComponent,
     PurchaseComponent,
     ToastComponent
-  ],
+    ],
   imports: [
     BrowserModule,
     HttpClientModule,

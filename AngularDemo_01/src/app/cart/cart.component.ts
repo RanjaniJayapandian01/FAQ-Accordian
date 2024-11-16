@@ -98,7 +98,7 @@ constructor(private router : Router) {
     const randomNum = Math.floor(Math.random() * 1000000); // Random number between 0 and 999,999
     const transId= "USER" + timestamp +"-"+ randomNum;
     this.plantService.setUserOrderedItems(this.purchaseList);
-    this.router.navigateByUrl('/check-out/'+transId);
+    this.router.navigateByUrl('/order/'+transId);
   }
 
 

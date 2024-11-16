@@ -20,10 +20,18 @@ const routes: Routes=[
   {path: 'admin', component: AdminComponent},
   {path: 'user', component: UserComponent},
   {path: 'cart', component: CartComponent},
-  {path: 'check-out/:transactionId', component: PurchaseComponent},
-  { path: 'order', component: PurchaseComponent },
-  { path: 'address', component: PurchaseComponent },
-  { path: 'review', component: PurchaseComponent },
+
+    // Define paths with dynamic route parameters
+    // { path: 'checkout/:transactionId', component: PurchaseComponent },
+    { path: 'order/:transactionId', component: PurchaseComponent },
+    { path: 'address/:transactionId', component: PurchaseComponent },
+    { path: 'review/:transactionId', component: PurchaseComponent },
+  
+  
+  // {path: 'check-out/:transactionId', component: PurchaseComponent},
+  // { path: 'order', component: PurchaseComponent },
+  // { path: 'address', component: PurchaseComponent },
+  // { path: 'review', component: PurchaseComponent },
   // { path: '', redirectTo: '/home', pathMatch: 'full' },  // Default route
   {path: '**', component: NotFoundComponent}
 

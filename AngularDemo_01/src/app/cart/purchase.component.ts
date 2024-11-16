@@ -186,13 +186,13 @@ import { PlantService } from '../Services/plant.service';
     <!-- Tab navigation -->
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" [class.active]="activeTab === 'order'">
-        <a class="nav-link" [routerLink]="['/order']" routerLinkActive="active" aria-controls="order">Products Preview</a>
+        <a class="nav-link" [routerLink]="['/order', transactionId]"  routerLinkActive="active" aria-controls="order">Products Preview</a>
       </li>
       <li role="presentation" [class.active]="activeTab === 'address'">
-        <a class="nav-link" [routerLink]="['/address']" routerLinkActive="active" aria-controls="address">Delivery Address</a>
+        <a class="nav-link" [routerLink]="['/address', transactionId]" routerLinkActive="active" aria-controls="address">Delivery Address</a>
       </li>
       <li role="presentation" [class.active]="activeTab === 'review'">
-        <a class="nav-link" [routerLink]="['/review']" routerLinkActive="active" aria-controls="review">Review & Payment</a>
+        <a class="nav-link" [routerLink]="['/review', transactionId]" routerLinkActive="active" aria-controls="review">Review & Payment</a>
       </li>
     </ul>
 
@@ -295,6 +295,7 @@ import { PlantService } from '../Services/plant.service';
                   <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-4">
                       <h5 class="mb-0">Card details</h5>
+                      <h4>{{transactionId}}</h4>
                     </div>
                     <p class="small mb-2">Card type</p>
                     <a href="#!" type="submit" class="text-white"><i
@@ -385,17 +386,29 @@ export class PurchaseComponent {
 
   activeTab: string = 'order'; // Default tab
   purchaseList : CheckOutItem[];
-  
+  transactionId: string=""
   constructor(private route: ActivatedRoute,private service : PlantService) {
     // Use the router's current URL segment to determine the active tab
     this.purchaseList=this.service.getUserOrderedItems();
     console.log(this.purchaseList);
-    this.route.url.subscribe(urlSegments => {
-      if (urlSegments.length > 0) {
-        this.activeTab = urlSegments[0].path;
-      }
-    });
+    // this.route.params.subscribe(params => {
+    //   this.transactionId = params['transactionId']; // Extract transactionId from route
+    //   this.setActiveTabFromUrl(); // Set the active tab based on the route
+    // });
+
+    this.transactionId= this.route.snapshot.paramMap.get('transactionId');
+    this.setActiveTabFromUrl();
+    
   }
+
+  setActiveTabFromUrl() {
+    // Determine the active tab based on the URL
+    const path = this.route.snapshot.url[0]?.path; // Get the first segment of the URL
+    if (path === 'order' || path === 'address' || path === 'review') {
+      this.activeTab = path; // Set the active tab to the route's path (order, address, or review)
+    }
+  }
+
 
 
 

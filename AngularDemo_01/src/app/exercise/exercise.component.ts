@@ -8,6 +8,7 @@ import { CartItem } from '../models/CartItem';
 import { Router } from '@angular/router';
 import { query } from '@angular/animations';
 import { ToastComponent } from './toast.component';
+import { SnackBarService } from '../Services/snackBar.service';
 @Component({
   selector: 'app-exercise',
   templateUrl: './exercise.component.html',
@@ -30,8 +31,9 @@ export class ExerciseComponent {
           filteredPlants? : Plant[]
           userPreferenceItems: userPreferences[];
 @Output() totalCartItems = new EventEmitter<any>();
-          
-     constructor(private exservice : ExerciseService, private plantservice : PlantService ) {
+@ViewChild(ToastComponent) toast!: ToastComponent;
+    
+     constructor(private exservice : ExerciseService, private plantservice : PlantService ,private snackBService:SnackBarService) {
       this.totalPlantList = exservice.getPlants();
       this.filteredPlants= this.totalPlantList;
       this.featuredPlantList=exservice.getFeaturedPlants();
@@ -132,7 +134,6 @@ export class ExerciseComponent {
       this.router.navigate(['plants'], {queryParams: { data: productdata}});
      // this.router.navigateByUrl('plants');
     }
-    @ViewChild(ToastComponent) toast!: ToastComponent;
 
     SendToCart(plant : Plant){
       // create cart object
@@ -142,7 +143,8 @@ export class ExerciseComponent {
       let cartObj : CartItem;
       cartObj=new CartItem(plant.imgUrl, plant.name, plant.price, plant.qtyOrdered, plant.discount);
       this.plantservice.setUserCartItems(cartObj);
-      this.toast.show('Item added to cart!');
+      this.snackBService.openSnackBar('Item Added Successfully', 'Done')
+      // this.toast.show('Item added to cart!');
 
       // this.router.navigateByUrl('cart');
     }
