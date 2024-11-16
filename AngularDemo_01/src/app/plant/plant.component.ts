@@ -19,11 +19,6 @@ export class PlantComponent {
   //   this.plantSelected  = this.exePlantComp.selectedPlant;
   // }
 
-
-
-  /**
-   *
-   */
   constructor(private route: ActivatedRoute) {    
   }
   plantSelected: Plant;
@@ -31,11 +26,28 @@ export class PlantComponent {
     this.route.queryParams.subscribe( params=> {
       console.log(params['data']);
       if(params['data']){
-        this.plantSelected=JSON.parse(params['data']);
+       this.plantSelected=JSON.parse(params['data']);
+      //  this.plantSelected=JSON.parse(localStorage.getItem('productdata'));
       }
 
     })
+  //  const data=JSON.parse(localStorage.getItem('productdata'));
+  //  this.plantSelected=data;
+
+
   }
-
-
+  addToCart: number=0;
+  changeQuantity(plant: Plant, changeByVal : number){
+    console.log("Before change",plant.qtyOrdered);
+    console.log('Change called with:', changeByVal); // Add this line
+      let qtyAvailable=plant.stock;
+      if(changeByVal<0 && this.addToCart>0){
+         this.addToCart--;
+      }
+      if(changeByVal>0 && this.addToCart<plant.stock){
+         this.addToCart++;                   
+      }  
+      plant.qtyOrdered =this.addToCart;
+      console.log("After change", plant.qtyOrdered);
+  }
 }

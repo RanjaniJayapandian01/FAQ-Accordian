@@ -15,6 +15,7 @@
     <table class="cart-container" >
       <thead>
         <tr>
+          <th></th>
           <th>Plant Name</th>
           <th>Price</th>
           <th>Quantity</th>
@@ -26,6 +27,7 @@
       <tbody>
         <tr>
         <tr *ngFor="let item of filteredCartItems">
+          <td><input type="checkbox" (click)="AddToPurchaseList(item)" id="cartItem"></td>
           <td>{{ item.name }}</td>
           <td>{{ item.price }}</td>
           <td>{{ item.quantity }}</td>
@@ -40,6 +42,7 @@
         
       </tbody>
     </table>
+    <button class="btn btn-primary" (click)="GoToCheckOut()"  [disabled]="purchaseList.length<=0"> Check out selected Items</button>
   </ng-container>
   <ng-template #elseBlock>
     <div>Your cart is empty.</div>

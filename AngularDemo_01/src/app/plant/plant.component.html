@@ -14,9 +14,10 @@
         </div>
         <div class="plant-col2">
             <h1>{{plantSelected.name}}</h1>
-            <rating></rating>
+            <rating [rating-value]="plantSelected.rating" ></rating>
             
-            <div class="options">
+            <h6>{{plantSelected.price | currency:'INR'}} {{plantSelected.discount}}%</h6>
+            <!-- <div class="options">
                 <h3>Select Plant Size</h3>
                 <div class="size-options">
                     <button>Small</button>
@@ -41,14 +42,18 @@
                     <input type="checkbox" id="gift">
                     <label for="gift">This is a Gift</label>
                 </div>
-            </div>
+            </div> -->
 
-
-            <div class="quantity">
+            <div *ngIf="plantSelected.stock > 0">                
+                <input type="button" value="-" class="button-minus border rounded-circle  icon-shape icon-sm mx-1 " (click)="changeQuantity(plantSelected, -1)">
+                <input type="number" step="1"  [max]="plantSelected.stock" [value]="plantSelected.qtyOrdered"  [(ngModel)]="plantSelected.qtyOrdered" class="quantity-field border-0 text-center w-25" readonly>
+                <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm" (click)="changeQuantity(plantSelected, 1)">     
+                </div>   
+            <!-- <div class="quantity">
                 <button class="decrease">-</button>
                 <span>1</span>
                 <button class="increase">+</button>
-            </div>
+            </div> -->
             <div class="buttons">
                 <button class="add-to-cart">ADD TO CART</button>
                 <button class="buy-now">BUY IT NOW</button>

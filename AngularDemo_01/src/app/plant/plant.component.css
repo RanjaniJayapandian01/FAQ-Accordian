@@ -42,8 +42,8 @@ cursor: pointer;
 
 .size-options button:hover,
 .planter-options button:hover {
-background-color: white;
-color: black;
+background-color: black;
+color: white;
 }
 
 .color-picker .color-ivory {

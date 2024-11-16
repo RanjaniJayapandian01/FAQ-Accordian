@@ -1,11 +1,15 @@
 // src/app/cart/cart.component.ts
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, OutputEmitterRef, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, inject, Input, OnInit, Output, OutputEmitterRef, SimpleChanges, ViewChild } from '@angular/core';
 import { CartItem } from '../models/CartItem';
+import { PlantService } from '../Services/plant.service';
+import { CheckOutItem } from '../models/CheckOutItem';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
+  providers: []
 })
 export class CartComponent implements OnInit {
   @Input()
@@ -17,8 +21,21 @@ export class CartComponent implements OnInit {
 
   @Output()
   changeCartData =new EventEmitter<any>();
+  plantService: PlantService = inject(PlantService);
+
+  purchaseList : CheckOutItem[]=[];
+/**
+ *
+ */
+constructor(private router : Router) {
+  
+  
+}
   ngOnInit(): void {
-    this.filteredCartItems =this.cartItems; // Update filtered items
+    //this.filteredCartItems =this.cartItems; // Update filtered items
+    this.filteredCartItems= this.plantService.getUserCartItems();
+    console.log(this.filteredCartItems);
+
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['cartItems']) {
@@ -60,6 +77,34 @@ export class CartComponent implements OnInit {
       this.filteredCartItems= [...this.cartItems]; 
     }
   }
+
+  AddToPurchaseList(item: CartItem){ 
+    console.log(item)   ;
+    const p = this.purchaseList.find(x=> x.cartItem.id===item.id);
+      if(p){
+      p.isSelected = !p.isSelected;
+      }
+    else{
+      const c=new CheckOutItem( item,true);
+    this.purchaseList.push(c);
+    }
+    console.log(this.purchaseList);
+  }
+
+  
+  
+  GoToCheckOut(){
+    const timestamp = Date.now(); // Current timestamp (milliseconds since epoch)
+    const randomNum = Math.floor(Math.random() * 1000000); // Random number between 0 and 999,999
+    const transId= "USER" + timestamp +"-"+ randomNum;
+    this.plantService.setUserOrderedItems(this.purchaseList);
+    this.router.navigateByUrl('/check-out/'+transId);
+  }
+
+
+
+
+
 }
 
 

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Plant } from '../models/Plant';
 import { userPreferences } from '../models/userPreferences';
+import { CartItem } from '../models/CartItem';
+import { CheckOutItem } from '../models/CheckOutItem';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +19,23 @@ export class PlantService {
     return this.userPreferencesList;
   }
 
+ cartItem: CartItem[]=[];
+  getUserCartItems(){
+    return this.cartItem;
+  }
+
+  setUserCartItems(cObj : CartItem){
+    this.cartItem.push(cObj);
+  }
+
+
+  orders: CheckOutItem[]=[];
+  getUserOrderedItems(){
+    return this.orders;
+  }
+
+  setUserOrderedItems(cObj : CheckOutItem[]){
+    this.orders=(cObj);
+  }
 
 }

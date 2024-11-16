@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { ExerciseService } from './exercise.service';
 
 import {Plant} from './../models/Plant';
@@ -7,11 +7,12 @@ import { PlantService } from '../Services/plant.service';
 import { CartItem } from '../models/CartItem';
 import { Router } from '@angular/router';
 import { query } from '@angular/animations';
+import { ToastComponent } from './toast.component';
 @Component({
   selector: 'app-exercise',
   templateUrl: './exercise.component.html',
   styleUrl: './exercise.component.css',
-  providers: [ExerciseService,PlantService],
+  providers: [ExerciseService],
 })
 export class ExerciseComponent {
 @Input()  updatecartList: CartItem[]=[]
@@ -38,7 +39,7 @@ export class ExerciseComponent {
      }
      AddToCart(plant: Plant){
       let cartObj : CartItem;
-      cartObj=new CartItem(plant.name, plant.price, plant.qtyOrdered, plant.discount);
+      cartObj=new CartItem(plant.imgUrl ,plant.name, plant.price, plant.qtyOrdered, plant.discount);
       this.cartList.push(cartObj);
      // console.log("From Exercise comp", this.cartList);
       this.cobj=cartObj;
@@ -114,6 +115,7 @@ export class ExerciseComponent {
       let likedPlantByUser : userPreferences= { userId: 100, plant : obj, IsSaved: true}
       this.userPreferenceItems.push(likedPlantByUser);
       }      
+      
     }
     
     CheckIsPrefered( plant){
@@ -126,6 +128,25 @@ export class ExerciseComponent {
 
       const productdata= JSON.stringify(plant);
       console.log(productdata);
+     // localStorage.setItem('productdata',JSON.stringify(plant));
       this.router.navigate(['plants'], {queryParams: { data: productdata}});
+     // this.router.navigateByUrl('plants');
     }
+    @ViewChild(ToastComponent) toast!: ToastComponent;
+
+    SendToCart(plant : Plant){
+      // create cart object
+      // use service to pass cart data and set in the service instance. 
+      // navigate to Cart component
+      
+      let cartObj : CartItem;
+      cartObj=new CartItem(plant.imgUrl, plant.name, plant.price, plant.qtyOrdered, plant.discount);
+      this.plantservice.setUserCartItems(cartObj);
+      this.toast.show('Item added to cart!');
+
+      // this.router.navigateByUrl('cart');
+    }
+
+
+
 }

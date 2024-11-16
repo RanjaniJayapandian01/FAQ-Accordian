@@ -52,13 +52,17 @@
             <div class="d-flex justify-content-center">
               <!-- <button class="btn card-actions mr-2" (click) = "GenerateAdditionalInfo(plant.name)" (click)="selectedPlant = plant">More Info</button> -->
               <button class="btn card-actions mr-2"  (click) = "GetSelectedPlantInfo(plant)"  >More Info</button>
-              <button class="btn btn-primary add-cart mr-2" [hidden]="plant.stock<=0"    (click)="AddToCart(plant)" ><i class="fas fa-shopping-cart "></i> Add to Cart</button>
+              <!-- <button class="btn btn-primary add-cart mr-2" [hidden]="plant.stock<=0"    (click)="AddToCart(plant)" ><i class="fas fa-shopping-cart "></i> Add to Cart</button> -->
+              <button class="btn btn-primary add-cart mr-2" [hidden]="plant.stock<=0"    (click)="SendToCart(plant)" ><i class="fas fa-shopping-cart "></i> Add to Cart</button>
 
               <!-- <button class="btn btn-primary mr-2">More Details</button> -->
             </div>
         </div>
+
         </ng-container>
     </div>
+    <app-toast></app-toast>
+
     <div class="card-grid">
    
   </div>

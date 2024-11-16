@@ -21,7 +21,7 @@ import {Component, Input} from '@angular/core';
   <ng-container *ngIf="rating<5; else elseBlock5" ><app-star (click) = onClick(5)></app-star>
   </ng-container>
   <ng-template #elseBlock5> <app-starfill (click) = onClick(4)></app-starfill></ng-template>
-{{numOfReviews}}
+<!--{{numOfReviews}}-->
     ` 
 
 })

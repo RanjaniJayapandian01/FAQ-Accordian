@@ -43,6 +43,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './exercise/notfound.component';
 import { HeaderComponent } from './header.component';
 import { FooterComponent } from './footer.component';
+import { PlantService } from './Services/plant.service';
+import { PurchaseComponent } from './cart/purchase.component';
+import { ToastComponent } from './exercise/toast.component';
 
 export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
 @NgModule({
@@ -79,7 +82,9 @@ export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
     ShowTaskComponent,
     NotFoundComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    PurchaseComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,
@@ -91,6 +96,7 @@ export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
   providers: [
     {provide: 'USER_TOKEN', useClass: UserService},
     LoggerService,
+    PlantService,
     provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
