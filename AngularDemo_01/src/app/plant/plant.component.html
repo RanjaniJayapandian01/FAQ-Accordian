@@ -71,6 +71,24 @@
     </div>
 
 
+<h1>{{plantSelected.id}}</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 d-flex justify-content-end">
+            <!-- <button class="btn btn-primary"  [routerLink]="'/plants/' + (  plantSelected.id-1 >= 1? plantSelected.id-1 : plantSelected.id )"  >&laquo; Previous</button> -->
+            <button class="btn btn-primary" 
+            [routerLink]="'/plants/' + (plantSelected.id - 1 >= plantsList[0].id ? plantSelected.id - 1 : plantSelected.id)" 
+            [disabled]="plantSelected.id <= plantsList[0].id">
+      &laquo; Previous
+    </button>
+    
+        </div>
+        <div class="col-lg-6">
+            <button class="btn btn-primary" [routerLink]="'/plants/' + (  plantSelected.id+1 <= plantsList[plantsList.length-1].id? plantSelected.id+1 : plantSelected.id )"   
+               [disabled]="plantSelected.id >= plantsList[plantsList.length-1].id" >Next &raquo;</button>
+        </div>
+    </div>
+</div>
 </ng-container>
 </body>
 </html>

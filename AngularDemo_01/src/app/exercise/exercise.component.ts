@@ -130,9 +130,11 @@ export class ExerciseComponent {
 
       const productdata= JSON.stringify(plant);
       console.log(productdata);
-     // localStorage.setItem('productdata',JSON.stringify(plant));
-      this.router.navigate(['plants'], {queryParams: { data: productdata}});
+     // localStorage.setItem('productdata',J SON.stringify(plant));
+      // this.router.navigate(['plants'], {queryParams: { data: productdata}});
      // this.router.navigateByUrl('plants');
+
+     this.router.navigateByUrl('plants/'+plant.id);
     }
 
     SendToCart(plant : Plant){

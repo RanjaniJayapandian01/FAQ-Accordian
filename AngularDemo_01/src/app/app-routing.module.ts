@@ -14,7 +14,7 @@ import { PurchaseComponent } from './cart/purchase.component';
 const routes: Routes=[
   {path: '', component: ExerciseComponent},
   {path: 'home', component: ExerciseComponent},
-  {path: 'plants', component: PlantComponent},
+  {path: 'plants/:id', component: PlantComponent},
   {path: 'form', component: UserFormComponent},
   {path: 'blog', component: BlogComponentComponent},
   {path: 'admin', component: AdminComponent},
