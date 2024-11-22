@@ -7,6 +7,16 @@ export class ExerciseService{
         let p2 = new  Plant(2,"Cactus", "Prickly Yet Perfect: Embrace the Cactus.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWCJURuG5JeuMPXR_5dk19bbXNa2R1ryrfuDMfm5tJ_S_dizUwE8y9HED70WUUd7ERwKU&usqp=CAU", 45, 4, 20, 13, "Shrubs");
         let p3 = new  Plant(3,"Bay", "Bring home the Bay — where flavor meets fragrance, and beauty meets bounty!", "https://rukminim2.flixcart.com/image/720/864/kpsnzww0/plant-sapling/f/d/p/bay-leaf-tejpatta-plant-1-click-to-purchase-original-imag3y5yzxqggbhb.jpeg?q=60&crop=false", 45, 4, 20, 13, "Herbs");
         let p4 = new  Plant(4,"Aloe Vera", "Aloe Vera: Your skin’s best friend, nature’s healing blend!", "https://images.ctfassets.net/3s5io6mnxfqz/7nvW8423HBv19umqrGTNTT/0e2f0a3265ea538cad8510b2642caf42/AdobeStock_298307267_2.jpeg?w=828", 45, 4, 20, 13, "Medicinal Plants");
+        let p6 = new Plant(6, "Orchid", "Orchids: Exquisite flowers with elegance and grace.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKg6vmo2u956WpGxw-AW2zVFj9qXem7sXPvg&s", 50.12, 3, 10, 6, "Flowers");
+        let p7 = new Plant(7, "Lavender", "Lavender: Relaxing aroma, vibrant color, and natural beauty.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHxsNQHxgv_vuz9ekfKuqWTONNelT9DmoB0A&s", 42.87, 5, 18, 8, "Herbs");
+        let p8 = new Plant(8, "Rosemary", "Rosemary: Aromatic and versatile, perfect for cooking and wellness.", "https://www.urbanmali.com/cdn/shop/products/Rosemary-7560_1500x.jpg?v=1618486981", 40.75, 4, 25, 4, "Herbs");
+        let p9 = new Plant(9, "Basil", "Basil: The herb of flavor and aroma, perfect for every dish.", "https://aanmc.org/wp-content/uploads/2021/08/987-1024x681.jpg", 45.34, 5, 16, 7, "Herbs");
+        let p10 = new Plant(10, "Mint", "Mint: Fresh, vibrant, and always refreshing.", "https://assets.thehansindia.com/h-upload/2022/04/14/1600x960_1286916-mint-9.webp", 38.23, 4, 20, 12, "Herbs");
+        let p5 = new Plant(5, "Bougainvillea", "Vibrant Colors and Climbing Beauty: The Bougainvillea.", "https://shrigramorganics.com/wp-content/uploads/2020/06/pg-bougainvillea-glabra-pink-800x800-1.jpg", 70, 5, 15, 0, "Climbers");
+        let p11 = new Plant(11, "Ivy", "Enduring Green: Ivy’s Climbing Charm for Any Space.", "https://cdn.megawecare.com/GHBY/Featured-Images/1722922972809-Ivy_Leaf_Health_Benefits_Uses_and_Natural_Remedies_876X400.webp", 55, 3, 12, 5, "Climbers");
+        let p13 = new Plant(13, "Wisteria", "Timeless Elegance: Wisteria’s Cascading Blooms and Fragrance.", "https://plantshub.in/wp-content/uploads/2024/03/e2cf16f3-8cb9-4f14-b4d6-418158576b2a-1.webp", 90, 6, 25, 3, "Creepers");
+        let p12 = new Plant(12, "Morning Glory", "A Splash of Color: Morning Glory Climbs with Grace and Charm.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqZd-bFm-9ThoZvn7-sd8d7YtUezrSZ7O5tw&s", 45, 4, 20, 10, "Creepers");
+        
 
         // let p5 = new  Plant("Lily", "Elegance in Every Petal: Discover the Beauty of Lilies.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDKBl33h6X7SIGljJqmtrrk6SAvsNvK1inHA&s", 50.66, 4, 20, 0);
         // let p6 = new  Plant("Cactus", "Prickly Yet Perfect: Embrace the Cactus.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWCJURuG5JeuMPXR_5dk19bbXNa2R1ryrfuDMfm5tJ_S_dizUwE8y9HED70WUUd7ERwKU&usqp=CAU", 45, 4, 20, 13);
@@ -19,10 +29,16 @@ export class ExerciseService{
         arrOfPlant.push(p2);
         arrOfPlant.push(p3);
         arrOfPlant.push(p4);
-        // arrOfPlant.push(p5);
-        // arrOfPlant.push(p6);
-        // arrOfPlant.push(p7);
-        // arrOfPlant.push(p8);
+         arrOfPlant.push(p6);
+         arrOfPlant.push(p5);
+         arrOfPlant.push(p7);
+         arrOfPlant.push(p8);
+         arrOfPlant.push(p9);
+         arrOfPlant.push(p10);
+         arrOfPlant.push(p11);
+         arrOfPlant.push(p12);
+         arrOfPlant.push(p13);
+
 
         return arrOfPlant;
     }

@@ -5,7 +5,7 @@ import {Plant} from './../models/Plant';
 import { userPreferences } from '../models/userPreferences';
 import { PlantService } from '../Services/plant.service';
 import { CartItem } from '../models/CartItem';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { query } from '@angular/animations';
 import { ToastComponent } from './toast.component';
 import { SnackBarService } from '../Services/snackBar.service';
@@ -19,8 +19,8 @@ export class ExerciseComponent {
 @Input()  updatecartList: CartItem[]=[]
           cartList : CartItem[]=[];
           cobj: CartItem;
-          plantTypes: string[]=["Herbs", "Shrubs", "Medicinal Plants", "Climbers", "Creepers" ];
-          priceRange : string[]=["100-200", "250-500", "500-1000"];
+          plantTypes: string[]=["Herbs", "Shrubs", "Medicinal Plants", "Climbers", "Creepers" ,"Flowers"];
+          priceRange : string[]=["30-99", "100-249", "250-500", "501-1000"];
           avaliability : string[] =["In Stock", "Out of Stock"];
           totalPlantList? : Plant[];
           addToCart: number=0;
@@ -32,13 +32,37 @@ export class ExerciseComponent {
           userPreferenceItems: userPreferences[];
 @Output() totalCartItems = new EventEmitter<any>();
 @ViewChild(ToastComponent) toast!: ToastComponent;
-    
+    activatedRoute: ActivatedRoute=inject(ActivatedRoute);
      constructor(private exservice : ExerciseService, private plantservice : PlantService ,private snackBService:SnackBarService) {
       this.totalPlantList = exservice.getPlants();
       this.filteredPlants= this.totalPlantList;
       this.featuredPlantList=exservice.getFeaturedPlants();
       this.userPreferenceItems=plantservice.getUserPreferences();
      }
+
+
+     ngOnInit(){
+
+      this.activatedRoute.queryParamMap.subscribe(x=>{
+        const param1=x.get('price').split('-');
+        const min=Number(param1[0]);
+        const max=Number(param1[1]);
+
+        if(param1.length>0){
+          if(min>=0 && max<=1000){
+            console.log(min+" "+max);
+          this.filteredPlants=this.totalPlantList.filter(x=> x.price>=min && x.price<=max);
+          console.log(this.filteredPlants);
+          }
+          else
+          this.filteredPlants=this.filteredPlants;
+        }
+        else{
+          this.filteredPlants= this.totalPlantList;
+        }
+      });
+     }
+
      AddToCart(plant: Plant){
       let cartObj : CartItem;
       cartObj=new CartItem(plant.imgUrl ,plant.name, plant.price, plant.qtyOrdered, plant.discount);
@@ -114,10 +138,11 @@ export class ExerciseComponent {
           prefPlant.IsSaved = !prefPlant.IsSaved; // Update the isSaved property
       }    
       else{
-      let likedPlantByUser : userPreferences= { userId: 100, plant : obj, IsSaved: true}
+      let likedPlantByUser : userPreferences= { userId: 1, plant : obj, IsSaved: true}
       this.userPreferenceItems.push(likedPlantByUser);
       }      
-      
+     console.log(this.userPreferenceItems) ;
+    this.plantservice.updateUserPreferences(this.userPreferenceItems);
     }
     
     CheckIsPrefered( plant){
@@ -149,6 +174,10 @@ export class ExerciseComponent {
       // this.toast.show('Item added to cart!');
 
       // this.router.navigateByUrl('cart');
+    }
+
+    GetPlantByPriceRange(min: HTMLInputElement, max: HTMLInputElement){
+      this.router.navigate(['/plants'], {queryParams: {price:min.value+"-"+max.value}});
     }
 
 

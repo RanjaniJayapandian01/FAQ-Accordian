@@ -9,7 +9,9 @@
     <!-- <input type="text" class="search-box "  placeholder="Filter by Plant Name..." #searchText>
     <button class="btn search-button"  (click)="UpdateTableData(searchText)">Search</button> -->
     <input type="text" class="search-box "  placeholder="Filter by Plant Name..." #searchText>
-    <button class="btn search-button"  (click)="UpdateTableData()">Search</button> 
+    <!-- <button class="btn search-button"  (click)="UpdateTableData()">Search</button>  -->
+    <button class="btn search-button"  (click)="UpdateTableData()"   [routerLink]="'/cart'" [queryParams]="{search: 'cactus' }">Search</button> 
+
    </div>
    <ng-container *ngIf="filteredCartItems.length>0; else elseBlock">
     <table class="cart-container" >

@@ -15,10 +15,16 @@
           </div>
     <div><h3 *ngIf="searchValue != ''">Search results for keyword {{searchValue}}</h3>            </div>
     <div class="filter-container" >
-    <h5>Plants</h5><app-filter  [dropdown-options]="plantTypes" (newItemEvent)="HandleFilterSelection($event , 'planttype')" ></app-filter>
-    <!-- <h5>Price</h5><app-filter [dropdown-options]="priceRange"  (newItemEvent)="HandleFilterSelection($event , 'price')"></app-filter> -->
-    <h5>Avaliability</h5><app-filter [dropdown-options]="avaliability" (newItemEvent)="HandleFilterSelection($event , 'stock')"></app-filter>
-    <i class="bi bi-cart"></i>
+          <h5>Plants</h5><app-filter  [dropdown-options]="plantTypes" (newItemEvent)="HandleFilterSelection($event , 'planttype')" ></app-filter>
+          <!-- <h5>Price</h5><app-filter [dropdown-options]="priceRange"  (newItemEvent)="HandleFilterSelection($event , 'price')"></app-filter> -->
+          <h5>Avaliability</h5><app-filter [dropdown-options]="avaliability" (newItemEvent)="HandleFilterSelection($event , 'stock')"></app-filter>
+          <h5>Price Range</h5>
+          <div class="price-range bg-secondary">
+          <b>Min</b><input type="number" #minPrice>
+          <b>Max</b><input type="number" #maxPrice>
+          <button class="btn btn-secondary" (click)="GetPlantByPriceRange(minPrice, maxPrice)">Search</button>
+          </div>
+          <i class="bi bi-cart"></i>
     </div>
     <div class="card-grid" >
             <ng-container *ngFor="let plant of filteredPlants">

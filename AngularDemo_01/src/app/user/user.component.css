@@ -66,3 +66,94 @@
     margin: 20px 50px;
     padding: 30px 20px;
 }
+
+
+
+
+.horizontal-line {
+  width: 100%; /* Makes the line stretch across the container */
+  border: 0;
+  border-top: 1px solid #ccc; /* Light gray line */
+  margin: 10px 0; /* Adds spacing above and below the line */
+}
+
+
+.search-container {
+  display: flex;
+  justify-content: flex-center; /* Aligns items to the right */
+}
+  .search-box {
+    align-items: center;
+    margin-left: 700px;
+    float: right;
+    width: 700px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  .search-button {
+    padding: 10px 15px;
+    float: right;
+    margin-left: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .search-button:hover {
+    background-color: #0056b3;
+  }
+  
+  
+
+
+
+
+.parent{
+  /* background-color: bisque; */
+  margin: 10px 500px;
+  padding: 20px;
+  width: 50%;
+  display: grid;
+  gap: 15px;
+
+}
+.container{
+
+}
+.bar-item {
+  display: inline-flex;
+  flex-direction: row;
+   gap: 45px;
+  /* background-color: black; */
+}
+
+.prod-image{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  
+}
+.content{
+  /* background-color: antiquewhite; */
+  flex-grow: 1;  /* This makes the child item expand to fill the parent container */
+  width: auto;
+}
+
+button {
+  height: 3em;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3; /* Button hover effect */
+}

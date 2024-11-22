@@ -3,7 +3,7 @@ import { Component, ElementRef, EventEmitter, inject, Input, OnInit, Output, Out
 import { CartItem } from '../models/CartItem';
 import { PlantService } from '../Services/plant.service';
 import { CheckOutItem } from '../models/CheckOutItem';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -22,7 +22,7 @@ export class CartComponent implements OnInit {
   @Output()
   changeCartData =new EventEmitter<any>();
   plantService: PlantService = inject(PlantService);
-
+  activatedRoute= inject(ActivatedRoute);
   purchaseList : CheckOutItem[]=[];
 /**
  *
@@ -34,6 +34,7 @@ constructor(private router : Router) {
   ngOnInit(): void {
     //this.filteredCartItems =this.cartItems; // Update filtered items
     this.filteredCartItems= this.plantService.getUserCartItems();
+    this.cartItems= this.plantService.getUserCartItems();
     console.log(this.filteredCartItems);
 
   }
@@ -50,31 +51,32 @@ constructor(private router : Router) {
     return (item.price - discountAmount) * item.quantity;
   }
   removeItem(id: number): void {
+
+    this.filteredCartItems = this.cartItems.filter(item => item.id !== id);
+    this.plantService.cartItem=this.filteredCartItems;
+    this.cartItems=this.filteredCartItems;
     console.log(this.cartItems);
-    // Update cartItems
-    this.cartItems = this.cartItems.filter(item => item.id !== id);
-    // Update filteredCartItems to reflect the change // this.filteredCartItems = this.cartItems; 
-    this.filteredCartItems = [...this.cartItems]; 
+    console.log(this.filteredCartItems);
+    this.UpdateTableData();
+
+    /* V1
+    console.log(this.cartItems);
+    this.cartItems = this.cartItems.filter(item => item.id !== id);     // Update cartItems
+    this.filteredCartItems = [...this.cartItems];      // Update filteredCartItems to reflect the change // this.filteredCartItems = this.cartItems; 
     console.log("From Cart remove",this.cartItems);
-    this.changeCartData.emit(this.cartItems);
+     this.changeCartData.emit(this.cartItems);
+    */
+
+
   }
-  // UpdateTableData(input: HTMLInputElement){
-  //   console.log(input.value);
-  //   if(input.value.length>0){
-  //     this.filteredCartItems=this.cartItems.filter(plant => plant.name.toLowerCase().includes(input.value.toLowerCase()));
-  //   }
-  //   else{
-  //     this.filteredCartItems= [...this.cartItems]; 
-  //   }
-  // }
-
+  
   UpdateTableData(){
-
     if(this.searchValue.nativeElement.value.length>0){
+        
       this.filteredCartItems=this.cartItems.filter(plant => plant.name.toLowerCase().includes(this.searchValue.nativeElement.value.toLowerCase()));
     }
     else{
-      this.filteredCartItems= [...this.cartItems]; 
+      this.filteredCartItems= this.cartItems;
     }
   }
 
@@ -101,7 +103,16 @@ constructor(private router : Router) {
     this.router.navigateByUrl('/order/'+transId);
   }
 
-
+    //V1
+    // UpdateTableData(input: HTMLInputElement){
+  //   console.log(input.value);
+  //   if(input.value.length>0){
+  //     this.filteredCartItems=this.cartItems.filter(plant => plant.name.toLowerCase().includes(input.value.toLowerCase()));
+  //   }
+  //   else{
+  //     this.filteredCartItems= [...this.cartItems]; 
+  //   }
+  // }
 
 
 

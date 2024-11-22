@@ -29,7 +29,7 @@
     </table>
 </div> -->
 
-
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
 <div class="user-profile-container" *ngIf="selectedUser">
   
       <div>
@@ -43,5 +43,29 @@
         <p><b>Subscription Status :</b> {{selectedUser.subscription}}</p>
         <p><b>subscriptionType :</b> {{selectedUser.subscriptionType}}</p>
       </div>
+      
   
 </div>
+<div class="search-container">
+<input type="text" class="search-box "  placeholder="Filter by Plant Name..." #searchText>
+<!-- <button class="btn search-button"  (click)="UpdateTableData()">Search</button>  -->
+<!-- <button class="btn search-button"    [routerLink]="'/user'" [queryParams]="{search: searchText.value }">Search</button>  -->
+<button class="btn search-button"  (click)="onSearchUpdated(searchText.value)">Search</button> 
+</div>
+<div class="parent">
+  <p><b>Preference List:</b></p>
+  <ng-container *ngFor="let items of userPrefList" class="container">
+    <div class="bar-item">
+      <img [src]="items.plant.imgUrl" class="prod-image" alt="plant image">
+      <h6 class="content">{{items.plant.name}}</h6>
+      <p>{{items.plant.description}}</p>
+      <i class="fas fa-save save-icon" title="Save" (click)="SaveUserPreference(items.plant)" [ngStyle]="{'color' : CheckIsPrefered(items.plant) ? 'green' : 'black'}"></i>
+      <button class="btn btn-primary"   (click)="ViewPlantInfo(items.plant.id)">View Details</button>
+
+    </div>
+    <hr class="horizontal-line">
+
+  </ng-container>
+</div>
+
+
