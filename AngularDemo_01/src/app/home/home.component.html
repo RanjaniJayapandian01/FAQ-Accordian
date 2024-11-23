@@ -3,7 +3,7 @@
         <div class="background-image">
             <div class="search-container">
                 <input type="text" placeholder="Search...">
-                <div class="search-icon"></div>
+                <div class="search-icon"><i class="fas fa-search"></i></div>
             </div>
 
            
@@ -11,11 +11,31 @@
 
 </div>
 <div class="home-subcontent">
-    <section id="testimonial">
+    <section id="testimonials">
         <app-tm></app-tm>
+    </section>
+    <section id="release">
+        <app-featured-plants>
+            <div class="featured-products">
+        
+            <div class="product-grid" #TotalFeaturedProducts>
+              <div class="product-card" *ngFor="let plant of featuredPlantList"  card-hover>
+                <img [src]="plant.imgUrl" alt="{{ plant.name }}" class="product-image" />
+                <h3 class="product-name">{{ plant.name }}   <i class="fas fa-save save-icon" title="Save" (click)="SaveUserPreference(plant)" [ngStyle]="{'color' : CheckIsPrefered(plant) ? 'green' : 'black'}"></i>  </h3>
+                <p class="product-description">{{ plant.description }}</p>
+                <!-- <p class="product-price">{{ plant.price | currency }}</p>
+                <p class="product-rating">Rating: {{ plant.rating }} ⭐</p>
+                <p class="product-stock">In Stock: {{ plant.stock }}</p> -->
+                <!-- <button class="order-button" (click)>Order Now</button>  -->
+              </div>
+            </div>
+           
+          </div>
+          </app-featured-plants>
     </section>
     <section id="contact" class="contact">
         <app-contact></app-contact>
     </section>
+
 </div>
 <!-- <button class="search-button" (click)="searchPlantsByName(searchValue)">Search</button> -->

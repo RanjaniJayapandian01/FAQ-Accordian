@@ -7,7 +7,7 @@ import { Component } from "@angular/core";
     <div class="container m-6 contact">
     <div class="row ">
     <div class="col-12 col-lg-12  px-3 py-3 pt-6">
-        <h1>Contact Form</h1>
+        <h3><b>Contact Form</b></h3>
 
         <form class="">
             <div class="form-group">
