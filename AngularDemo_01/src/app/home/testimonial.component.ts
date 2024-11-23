@@ -4,10 +4,13 @@ import { Component } from "@angular/core";
     selector: 'app-tm',
     template:
     `
+   
     <body>
-    <section class="testimonial-section">
-    <h2>Customer Testimonials</h2>
+     <header class="testimonial-header">
+    <h3><b>What Our Customer Thinks</b></h3>
+    </header>
 
+    <section class="testimonial-section">
     <div class="testimonial">
       <img src="https://via.placeholder.com/80" alt="Customer 1">
       <div class="name">John Doe</div>
@@ -38,17 +41,43 @@ import { Component } from "@angular/core";
       <div class="plant">Favorite Plant: Peace Lily</div>
     </div>
     
-  </section>
+     <div class="testimonial">
+      <img src="https://via.placeholder.com/80" alt="Customer 4">
+      <div class="name">Sara Lee</div>
+      <div class="role">Homeowner</div>
+      <div class="review">
+        <p>"I love how easy it is to shop for plants here. The website is easy to navigate, and the plants are always packed carefully."</p>
+      </div>
+      <div class="plant">Favorite Plant: Peace Lily</div>
+    </div>
 
+     <div class="testimonial">
+      <img src="https://via.placeholder.com/80" alt="Customer 5">
+      <div class="name">Sara Lee</div>
+      <div class="role">Homeowner</div>
+      <div class="review">
+        <p>"I love how easy it is to shop for plants here. The website is easy to navigate, and the plants are always packed carefully."</p>
+      </div>
+      <div class="plant">Favorite Plant: Peace Lily</div>
+    </div>
+
+  </section>
+  
+ 
 </body>
     `,
     styles:
     `
-    body {
-      font-family: 'Open Sans', sans-serif;
-      background-color: #f9f9f9;
-      margin: 0;
-      padding: 0;
+    .testimonial-header{
+    display: flex;
+      justify-content: center;
+      margin: 0px;
+      padding: 0px;
+    }
+    .testimonial-decor-img1{
+      background-color: black;
+      padding: 10px;
+      float: left;
     }
 
     .testimonial-section {
@@ -56,7 +85,10 @@ import { Component } from "@angular/core";
       justify-content: center;
       flex-wrap: wrap;
       margin: 50px auto;
-      max-width: 1200px;
+      width: 100%;
+      background-image: url('https://t3.ftcdn.net/jpg/02/08/01/94/360_F_208019473_kHWfmXIhUBkeIcH4W9X8y0meESykOW1z.jpg');
+      background-size: cover; /* This will cover the section */
+      background-repeat: no-repeat;
       padding: 20px;
     }
 
@@ -122,6 +154,9 @@ import { Component } from "@angular/core";
 
     `
 })
+
+
+
 export class TestimomialComponent{
 
 }

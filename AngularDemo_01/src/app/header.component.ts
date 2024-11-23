@@ -10,7 +10,8 @@ import { Component } from "@angular/core";
  <div class="header-container">
   <div class="header-left">
     <div class="leaf"></div>
-    <!-- <img [routerLink]="'plants'" class="logo" src="/assets/plant-shop-logo.jpg" /> -->
+    <!-- <img [routerLink]="'plants'" class="logo" src="/assets/plant-shop-logo.jpg" />
+      <!--   <img  [routerLink]="'home'" class="logo" src="/assets/greeney.png"> -->
     <span [routerLink]="'home'" class="name text">Greenery</span>
   </div>
 
@@ -55,8 +56,9 @@ import { Component } from "@angular/core";
 }
 
 .logo {
-  width: 60px;
-  height: 50px;
+  width: 100px;
+  height: 80px;
+  border-radius: 20px;
 }
 
 /* Styling for the navigation menu */

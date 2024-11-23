@@ -48,6 +48,7 @@ import { PurchaseComponent } from './cart/purchase.component';
 import { ToastComponent } from './exercise/toast.component';
 import { HomeComponent } from './home/home.component';
 import { TestimomialComponent } from './home/testimonial.component';
+import { ContactComponent } from './home/contact.component';
 
 export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
 @NgModule({
@@ -88,7 +89,8 @@ export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
     PurchaseComponent,
     ToastComponent,
     HomeComponent,
-    TestimomialComponent
+    TestimomialComponent,
+    ContactComponent
     ],
   imports: [
     BrowserModule,
