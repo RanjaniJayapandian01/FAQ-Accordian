@@ -42,25 +42,54 @@ export class ExerciseComponent {
 
 
      ngOnInit(){
+      //V1
+      // this.activatedRoute.queryParamMap.subscribe(x=>{
 
-      this.activatedRoute.queryParamMap.subscribe(x=>{
-        const param1=x.get('price').split('-');
-        const min=Number(param1[0]);
-        const max=Number(param1[1]);
+      //   const param1=x.get('price').split('-');
+      //   const min=Number(param1[0]);
+      //   const max=Number(param1[1]);
 
-        if(param1.length>0){
-          if(min>=0 && max<=1000){
-            console.log(min+" "+max);
-          this.filteredPlants=this.totalPlantList.filter(x=> x.price>=min && x.price<=max);
-          console.log(this.filteredPlants);
+      //   if(param1.length>0){
+      //     console.log(min +" "+max+" outside");
+      //     if(min>0 && max>min){
+      //       console.log(min+" "+max);
+      //     this.filteredPlants=this.totalPlantList.filter(x=> x.price>=min && x.price<=max);
+      //     console.log(this.filteredPlants);
+      //     }
+      //     else
+      //     this.filteredPlants=this.totalPlantList;
+      //   }
+      //   else{
+      //     this.filteredPlants= this.totalPlantList;
+      //   }
+      // });
+
+
+      this.activatedRoute.queryParamMap.subscribe((x) => {
+        const price = x.get('price'); // Get the 'price' query param
+      
+        if (price) {
+          const param1 = price.split('-'); // Split the price range
+          if (param1.length === 2) { // Ensure the split array has two parts
+            const min = Number(param1[0]);
+            const max = Number(param1[1]);
+      
+            if (!isNaN(min) && !isNaN(max) && min > 0 && max > min) {
+              console.log(min + " " + max);
+              this.filteredPlants = this.totalPlantList.filter(
+                (plant) => plant.price >= min && plant.price <= max
+              );
+              console.log(this.filteredPlants);
+              return; // Exit early since filtering is done
+            }
           }
-          else
-          this.filteredPlants=this.filteredPlants;
         }
-        else{
-          this.filteredPlants= this.totalPlantList;
-        }
+      
+        // Default behavior if 'price' is missing or invalid
+        this.filteredPlants = this.totalPlantList;
       });
+      
+
      }
 
      AddToCart(plant: Plant){
@@ -176,10 +205,24 @@ export class ExerciseComponent {
       // this.router.navigateByUrl('cart');
     }
 
-    GetPlantByPriceRange(min: HTMLInputElement, max: HTMLInputElement){
-      this.router.navigate(['/plants'], {queryParams: {price:min.value+"-"+max.value}});
+    // GetPlantByPriceRange(min: HTMLInputElement, max: HTMLInputElement){
+    //   console.log(min.value);
+    //   console.log(max.value);
+    //   if(min.value !== undefined && max.value!== undefined && min.value !== null && max.value!== null )
+    //     this.router.navigate(['/plants'], {queryParams: {price:min.value+"-"+max.value}});
+    // }
+
+    GetPlantByPriceRange(min: HTMLInputElement, max: HTMLInputElement) {
+      const minValue = min.value;
+      const maxValue = max.value;
+    
+      // Ensure values are not empty and valid numbers
+      if (minValue && maxValue && !isNaN(+minValue) && !isNaN(+maxValue)) {
+        this.router.navigate(['/plants'], { queryParams: { price: `${minValue}-${maxValue}` } });
+      } else {
+        this.router.navigate(['/plants']);
+      }
     }
-
-
+    
 
 }

@@ -1,15 +1,10 @@
 
-@font-face {
-    font-family: "WorkSans";
-    src: url('/assets/fonts/WorkSans-VariableFont_wght.ttf') format('truetype');
-
-}
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "WorkSans";
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 body{

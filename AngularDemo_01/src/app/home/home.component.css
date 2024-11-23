@@ -1,0 +1,76 @@
+/* Global styles to ensure full height */
+/* div {
+  height: 100%;
+  margin: 0;
+} */
+
+.home-space{
+  min-height: 100vh; /* Ensure the home component takes at least the full height of the viewport */
+    padding-bottom: 50px; /* Add space at the bottom for footer */
+    height: 100vh; /* For demonstration, so you can see the effect */
+
+}
+.background-image {
+  display: flex;
+    width: 100%;
+    height: 100vh; /* or any fixed height, e.g., 100vh for full screen height */
+    background-image: url('https://imagesz.unsplash.com/photo-1501004318641-b39e6451bec6?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGxhbnRzJTIwd2hpdGUlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww');
+
+      /* Make sure the image covers the container */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* Apply rounded corners (curved sides) */
+  border-radius: 500px; /* Adjust this value for the desired curve */
+  
+  /* Optional: Add padding or other styles */
+  padding: 20px;
+  align-items: flex-start; /* Align items vertically to the top */
+  justify-content: center; /* Align items horizontally to the center */
+  
+  }
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+  }
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    /* border-radius: 25px;
+    border: 2px solid #ccc; */
+    padding: 5px 15px;
+    border-bottom: 1px solid black;
+  }
+
+  .search-container input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 16px;
+    width: 500px;
+ 
+    
+  }
+
+  .search-container .search-icon {
+    background-image: url('https://img.icons.com/ios/50/000000/search.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+/* 
+  .search-container input:focus {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  } */

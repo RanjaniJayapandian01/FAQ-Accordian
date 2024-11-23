@@ -26,7 +26,8 @@ import { Component } from "@angular/core";
     `
     /* footer.component.css */
 .footer {
-  color: #165580;
+ position: relative; /* Sticky at the bottom */
+  color: #1b372a;
   padding: 20px;
   text-align: center;
 }
@@ -46,12 +47,12 @@ import { Component } from "@angular/core";
 
 .footer-links a, .social-media a {
   text-decoration: none;
-  color: #165580;
+  color: #1b372a;
   font-size: 14px;
 }
 
 .footer-links a:hover, .social-media a:hover {
-  color: #165580;
+  color: #1b372a;
 }
 
 .footer-bottom p {

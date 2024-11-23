@@ -20,10 +20,11 @@
           <h5>Avaliability</h5><app-filter [dropdown-options]="avaliability" (newItemEvent)="HandleFilterSelection($event , 'stock')"></app-filter>
           <h5>Price Range</h5>
           <div class="price-range bg-secondary">
-          <b>Min</b><input type="number" #minPrice>
-          <b>Max</b><input type="number" #maxPrice>
+          <b>Min</b><input type="number" min="1"  oninput="this.value = (this.value === '' || this.value === '-' ? '' : Math.max(this.value, 1))" #minPrice>
+          <b>Max</b><input type="number"  #maxPrice>
           <button class="btn btn-secondary" (click)="GetPlantByPriceRange(minPrice, maxPrice)">Search</button>
           </div>
+         
           <i class="bi bi-cart"></i>
     </div>
     <div class="card-grid" >

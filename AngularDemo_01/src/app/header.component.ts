@@ -10,14 +10,14 @@ import { Component } from "@angular/core";
  <div class="header-container">
   <div class="header-left">
     <div class="leaf"></div>
-    <img [routerLink]="'plants'" class="logo" src="/assets/plant-shop-logo.jpg" />
-    <span [routerLink]="'plants'" class="name text">Greenery</span>
+    <!-- <img [routerLink]="'plants'" class="logo" src="/assets/plant-shop-logo.jpg" /> -->
+    <span [routerLink]="'home'" class="name text">Greenery</span>
   </div>
 
   <div class="list-menu-dropdown hidden">
     <nav class="header__inline-menu">
       <ul class="list-menu list-menu--inline">
-        <li><a  routerLink="home" routerLinkActive="ractive"  [routerLinkActiveOptions]="{exact: true}"  class="text">Plants</a></li>
+        <li><a  routerLink="plants" routerLinkActive="ractive"  [routerLinkActiveOptions]="{exact: true}"  class="text">Plants</a></li>
         <li><a  routerLink="form" routerLinkActive="ractive"  [routerLinkActiveOptions]="{exact: true}"  class="text">Register User</a></li>
         <li><a  routerLink="blog" routerLinkActive="ractive" class="text">Blog</a></li>      
         <li><a  routerLink="admin" routerLinkActive="ractive" class="text">Admin</a></li>  
@@ -35,6 +35,8 @@ import { Component } from "@angular/core";
     `
     /* Styling for the header container */
 .header-container {
+
+  color: #1b372a;
   display: flex;
   justify-content: space-between; /* Space between logo and menu */
   align-items: center; /* Vertically center items */
@@ -60,7 +62,7 @@ import { Component } from "@angular/core";
 /* Styling for the navigation menu */
 .list-menu-dropdown {
   display: flex;
-  justify-content: flex-end; /* Align the menu items to the right */
+  
 }
 
 .header__inline-menu .list-menu {
@@ -68,6 +70,7 @@ import { Component } from "@angular/core";
   list-style: none;
   margin: 0;
   padding: 0;
+ 
 }
 
 .header__inline-menu .list-menu li {
@@ -75,18 +78,24 @@ import { Component } from "@angular/core";
 }
 
 .text {
-  color: #165580;
+  color: #1b372a;
   text-decoration: none;
+  font-weight: bold;
+}
+.text::selection {
+  font-size: 2rem;  /* Change the font size when selected */
+  background-color: #ffcc00;  /* Optional: Change background color to make it more noticeable */
 }
 
-.text:hover {
-  text-decoration: underline;
-}
-
+ 
 .ractive{
   font-weight: bold;
-
+  font-size: 20px;  /* Change the font size when selected */
+  
+  padding: 5px;
+  border-radius: 12px;
 }
+
 
     `
 })

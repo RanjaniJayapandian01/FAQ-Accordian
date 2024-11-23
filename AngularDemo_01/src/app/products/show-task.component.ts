@@ -17,7 +17,7 @@ import { UserService } from "../Services/user.service";
     styles:
     `
     body {
-    font-family: Arial, sans-serif;
+   font-family: Roboto, "Helvetica Neue", sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;

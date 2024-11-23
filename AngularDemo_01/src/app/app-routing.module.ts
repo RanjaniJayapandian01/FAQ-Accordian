@@ -9,13 +9,14 @@ import { BlogComponentComponent } from './blog/blog-component.component';
 import { UserComponent } from './user/user.component';
 import { PlantComponent } from './plant/plant.component';
 import { PurchaseComponent } from './cart/purchase.component';
+import { HomeComponent } from './home/home.component';
 
 // const routes: Routes = [];
 const routes: Routes=[
-  {path: '', component: ExerciseComponent},
-  {path: 'home', component: ExerciseComponent},
-  {path: 'plants/:id', component: PlantComponent},
+  {path: '', component: HomeComponent},
+  {path: 'home', component: HomeComponent},
   {path: 'plants', component: ExerciseComponent},
+  {path: 'plants/:id', component: PlantComponent},
   {path: 'form', component: UserFormComponent},
   {path: 'blog', component: BlogComponentComponent},
   {path: 'admin', component: AdminComponent},

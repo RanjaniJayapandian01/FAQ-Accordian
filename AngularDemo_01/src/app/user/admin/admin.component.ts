@@ -113,7 +113,7 @@ import { User } from "../../products/user";
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   
 }
   .user-create{
