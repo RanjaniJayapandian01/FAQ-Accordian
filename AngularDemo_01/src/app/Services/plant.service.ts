@@ -3,6 +3,7 @@ import { Plant } from '../models/Plant';
 import { userPreferences } from '../models/userPreferences';
 import { CartItem } from '../models/CartItem';
 import { CheckOutItem } from '../models/CheckOutItem';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -44,4 +45,21 @@ export class PlantService {
     this.orders=(cObj);
   }
 
+
+  // getResolveData(): Observable<userPreferences[]>{
+  //   return new Observable((sub)=>{
+  //     (setTimeout(()=>{sub.next(this.getUserPreferences());}, 5000));
+  //   })
+  // }
+
+  getResolveData(): Observable<any> {
+    return new Observable((sub) => {
+      setTimeout(() => {
+        const data = this.getUserPreferences();  // Assuming this is a synchronous method
+        sub.next(data);  // Emit the result
+        sub.complete();   // Complete the Observable
+      }, 5000);  // Wait for 5 seconds before executing getUserPreferences()
+    });
+  }
+  
 }

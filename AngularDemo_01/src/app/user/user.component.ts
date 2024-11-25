@@ -25,7 +25,9 @@ export class UserComponent {
   userPrefList: userPreferences[];
   constructor(@Inject('USER_TOKEN') private userService: UserService) {
     this.users= this.userService.getUserList();  
-    this.userPreferenceItems=this.plantservice.getUserPreferences().filter(x=> x.IsSaved===true);
+    //this.userPreferenceItems=this.plantservice.getUserPreferences().filter(x=> x.IsSaved===true);
+    this.userPreferenceItems=this.activatedRoute.snapshot.data['data']?.filter(x=> x.IsSaved===true);
+    console.log((this.userPreferenceItems));
    // this.model  = new UserProfile((this.users && this.users.length >0) ? this.users.length+1 :  1 ,'','','','', new Date(),new Date(),false,'');
     console.log('user component',this.users);
     this.selectedUser=this.users[0];
@@ -33,9 +35,9 @@ export class UserComponent {
 
   ngOnInit(){
     this.userService.shareSelectedUser.subscribe( (data: any) => this.selectedUser=data);
-    this.userPrefList= this.plantservice.getUserPreferences().filter(x=> x.IsSaved===true);
-
-
+    //this.userPrefList= this.plantservice.getUserPreferences().filter(x=> x.IsSaved===true);
+    this.userPrefList=this.activatedRoute.snapshot.data['data']?.filter(x=> x.IsSaved===true);
+    console.log((this.userPrefList));
 
 
 // dirty code
@@ -60,12 +62,13 @@ export class UserComponent {
     let likedPlantByUser : userPreferences= { userId: 100, plant : obj, IsSaved: true}
     this.userPreferenceItems.push(likedPlantByUser);
     }      
-    this.userPrefList= this.plantservice.getUserPreferences().filter(x=> x.IsSaved===true);
+    this.userPreferenceItems=this.activatedRoute.snapshot.data['data']?.filter(x=> x.IsSaved===true);
 
   }
   
   CheckIsPrefered( plant : Plant){
-    this.userPrefList= this.plantservice.getUserPreferences().filter(x=> x.IsSaved===true);
+   // this.userPrefList= this.plantservice.getUserPreferences().filter(x=> x.IsSaved===true);
+   this.userPreferenceItems=this.activatedRoute.snapshot.data['data']?.filter(x=> x.IsSaved===true);
 
   return  this.userPreferenceItems.some( x => (JSON.stringify(x.plant) === JSON.stringify(plant) && x.IsSaved === true));        
   }

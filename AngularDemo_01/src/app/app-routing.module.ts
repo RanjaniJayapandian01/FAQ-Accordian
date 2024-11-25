@@ -11,7 +11,7 @@ import { PlantComponent } from './plant/plant.component';
 import { PurchaseComponent } from './cart/purchase.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './user/login/login.component';
-import { CanActivateKey, CanActivateSubKey } from './Services/auth.guard';
+import { CanActivateKey, CanActivateSubKey, resolve } from './Services/auth.guard';
 import { AuthenticationService } from './Services/auth.service';
 import { NavigateGuard } from './Services/navigate-guard.service';
 
@@ -23,10 +23,10 @@ const routes: Routes=[
   {path: 'plants', children: [
   {path: ':id', component: PlantComponent}
   ]},
-  {path: 'form', component: UserFormComponent},
+  {path: 'form', component: UserFormComponent, canDeactivate:[NavigateGuard],},
   {path: 'blog', component: BlogComponentComponent},
   {path: 'admin', component: AdminComponent},
-  {path: 'user',component: UserComponent, canDeactivate:[NavigateGuard]},
+  {path: 'user',component: UserComponent, resolve:{data: resolve}},
   {path: 'cart', component: CartComponent},
   {path: 'login', component: LoginComponent,  canDeactivate:[NavigateGuard]},
     // Define paths with dynamic route parameters
