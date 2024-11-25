@@ -23,16 +23,17 @@ import { Component } from "@angular/core";
   <div class="list-menu-dropdown hidden">
     <nav class="header__inline-menu">
       <ul class="list-menu list-menu--inline">
-        <li><a routerLink="home" fragment="testimonials"  class="text">Testimonials</a></li>
-        <li><a routerLink="home" fragment="contact"  class="text">Contact</a></li>
-        <li><a routerLink="home" fragment="release" class="text">Best Sellers<img style="width: 30px ; height: 25px;" src="https://img.freepik.com/premium-vector/sparkles-icon-isolated-white-background-vector-illustration_736051-308.jpg?w=360"></a></li>
-        <li><a  routerLink="plants" routerLinkActive="ractive"  [routerLinkActiveOptions]="{exact: true}"  class="text">Plants</a></li>
-        <li><a  routerLink="form" routerLinkActive="ractive"  [routerLinkActiveOptions]="{exact: true}"  class="text">Register User</a></li>
-        <li><a  routerLink="blog" routerLinkActive="ractive" class="text">Blog</a></li>      
-        <li><a  routerLink="admin" routerLinkActive="ractive" class="text">Admin</a></li>  
-        <li><a  routerLink="user" routerLinkActive="ractive" class="text"><i class="fas fa-user"></i></a></li>
-        <li><a routerLink="cart" routerLinkActive="ractive" class="text"><i class="fas fa-shopping-cart"></i></a></li>
-
+        <li><a  routerLink="home" fragment="testimonials"  class="text">Testimonials</a></li>
+        <li><a  routerLink="home" fragment="contact"  class="text">Contact</a></li>
+        <li><a  routerLink="home" fragment="release" class="text">Best Sellers<img style="width: 30px ; height: 25px;" src="https://img.freepik.com/premium-vector/sparkles-icon-isolated-white-background-vector-illustration_736051-308.jpg?w=360"></a></li>
+        <li><a  routerLink="plants" routerLinkActive="ractive" [routerLinkActiveOptions]="{exact: true}" class="text">Plants</a></li>
+        <li><a  routerLink="form"   routerLinkActive="ractive" [routerLinkActiveOptions]="{exact: true}" class="text">Register User</a></li>
+        <li><a  routerLink="login"  routerLinkActive="ractive" class="text">Login</a></li>
+        <li><a  routerLink="blog"   routerLinkActive="ractive" class="text">Blog</a></li>      
+        <li><a  routerLink="admin"  routerLinkActive="ractive" class="text">Admin</a></li>  
+        <li><a  routerLink="user"   routerLinkActive="ractive" class="text"><i class="fas fa-user"></i></a></li>
+        <li><a  routerLink="cart"   routerLinkActive="ractive" class="text"><i class="fas fa-shopping-cart"></i></a></li>
+        <li><a  routerLink="login"  [queryParams]="{'logout': true}" routerLinkActive="ractive" class="text">Logout</a></li>
       </ul>
     </nav>
   </div>

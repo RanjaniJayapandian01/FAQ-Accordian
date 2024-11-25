@@ -49,6 +49,8 @@ import { ToastComponent } from './exercise/toast.component';
 import { HomeComponent } from './home/home.component';
 import { TestimomialComponent } from './home/testimonial.component';
 import { ContactComponent } from './home/contact.component';
+import { AuthenticationService } from './Services/auth.service';
+import { NavigateGuard } from './Services/navigate-guard.service';
 
 export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
 @NgModule({
@@ -101,8 +103,11 @@ export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
   ],
   providers: [
     {provide: 'USER_TOKEN', useClass: UserService},
+ //   {provide: 'IDataService', useClass: PlantService},
     LoggerService,
-    PlantService,
+   PlantService,
+    AuthenticationService,
+   NavigateGuard,
     provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]

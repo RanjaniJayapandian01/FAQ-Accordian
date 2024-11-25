@@ -1,0 +1,15 @@
+.login{
+
+    background-image: url('/assets/greenery.png');
+    height: 70vh;
+    background-repeat: no-repeat;  
+    padding: 2%;
+}
+
+.container{
+     background-color: white; 
+     padding: 1% 2% 1% 2%;
+    border: 1px solid #1b372a;
+    margin-left: 50%;
+    width: 50%;
+}

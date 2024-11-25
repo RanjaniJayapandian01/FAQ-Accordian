@@ -17,23 +17,26 @@
 </div> -->
 
 <p>login works!</p>
-<div class="container">
-    <h2>Login</h2>
-    <form [formGroup]="form" (ngSubmit)="Login()">
-        <div class="form-group">
-            <label for="userName">User Name</label>
-            <input type="text" class="form-control" id="userName" required formControlName="username_var1">
-            <div *ngIf="form.controls['username_var1'].touched && !form.controls['username_var1'].valid" class="alert alert-danger">UserName is Required</div>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" required formControlName="password">
-            <div *ngIf="form.controls['password'].touched && form.controls['password'].errors" class="alert alert-danger">
-                <div *ngIf="form.controls['password'].errors?.['required']" class="alert alert-danger">Password is Required</div>
-                <div *ngIf="form.controls['password'].errors?.['invalidLogin']" class="alert alert-danger">Username or Password is invalid</div>
-                <div *ngIf="form.controls['password'].errors?.['cannotContainSpace']" class="alert alert-danger">Password cannot contain space</div>
+<div class="login">
+    <div class="container">
+        <h2>Login</h2>
+        <form [formGroup]="form" (ngSubmit)="Login()">
+            <div class="form-group">
+                <label for="userName">User Name</label>
+                <input type="text" class="form-control" id="userName" required formControlName="username_var1">
+                <div *ngIf="form.controls['username_var1'].touched && !form.controls['username_var1'].valid" class="alert alert-danger">UserName is Required</div>
             </div>
-        </div>
-        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Login</button>
-    </form>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" required formControlName="password">
+                <div *ngIf="form.controls['password'].touched && form.controls['password'].errors" class="alert alert-danger">
+                    <div *ngIf="form.controls['password'].errors?.['required']" class="alert alert-danger">Password is Required</div>
+                    <div *ngIf="form.controls['password'].errors?.['invalidLogin']" class="alert alert-danger">Username or Password is invalid</div>
+                    <div *ngIf="form.controls['password'].errors?.['cannotContainSpace']" class="alert alert-danger">Password cannot contain space</div>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Login</button>
+        </form>
+    </div>
+
 </div>

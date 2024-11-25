@@ -174,8 +174,8 @@
 // }
 
 
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CheckOutItem } from '../models/CheckOutItem';
 import { PlantService } from '../Services/plant.service';
 
@@ -186,13 +186,13 @@ import { PlantService } from '../Services/plant.service';
     <!-- Tab navigation -->
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" [class.active]="activeTab === 'order'">
-        <a class="nav-link" [routerLink]="['/order', transactionId]"  routerLinkActive="active" aria-controls="order">Products Preview</a>
+        <a class="nav-link" [routerLink]="['/order/product-summary', transactionId]"  routerLinkActive="active" aria-controls="order">Products Preview</a>
       </li>
       <li role="presentation" [class.active]="activeTab === 'address'">
-        <a class="nav-link" [routerLink]="['/address', transactionId]" routerLinkActive="active" aria-controls="address">Delivery Address</a>
+        <a class="nav-link" [routerLink]="['/order/delivery-address', transactionId]" routerLinkActive="active" aria-controls="address">Delivery Address</a>
       </li>
       <li role="presentation" [class.active]="activeTab === 'review'">
-        <a class="nav-link" [routerLink]="['/review', transactionId]" routerLinkActive="active" aria-controls="review">Review & Payment</a>
+        <a class="nav-link" [routerLink]="['/order/payment', transactionId]" routerLinkActive="active" aria-controls="review">Review & Payment</a>
       </li>
     </ul>
 
@@ -381,35 +381,30 @@ import { PlantService } from '../Services/plant.service';
       }
     `
   ]
-})
-export class PurchaseComponent {
+})export class PurchaseComponent implements OnInit {
 
   activeTab: string = 'order'; // Default tab
-  purchaseList : CheckOutItem[];
-  transactionId: string=""
-  constructor(private route: ActivatedRoute,private service : PlantService) {
-    // Use the router's current URL segment to determine the active tab
-    this.purchaseList=this.service.getUserOrderedItems();
-    console.log(this.purchaseList);
-    // this.route.params.subscribe(params => {
-    //   this.transactionId = params['transactionId']; // Extract transactionId from route
-    //   this.setActiveTabFromUrl(); // Set the active tab based on the route
-    // });
+  purchaseList: CheckOutItem[] = [];
+  transactionId: string = "";
 
-    this.transactionId= this.route.snapshot.paramMap.get('transactionId');
-    this.setActiveTabFromUrl();
-    
+  constructor(private route: ActivatedRoute, private service: PlantService, private router: Router) { }
+
+  ngOnInit(): void {
+    // Fetch the order items and transactionId
+    this.purchaseList = this.service.getUserOrderedItems();
+    this.transactionId = this.route.snapshot.paramMap.get('transactionId') || "";
+
+    // Listen to route changes and update the active tab
+    this.router.events.subscribe(() => {
+      this.setActiveTabFromUrl();
+    });
   }
 
   setActiveTabFromUrl() {
-    // Determine the active tab based on the URL
     const path = this.route.snapshot.url[0]?.path; // Get the first segment of the URL
-    if (path === 'order' || path === 'address' || path === 'review') {
-      this.activeTab = path; // Set the active tab to the route's path (order, address, or review)
+    if (path === 'product-summary' || path === 'delivery-address' || path === 'payment') {
+      // Set the active tab based on the current URL
+      this.activeTab = path === 'product-summary' ? 'order' : path === 'delivery-address' ? 'address' : 'review';
     }
   }
-
-
-
-
 }
