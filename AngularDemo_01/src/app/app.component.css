@@ -6,3 +6,28 @@
 *{
     background-color: linear-gradient(to-right, --color1, --color2);
 } */
+
+
+
+/* Full-screen overlay */
+.overlay {
+    position: fixed;         /* Fixed position to cover entire screen */
+    top: 0;
+    left: 0;
+    width: 100%;             /* Full width */
+    height: 100%;            /* Full height */
+    background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent black background */
+    display: flex;           /* Flexbox to center the spinner */
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+    z-index: 9999;           /* Ensure it's on top of other content */
+  }
+  
+  /* Increase the size of the spinner */
+  .spinner-border {
+    width: 5rem; /* Adjust width of spinner */
+    height: 5rem; /* Adjust height of spinner */
+    border-width: 0.5rem; /* Adjust the thickness of the spinner's border */
+  }
+  
+  

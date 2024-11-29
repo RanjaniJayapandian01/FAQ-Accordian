@@ -35,7 +35,7 @@ const routes: Routes=[
   {path: 'order',  component: PurchaseComponent , canActivate: [CanActivateKey], canActivateChild:[CanActivateSubKey], children:[
   { path: 'product-summary/:transactionId', component: PurchaseComponent },
   { path: 'delivery-address/:transactionId', component: PurchaseComponent },
-  { path: 'payment/:transactionId', component: PurchaseComponent }]},    
+  { path: 'payment/:transactionId', component: PurchaseComponent  }]},    
   // {path: 'check-out/:transactionId', component: PurchaseComponent},
   // { path: 'order', component: PurchaseComponent },
   // { path: 'address', component: PurchaseComponent },
