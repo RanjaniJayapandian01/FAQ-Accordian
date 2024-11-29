@@ -51,6 +51,9 @@ import { TestimomialComponent } from './home/testimonial.component';
 import { ContactComponent } from './home/contact.component';
 import { AuthenticationService } from './Services/auth.service';
 import { NavigateGuard } from './Services/navigate-guard.service';
+import { ProductSummaryComponent } from './cart/productsummary.component';
+import { DeliveryComponenet } from './cart/delivery.component';
+import { PaymentComponent } from './cart/payment.component';
 
 export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
 @NgModule({
@@ -92,7 +95,10 @@ export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
     ToastComponent,
     HomeComponent,
     TestimomialComponent,
-    ContactComponent
+    ContactComponent,
+    ProductSummaryComponent,
+    DeliveryComponenet,
+    PaymentComponent
     ],
   imports: [
     BrowserModule,

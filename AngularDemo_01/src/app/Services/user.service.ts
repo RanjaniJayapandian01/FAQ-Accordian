@@ -3,6 +3,7 @@ import { UserProfile } from "../models/userProfile";
 import { LoggerService } from "./logger.service";
 import { User } from "../products/user";
 import { Subject } from "rxjs";
+import { UserRequest } from "../models/UserRequest";
 
 @Injectable({
     providedIn: 'root'
@@ -102,4 +103,21 @@ export class UserService{
     ShareNewTask(val: string){
       this.addTask.next(val);
     }
+
+    userRequests: UserRequest[]=[];
+    getUserRequest(){
+      return this.userRequests;
+    }
+
+    addUserRequest(obj: UserRequest){
+
+      this.userRequests.push(obj);
+      console.log(this.userRequests);
+    }
+
+    setUserRequest(arrObj: UserRequest[]){
+      this.userRequests=arrObj;
+    }
+
+
 }

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Inject } from "@angular/core";
 import { UserService } from "../../Services/user.service";
 import { UserProfile } from "../../models/userProfile";
 import { User } from "../../products/user";
+import { UserRequest } from "../../models/UserRequest";
 
 @Component({
     selector: 'app-admin',
@@ -40,6 +41,33 @@ import { User } from "../../products/user";
       </tr>
     </tbody>
   </table>
+
+
+<div class="message-box">
+    <table *ngIf="requests.length>0; else elseBlock">
+    <thead>
+    <tr>
+    <th>Request Id</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Message</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let req of requests">
+
+    <td>{{req.id}}</td>
+    <td>{{req.username}}</td>
+    <td>{{req.email}}</td>
+    <td>{{req.message}}</td>
+
+    </tr>
+    </tbody>
+    </table>
+</div>
+<ng-template #elseBlock>
+  No Requests..
+</ng-template>
   <div class="user-create">
 
 <form (ngSubmit)="CreateNewUser()" #userForm="ngForm">
@@ -152,6 +180,8 @@ tbody tr:hover {
   background-color: #f1f1f1;
 }
 
+
+
     `,
 })
 export class AdminComponent{
@@ -163,16 +193,19 @@ export class AdminComponent{
      custType: string[] = ['Free', 'Basic', 'Premium'];
      plan: string[] = ['Quarterly', 'Monthly', 'Yearly'];
      model : any;
-
+     requests: UserRequest[];
     constructor(@Inject('USER_TOKEN') private userService: UserService) {
         this.users= this.userService.getUserList();  
        this.model  = new UserProfile((this.users && this.users.length >0) ? this.users.length+1 :  1 ,'','','','', new Date(),new Date(),false,'');
        this.initializeModel();
         console.log(this.users.length)      ;
+      //  this.requests=this.userService.getUserRequest();
     }
     
     ngOnInit(){
       this.users= this.userService.getUserList();  
+      this.requests=this.userService.getUserRequest();
+      console.log(this.requests);
     }
     initializeModel() {
         this.model = new UserProfile(
