@@ -1,4 +1,5 @@
-import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Form, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-eform',
@@ -7,22 +8,22 @@ import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 })
 export class EformComponent{
 
-@ViewChildren('forminput') input  : QueryList<ElementRef>;
-  request: string='';
-  // ngAfterViewInit(){
-  //   this.input.forEach( x=> {
-  //     console.log(x.nativeElement.value);
-  //   }
-  //   )
-  // }
-  Show(){
-    let name="";
-    this.input.forEach( x=> {
-      name+= x.nativeElement.value + ' ';
-      console.log(x.nativeElement);
-      console.log(x.nativeElement.value);
-    }
-    )
-    this.request=name.trimEnd();
+  @ViewChild('feedbackForm') form : NgForm;
+  productPurchased: string= "";
+  feedback=["Quality of Plants", "Customer Service", "Variety of Plants", "Store Layout", "Pricing", "Online Shopping Experience"];
+  radioOptions = [
+    {id: 'inlineRadio1', value: 'option1', display: 'Very satisfied'},
+    {id: 'inlineRadio2', value: 'option2', display: 'Satisfied'},
+    {id: 'inlineRadio3', value: 'option3', display: 'Neutral'},
+    {id: 'inlineRadio4', value: 'option4', display: 'Dissatisfied'},
+    {id: 'inlineRadio5', value: 'option5', display: 'Very dissatisfied'}
+  ]
+
+  onSubmitFeedback(){
+    console.log(this.form);
+    console.log(this.form.controls['name'].value);
+    console.log(this.form.value.email);
+
   }
+
 }

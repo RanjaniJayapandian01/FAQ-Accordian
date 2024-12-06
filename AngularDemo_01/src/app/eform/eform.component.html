@@ -1,49 +1,99 @@
-<body>
-<div class="form-container">
-  <h1>Contact Form</h1>
-  <form class="form">
-      <div class="name_inputs">
-            <div class="form-group" >
-            <label for="first_Name">First Name</label>
-            <input type="text" id="first_Name" #forminput>
-            </div>
-            <div class="form-group" >
-            <label for="last_Name">Last Name</label>
-            <input type="text" id="last_Name" #forminput>
-            </div>
-      </div>            
-      <div class="form-group" >
-              <label for="email_address">Email Address</label>
-              <input type="text" id="email_address" #forminput>
-      </div>
-      <div class="form-group radio" >
-              <label for="query_type">Query Type</label>
-            <div class="query">
-              <div class="q_type">
-              <input type="radio" id="option_1" name="q_type" value="general" #forminput>
-              <label for="option_1">General Enquiry</label>              
-              </div>
-              <div class="q_type">
-              <input type="radio" id="option_2" name="q_type" value="support" #forminput>
-              <label for="option_2">Support Request</label>
-              </div>  
-            </div>
-      </div>
-      <div class="form-group" >
-              <label for="message">Message</label>
-              <textarea name="" id="message" #forminput></textarea>
-              
-      </div>
-      <div class="form-group" >
-              <input type="checkbox" id="consent">
-              <label for="consent">I consent to being contacted by the team *</label>
-      </div>
-      <div >
-              <button type="submit" class="btn btn-primary" (click)="Show()">Submit</button>
-      </div>
-      
-  </form>            
+<!-- feedback.component.html -->
 
-  <h3>{{request}} </h3>
+<div class="container">
+<form (ngSubmit)="onSubmitFeedback()" #feedbackForm="ngForm">
+        <div class="title">
+            <div class="d-block">
+                <h1>Customer Feedback</h1>
+            </div>
+        </div>
+        
+        <div class="form-group item">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email"  ngModel #emailCtrl="ngModel" required>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <small *ngIf="emailCtrl.touched && emailCtrl.errors?.['required']" class="form-text text-danger">Email is Required*</small>
+        </div>
+
+        <div class="form-group item">
+                <label for="name">Name</label>
+                <input type="text" class="form-control"  name="name" id="name" placeholder="Enter your Name" ngModel #name="ngModel"  required>
+                <small class="form-text text-muted" *ngIf="name.touched && name.errors?.['required']">Name is Required</small>
+        </div>
+        
+        <div class="form-group item">
+                <label for="quality">Have you purchased any additional products (e.g., pots, soil, fertilizers) from our store?                </label>
+                <select id="quality" class="form-control" name="prodquality" [(ngModel)]="productPurchased" >
+                        <option>Yes</option>
+                        <option>No</option>                        
+                </select>        
+        </div>
+        <!-- <div>You have purchased {{productPurchased}}</div> -->
+        <div class="form-group item">
+                <label>How satisfied were you with the quality and price of these products?</label>
+                        <br>
+                <div class="form-check form-check-inline" *ngFor="let items of radioOptions">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id={{items.id}} value={{items.value}} ngModel>
+                    <label class="form-check-label" for="inlineRadio3">{{items.display}}</label>
+                </div>
+        </div>
+
+
+        <div class="form-group item feedback-options">
+                <p>Please select all aspects of your experience:</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Quality of Plants" id="quality" name="feedback" ngModel >
+                    <label class="form-check-label" for="quality">
+                        Quality of Plants
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Customer Service" id="service" name="feedback" ngModel>
+                    <label class="form-check-label" for="service">
+                        Customer Service
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Variety of Plants" id="variety" name="feedback" ngModel>
+                    <label class="form-check-label" for="variety">
+                        Variety of Plants
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Store Layout" id="layout" name="feedback" ngModel>
+                    <label class="form-check-label" for="layout">
+                        Store Layout
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Pricing" id="pricing" name="feedback" ngModel>
+                    <label class="form-check-label" for="pricing">
+                        Pricing
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Online Shopping Experience" id="online" name="feedback" ngModel>
+                    <label class="form-check-label" for="online">
+                        Online Shopping Experience
+                    </label>
+                </div>
+        </div>
+            
+
+        <div class="form-group item">
+                <label for="feedback">Feedback & Suggestions</label>
+                <textarea id="feedback" class="form-control" name="comments" placeholder="Write Your Comments Here..." ngModel></textarea>
+
+        </div>
+        
+        <div class="item">
+                <label>Send Us Your Experience in Photos</label>
+                <div class="form-group  custom-file">   
+                <input type="file" class="custom-file-input form-control" name="uploadFile" id="customFile" ngModel>
+                <label class="custom-file-label" for="customFile">Choose file</label>                
+                </div>   
+
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+</form>                
 </div>
-</body>

@@ -185,15 +185,15 @@ import { PlantService } from '../Services/plant.service';
   
   <div class="purchase">
   <h4>Check Out</h4>
-  <div>
+  
     <router-outlet></router-outlet> <!-- Child components will be rendered here -->
-  </div>
+  
   </div>
   `,
   styles: [
     `
     .purchase{
-            padding: 20px 400px;
+            padding: 20px 40px;
     background-color: #fbfcfc;
     display: flex;
     flex-direction: column;

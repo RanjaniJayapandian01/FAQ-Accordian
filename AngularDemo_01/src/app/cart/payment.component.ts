@@ -93,7 +93,9 @@ import { ActivatedRoute, Route, Router } from "@angular/router";
                 </div>
 
               </div>
-      <button class="btn btn-primary continue" [routerLink]="'/order/payment-summary'" >Back</button>
+      <button class="btn btn-primary continue" [routerLink]="'/order/product-summary'" >Back</button>
+      <button class="btn btn-primary btn-lg" [routerLink]="'#'">Continue to checkout</button>
+      <button class="btn btn-primary btn-lg" [routerLink]="'/feedback'">Feedback</button>
 
     `,
     styles:

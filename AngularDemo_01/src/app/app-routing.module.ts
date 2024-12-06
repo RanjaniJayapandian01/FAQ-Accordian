@@ -17,6 +17,7 @@ import { NavigateGuard } from './Services/navigate-guard.service';
 import { ProductSummaryComponent } from './cart/productsummary.component';
 import { DeliveryComponenet } from './cart/delivery.component';
 import { PaymentComponent } from './cart/payment.component';
+import { EformComponent } from './eform/eform.component';
 
 // const routes: Routes = [];
 const routes: Routes=[
@@ -29,16 +30,18 @@ const routes: Routes=[
   {path: 'form', component: UserFormComponent, canDeactivate:[NavigateGuard],},
   {path: 'blog', component: BlogComponentComponent},
   {path: 'admin', component: AdminComponent},
-  {path: 'user',component: UserComponent, resolve:{data: resolve}},
+  {path: 'user',component: UserComponent,canActivate: [CanActivateKey], resolve:{data: resolve}},
   {path: 'cart', component: CartComponent},
-  {path: 'login', component: LoginComponent,  canDeactivate:[NavigateGuard]},
+  {path: 'login', component: LoginComponent},
     
-  {path: 'order', component: PurchaseComponent, 
+  {path: 'order', component: PurchaseComponent,
+    canActivate: [CanActivateKey], 
     children:[ 
-              { path: 'product-summary', component: ProductSummaryComponent },
+              { path: 'product-summary', component: ProductSummaryComponent,  },
               { path: 'delivery-address', component: DeliveryComponenet },
-              { path: 'payment/:transactionId', component: PaymentComponent} ]            
+              { path: 'payment/:transactionId', component: PaymentComponent, canActivateChild:[CanActivateSubKey]} ]            
   },    
+  {path: 'feedback', component: EformComponent},
   // {path: 'order', component: PurchaseComponent , canActivate: [CanActivateKey]} ,
   // {path: 'order',  component: PurchaseComponent , canActivate: [CanActivateKey], canActivateChild:[CanActivateSubKey], children:[
   // { path: 'product-summary/:transactionId', component: PurchaseComponent },

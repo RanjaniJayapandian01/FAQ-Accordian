@@ -8,35 +8,48 @@
 <body>
     <div class="container">
         <h1>User Form</h1>
-        <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+        <form (ngSubmit)="onSubmit()" ngForm #userForm="ngForm">
             <div class="form-group">
                 <label for="firstName"> First Name</label>
                 <input type="text" class="form-control" id="firstName" required  [(ngModel)]="model.firstName" name="firstName" #firstName="ngModel" >
-                <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">First Name is Required</div>
+                <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid && !firstName.dirty">First Name is Required</div>
             </div>
             <div class="form-group">
                 <label for="lastName">Last Name</label>
                 <input type="text" class="form-control" id="lastName" required [(ngModel)]="model.lastName" name="lastName" #lastName="ngModel" minlength="2">
-                <div *ngIf="lastName.touched && lastName.errors">
+                <div *ngIf="lastName.touched && lastName.errors && !lastName.dirty">
                     <div class="alert alert-danger" *ngIf="lastName?.errors?.['required']">Last Name is required</div>
                     <div class="alert alert-danger" *ngIf="lastName.errors?.['minlength']">Last Name should be minimum 2 characters</div>
                 </div>
                 
                 <!-- <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">Last Name is Required</div> -->
             </div>
+
+            <div class="form-group" [style]="' display: flex'">                
+                
+                <div class=" col-10 px-0" >
+                <label for="userName">User Name</label>
+                <input type="text" class="form-control" id="userName" required  [(ngModel)]="username" name="userName" #userName="ngModel" >
+                <div class="alert alert-danger" *ngIf="userName.touched && !userName.valid && !userName.dirty">User Name is Required</div>
+                </div>
+                <div class="col-2 px-2 pt-4 mt-2">
+                    <button type="button" class="btn btn-primary" [disabled]="firstName.invalid || lastName.invalid" (click)="GenerateAutoUserName()">Generate UserName</button>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" class="form-control" id="email" required [(ngModel)]="model.email" name="email" #email="ngModel">
-                <div class="alert alert-danger" *ngIf="email.touched && email.invalid">Email is Required</div>
+                <input type="text" class="form-control" email id="email" required [(ngModel)]="model.email" name="email" #email="ngModel">
+                <div class="alert alert-danger" *ngIf="email.touched && email.invalid && !email.dirty">Email is Required</div>
             </div> 
             <div class="form-group">
                 <label for="country">Country</label>
                 <select class="form-control" id="country" [(ngModel)]="model.country" name="country" #country="ngModel">
                     <option *ngFor="let c of countries" [value]="c"> {{c}}</option>
                 </select>
-                <div class="alert alert-danger" *ngIf="country.touched && country.invalid">Country is Required</div>
+                <div class="alert alert-danger" *ngIf="country.touched && country.invalid && !country.dirty">Country is Required</div>
             </div>
-            <button type="submit" class="btn btn-default" [disabled]="!userForm.valid"> Submit</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid"> Submit</button>
         </form>
     
     </div>
