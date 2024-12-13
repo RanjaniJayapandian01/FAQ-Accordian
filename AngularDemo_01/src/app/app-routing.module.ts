@@ -18,6 +18,7 @@ import { ProductSummaryComponent } from './cart/productsummary.component';
 import { DeliveryComponenet } from './cart/delivery.component';
 import { PaymentComponent } from './cart/payment.component';
 import { EformComponent } from './eform/eform.component';
+import { EventformComponent } from './eventform/eventform.component';
 
 // const routes: Routes = [];
 const routes: Routes=[
@@ -41,6 +42,7 @@ const routes: Routes=[
               { path: 'delivery-address', component: DeliveryComponenet },
               { path: 'payment/:transactionId', component: PaymentComponent, canActivateChild:[CanActivateSubKey]} ]            
   },    
+  {path: 'event-registration', component: EventformComponent},
   {path: 'feedback', component: EformComponent},
   // {path: 'order', component: PurchaseComponent , canActivate: [CanActivateKey]} ,
   // {path: 'order',  component: PurchaseComponent , canActivate: [CanActivateKey], canActivateChild:[CanActivateSubKey], children:[

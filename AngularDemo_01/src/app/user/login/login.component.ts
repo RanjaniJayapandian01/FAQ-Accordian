@@ -17,7 +17,7 @@
 //     }
 // }
 
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidator } from './password-validator.component';
 import { LoginService } from './login.service';
@@ -25,6 +25,7 @@ import { AuthenticationService } from '../../Services/auth.service';
 import { SnackBarService } from '../../Services/snackBar.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IDeactivateComponent } from '../../Services/navigate-guard.service';
+import { UserService } from '../../Services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -38,10 +39,12 @@ export class LoginComponent implements IDeactivateComponent{
      snackBar: SnackBarService =inject(SnackBarService);
      route: Router= inject(Router);
      activatedRoute: ActivatedRoute =inject(ActivatedRoute);
+
      /**
       *
       */
-     constructor(fb : FormBuilder, private _loginservice : LoginService) {
+     
+     constructor(fb : FormBuilder, private _loginservice : LoginService, @Inject('USER_TOKEN') private userService: UserService) {
       this.form= fb.group({
         username_var1 : ['', Validators.required],
         password: ['',Validators.compose([Validators.required, PasswordValidator.cannotContainSpace]) ]
@@ -85,6 +88,7 @@ export class LoginComponent implements IDeactivateComponent{
       }
       else{
         this.snackBar.openSnackBar('You have logged in successfully', '');
+        this.userService.setCurrentUser(this.form.controls['username_var1'].value);
         this.route.navigate(['/home']);
       }
 

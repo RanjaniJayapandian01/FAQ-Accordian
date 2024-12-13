@@ -1,0 +1,15 @@
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
+
+.user.PENDING{
+    border: 1px solid orange;
+}
+
+.user.INVALID{
+    border: 1px solid red;
+}
+
+.user.VALID{
+    border: 1px solid green;
+}

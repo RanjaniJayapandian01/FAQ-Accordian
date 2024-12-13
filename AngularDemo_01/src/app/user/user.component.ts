@@ -30,11 +30,14 @@ export class UserComponent {
     console.log((this.userPreferenceItems));
    // this.model  = new UserProfile((this.users && this.users.length >0) ? this.users.length+1 :  1 ,'','','','', new Date(),new Date(),false,'');
     console.log('user component',this.users);
-    this.selectedUser=this.users[0];
+    this.userService.shareSelectedUser.subscribe((data: any) => this.selectedUser=data);
+    console.log(this.selectedUser);
   }
 
   ngOnInit(){
+    
     this.userService.shareSelectedUser.subscribe( (data: any) => this.selectedUser=data);
+    console.log(this.selectedUser);
     //this.userPrefList= this.plantservice.getUserPreferences().filter(x=> x.IsSaved===true);
     this.userPrefList=this.activatedRoute.snapshot.data['data']?.filter(x=> x.IsSaved===true);
     console.log((this.userPrefList));

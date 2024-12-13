@@ -1,4 +1,4 @@
-import { inject, Injectable } from "@angular/core";
+import { Inject, inject, Injectable } from "@angular/core";
 import { UserService } from "./user.service";
 import { UserProfile } from "../models/userProfile";
 import { ActivatedRouteSnapshot, CanDeactivate, Router, RouterStateSnapshot } from "@angular/router";
@@ -10,9 +10,17 @@ import { ActivatedRouteSnapshot, CanDeactivate, Router, RouterStateSnapshot } fr
 export class AuthenticationService{
 
     isLogged: boolean = false;
-    userService: UserService= inject(UserService);
+    //userService: UserService= inject(UserService);
     route: Router= inject(Router);
     currentUser: UserProfile;
+/**
+ *
+ */
+        constructor(@Inject('USER_TOKEN') private userService: UserService) {
+            
+            
+        }
+
     LogIn(username: string, password: string): boolean {
         this.currentUser = this.userService.getUserList().find(x=> x.userName === username && x.password === password);
         if(this.currentUser !== undefined){    

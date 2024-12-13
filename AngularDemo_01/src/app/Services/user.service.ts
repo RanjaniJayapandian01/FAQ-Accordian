@@ -58,7 +58,7 @@ export class UserService{
         id: 4,
         userName: 'EmilyDavis',
         emailId: 'emily@example.com',
-        password: 'emily12345',
+        password: 'emily12345super',
         customerType: 'Free',
         subscription: false,
         startDate: new Date('2023-03-20'),
@@ -86,7 +86,10 @@ export class UserService{
         return this.users;        
     }
 
-
+    
+    setCurrentUser(logUser: string){
+      this.shareSelectedUser.emit(this.users.find(x=> x.userName == logUser ));
+    }
     AddUser(obj : UserProfile){
         this.users.push(obj);
        // let logger=new LoggerService();

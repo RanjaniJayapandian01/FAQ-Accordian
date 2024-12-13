@@ -42,6 +42,11 @@
                 <input type="text" class="form-control" email id="email" required [(ngModel)]="model.email" name="email" #email="ngModel">
                 <div class="alert alert-danger" *ngIf="email.touched && email.invalid && !email.dirty">Email is Required</div>
             </div> 
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel">
+            </div>
             <div class="form-group">
                 <label for="country">Country</label>
                 <select class="form-control" id="country" [(ngModel)]="model.country" name="country" #country="ngModel">

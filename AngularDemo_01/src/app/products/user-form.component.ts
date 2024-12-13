@@ -1,8 +1,11 @@
-import { Component, inject, ViewChild } from "@angular/core";
+import { Component, Inject, inject, ViewChild } from "@angular/core";
 import { User } from "./user";
 import { IDeactivateComponent } from "../Services/navigate-guard.service";
 import { NgForm } from "@angular/forms";
 import { SnackBarService } from "../Services/snackBar.service";
+import { Router } from "@angular/router";
+import { UserService } from "../Services/user.service";
+import { UserProfile } from "../models/userProfile";
 
 
 @Component({
@@ -12,19 +15,47 @@ import { SnackBarService } from "../Services/snackBar.service";
 export class UserFormComponent implements IDeactivateComponent{
     
     countries=['India', 'United States', 'Africa'];
-    model = new User('', '', '','');
+    model = new User('', '', '','', '');
     firstname: string ="";
     lastName: string="";
     email: string="";
     username: string="";
+    password: string ="";
     submitted = false;
     @ViewChild('userForm') userForm: NgForm;
     snackBar: SnackBarService = inject(SnackBarService);
+    router: Router = inject(Router);
+   // userService: UserService =inject(UserService);
+
+    /**
+     *
+     */
+    constructor(@Inject('USER_TOKEN') private userService: UserService) {
+      
+    }
+    lastuserId: number= 1;
+    usersList: UserProfile[];
+
+    ngOnInit(){
+        this.usersList= this.userService.getUserList();
+        if(this.usersList.length>0){
+            this.lastuserId = this.usersList[this.usersList.length-1].id +1;            
+        }
+    }
     onSubmit(){
         this.submitted=true;
         console.log(this.userForm.value.userName);
         this.snackBar.openSnackBar('Registered Sucessfully','');
+        this.username =this.userForm.value.userName;
+        this.firstname=this.userForm.value.firstName;
+        this.lastName=this.userForm.value.lastName;
+        this.email=this.userForm.value.email;
+        this.password=this.userForm.value.password;
+        
+        this.userService.AddUser({id: this.lastuserId, userName: this.userForm.value.userName, emailId: this.email, password: this.password,  customerType: 'Free', subscription: false, subscriptionType: 'None', startDate : new Date(), endDate :  null });
+        console.log(this.userService.getUserList());
         this.userForm.reset();
+        this.router.navigateByUrl('login');
         
     }
     canExit() {

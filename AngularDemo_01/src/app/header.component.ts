@@ -23,6 +23,7 @@ import { Component } from "@angular/core";
   <div class="list-menu-dropdown hidden">
     <nav class="header__inline-menu">
       <ul class="list-menu list-menu--inline">
+        <li><a routerLink="event-registration" routerLinkAcitve="ractive" class="text">Event</a></li>
         <li><a  routerLink="home" fragment="testimonials"  class="text">Testimonials</a></li>
         <li><a  routerLink="home" fragment="contact"  class="text">Contact</a></li>
         <li><a  routerLink="home" fragment="release" class="text">Best Sellers<img style="width: 30px ; height: 25px;" src="https://img.freepik.com/premium-vector/sparkles-icon-isolated-white-background-vector-illustration_736051-308.jpg?w=360"></a></li>

@@ -54,6 +54,7 @@ import { NavigateGuard } from './Services/navigate-guard.service';
 import { ProductSummaryComponent } from './cart/productsummary.component';
 import { DeliveryComponenet } from './cart/delivery.component';
 import { PaymentComponent } from './cart/payment.component';
+import { EventformComponent } from './eventform/eventform.component';
 
 export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
 @NgModule({
@@ -98,7 +99,8 @@ export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
     ContactComponent,
     ProductSummaryComponent,
     DeliveryComponenet,
-    PaymentComponent
+    PaymentComponent,
+    EventformComponent
     ],
   imports: [
     BrowserModule,
