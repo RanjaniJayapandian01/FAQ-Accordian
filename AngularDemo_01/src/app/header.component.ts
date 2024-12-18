@@ -30,7 +30,8 @@ import { Component } from "@angular/core";
         <li><a  routerLink="plants" routerLinkActive="ractive" [routerLinkActiveOptions]="{exact: true}" class="text">Plants</a></li>
         <li><a  routerLink="form"   routerLinkActive="ractive" [routerLinkActiveOptions]="{exact: true}" class="text">Register User</a></li>
         <li><a  routerLink="login"  routerLinkActive="ractive" class="text">Login</a></li>
-        <li><a  routerLink="blog"   routerLinkActive="ractive" class="text">Blog</a></li>      
+        <li><a  routerLink="blog"   routerLinkActive="ractive" class="text">Blog</a></li>   
+        <li><a  routerLink="join"   routerLinkActive="ractive">Join Community</a></li>
         <li><a  routerLink="admin"  routerLinkActive="ractive" class="text">Admin</a></li>  
         <li><a  routerLink="user"   routerLinkActive="ractive" class="text"><i class="fas fa-user"></i></a></li>
         <li><a  routerLink="cart"   routerLinkActive="ractive" class="text"><i class="fas fa-shopping-cart"></i></a></li>

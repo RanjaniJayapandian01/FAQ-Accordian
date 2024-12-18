@@ -19,6 +19,7 @@ import { DeliveryComponenet } from './cart/delivery.component';
 import { PaymentComponent } from './cart/payment.component';
 import { EformComponent } from './eform/eform.component';
 import { EventformComponent } from './eventform/eventform.component';
+import { FormExerciseComponent } from './form-exercise/form-exercise.component';
 
 // const routes: Routes = [];
 const routes: Routes=[
@@ -44,6 +45,7 @@ const routes: Routes=[
   },    
   {path: 'event-registration', component: EventformComponent},
   {path: 'feedback', component: EformComponent},
+  
   // {path: 'order', component: PurchaseComponent , canActivate: [CanActivateKey]} ,
   // {path: 'order',  component: PurchaseComponent , canActivate: [CanActivateKey], canActivateChild:[CanActivateSubKey], children:[
   // { path: 'product-summary/:transactionId', component: PurchaseComponent },
@@ -51,6 +53,12 @@ const routes: Routes=[
   // { path: 'payment/:transactionId', component: PurchaseComponent  }]},    
   
   // { path: '', redirectTo: '/home', pathMatch: 'full' },  // Default route
+
+
+  {path:'join', component:FormExerciseComponent},
+
+
+
   {path: '**', component: NotFoundComponent}
 
 ]

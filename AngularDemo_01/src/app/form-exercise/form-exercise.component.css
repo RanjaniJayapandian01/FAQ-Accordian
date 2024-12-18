@@ -1,0 +1,57 @@
+.item{
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+.bg-img{
+    
+    display: flex;
+    flex-direction: row;
+    background-image: url('https://thumbs.dreamstime.com/b/diverse-group-people-celebrating-unity-joy-stand-together-their-hands-raised-acceptance-vibrant-colors-cheerful-328749977.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 95%;
+    object-fit: fill;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+.btnalign{
+    display: block;
+    width: 30%;
+    align-items: center;
+}
+
+h1{
+    margin: 150px 0  100px  0 ;
+    color: black;
+    text-shadow: -1px 1px 0 #FFF,
+    1px 1px 0 #FFF,
+    1px -1px 0 #FFF,
+    -1px -1px 0 #FFF;
+    background-color: #FFF;
+    padding: 0 10px 0 10px;
+    border-radius: 2px;
+
+}
+
+.imagediv{
+    padding: 0;
+    margin: 0;
+}
+.img-com{
+    width: 50%;
+    height: 95%;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }

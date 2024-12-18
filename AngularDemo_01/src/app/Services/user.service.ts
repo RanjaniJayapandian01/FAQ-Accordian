@@ -81,14 +81,17 @@ export class UserService{
   ] ;
 
   shareSelectedUser : EventEmitter<UserProfile>=new EventEmitter<UserProfile>();
-
+  currentUser: UserProfile;
     getUserList(){
         return this.users;        
     }
 
     
     setCurrentUser(logUser: string){
-      this.shareSelectedUser.emit(this.users.find(x=> x.userName == logUser ));
+      const obj=this.users.find(x=> x.userName == logUser );
+      console.log(obj);
+      this.currentUser=obj;
+      this.shareSelectedUser.emit(obj);
     }
     AddUser(obj : UserProfile){
         this.users.push(obj);
@@ -97,7 +100,9 @@ export class UserService{
     }
 
     getSelectedUser(obj : UserProfile){
+      this.currentUser=obj;
       this.shareSelectedUser.emit(obj);
+
     }
 
     // this was added for testing

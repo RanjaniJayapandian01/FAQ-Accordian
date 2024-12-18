@@ -39,7 +39,7 @@ import { UserService } from './Services/user.service';
 import { LoggerService } from './Services/logger.service';
 import { NewTaskComponent } from './products/new-task.component';
 import { ShowTaskComponent } from './products/show-task.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NotFoundComponent } from './exercise/notfound.component';
 import { HeaderComponent } from './header.component';
 import { FooterComponent } from './footer.component';
@@ -55,6 +55,7 @@ import { ProductSummaryComponent } from './cart/productsummary.component';
 import { DeliveryComponenet } from './cart/delivery.component';
 import { PaymentComponent } from './cart/payment.component';
 import { EventformComponent } from './eventform/eventform.component';
+import { FormExerciseComponent } from './form-exercise/form-exercise.component';
 
 export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
 @NgModule({
@@ -100,14 +101,15 @@ export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
     ProductSummaryComponent,
     DeliveryComponenet,
     PaymentComponent,
-    EventformComponent
+    EventformComponent,
+    FormExerciseComponent
     ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   providers: [
     {provide: 'USER_TOKEN', useClass: UserService},
@@ -116,6 +118,7 @@ export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
    PlantService,
     AuthenticationService,
    NavigateGuard,
+   provideHttpClient(withInterceptorsFromDi()),
     provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]

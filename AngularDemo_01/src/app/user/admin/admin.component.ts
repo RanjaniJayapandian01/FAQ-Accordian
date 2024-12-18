@@ -3,12 +3,17 @@ import { UserService } from "../../Services/user.service";
 import { UserProfile } from "../../models/userProfile";
 import { User } from "../../products/user";
 import { UserRequest } from "../../models/UserRequest";
+import { HttpClient } from "@angular/common/http";
+import { Member } from "../../models/member";
+import { map } from "rxjs/internal/operators/map";
+
 
 @Component({
     selector: 'app-admin',
     template:`
-<div class="user-list">
+
 <h2>Admin Section</h2>
+<div class="user-list">
   <h2>User List</h2>
   <table>
     <thead>
@@ -134,7 +139,49 @@ import { UserRequest } from "../../models/UserRequest";
 </div>
 
 
-<app-user></app-user>
+
+
+<div class="user-list">
+
+<div class="search-container">
+<input type="text" class="search-box" placeholder="Filter by community member name..." > 
+<button class="btn search-button" >Search</button>
+</div>
+<!-- <button class="btn btn-primary" (click)="fetchCommunityMembers()">Fetch All</button> -->
+
+<h2>Community Members</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>Interested in Gardening</th>
+        <th>Experience</th>
+        <th>Location</th>
+        <th>Preferred Newsletter type</th>
+        <th>Remove Member</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of community_members">
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.isinterested }}</td>
+        <td>{{ user.experience }}</td>
+        <td>{{ user.location }}</td>
+        <td>{{ user.preferredType }}</td>
+        <td><button type="" class="btn btn-danger" (click)="RemoveMember(user.id)">Remove</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</div>
+
+
+<!-- <app-user></app-user> -->
     `,
     styles:`
  .user-list {
@@ -182,6 +229,36 @@ tbody tr:hover {
 
 
 
+.search-container {
+  display: flex;
+  justify-content: flex-end; /* Aligns items to the right */
+}
+  .search-box {
+    align-items: right;
+    margin-left: 700px;
+    float: right;
+    width: 700px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  .search-button {
+    padding: 10px 15px;
+    float: right;
+    margin-left: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .search-button:hover {
+    background-color: #0056b3;
+  }
+ 
+
     `,
 })
 export class AdminComponent{
@@ -194,11 +271,13 @@ export class AdminComponent{
      plan: string[] = ['Quarterly', 'Monthly', 'Yearly'];
      model : any;
      requests: UserRequest[];
-    constructor(@Inject('USER_TOKEN') private userService: UserService) {
+    constructor(@Inject('USER_TOKEN') private userService: UserService, private http: HttpClient) {
         this.users= this.userService.getUserList();  
        this.model  = new UserProfile((this.users && this.users.length >0) ? this.users.length+1 :  1 ,'','','','', new Date(),new Date(),false,'');
        this.initializeModel();
         console.log(this.users.length)      ;
+        this.fetchCommunityMembers();
+
       //  this.requests=this.userService.getUserRequest();
     }
     
@@ -206,6 +285,7 @@ export class AdminComponent{
       this.users= this.userService.getUserList();  
       this.requests=this.userService.getUserRequest();
       console.log(this.requests);
+      this.fetchCommunityMembers();
     }
     initializeModel() {
         this.model = new UserProfile(
@@ -236,5 +316,35 @@ export class AdminComponent{
     ShowSelectedUser(userObj: UserProfile){
       this.userService.getSelectedUser(userObj);
     }
+
+    community_members : Member[];
+    fetchCommunityMembers(){
+      this.http.get<{[key:string]: Member}>('https://my-awesome-c993d-default-rtdb.firebaseio.com/community_members.json')
+     .pipe(map(response => {
+        let tasks=[];
+        for(let key in response){
+          if (response.hasOwnProperty(key)) {
+          tasks.push({...response[key], id: key})
+          }
+        }
+        return tasks;
+        })
+      ).subscribe(
+        (response)=>{
+          this.community_members=response;
+          console.log(response);
+        }
+      );
+    }
+
+
+    RemoveMember(id: number){
+      console.log(id);
+      this.http.delete('https://my-awesome-c993d-default-rtdb.firebaseio.com/community_members/'+id+'.json').subscribe((i)=>{      this.fetchCommunityMembers();
+      } )
+    }
+
+
+    
 
 }
