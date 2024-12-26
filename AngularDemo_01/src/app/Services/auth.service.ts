@@ -2,6 +2,7 @@ import { Inject, inject, Injectable } from "@angular/core";
 import { UserService } from "./user.service";
 import { UserProfile } from "../models/userProfile";
 import { ActivatedRouteSnapshot, CanDeactivate, Router, RouterStateSnapshot } from "@angular/router";
+import { Observable, of } from "rxjs";
 
 
 @Injectable({
@@ -42,4 +43,8 @@ export class AuthenticationService{
         return this.isLogged;
     }
     
+
+    isAuthenticatedObservable() : Observable<boolean>{
+        return of(this.isAuthenticated());
+    }
 }

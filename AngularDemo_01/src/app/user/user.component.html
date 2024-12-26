@@ -1,36 +1,70 @@
-<!-- <p>user works!</p>
-<div class="user-list">
-    <h2>User List</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>User Name</th>
-          <th>Email</th>
-          <th>Customer Type</th>
-          <th>Subscription</th>
-          <th>Start Date</th>
-          <th>Expiry Date</th>
-          <th>Subscription Type</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of users">
-          <td>{{ user.id }}</td>
-          <td>{{ user.userName }}</td>
-          <td>{{ user.emailId }}</td>
-          <td>{{ user.customerType }}</td>
-          <td>{{ user.subscription ? 'Active' : 'Inactive' }}</td>
-          <td>{{ user.startDate | date:'longDate' }}</td>
-          <td>{{ user.endDate | date:'longDate' }}</td>
-          <td>{{ user.subscriptionType }}</td>
-        </tr>
-      </tbody>
-    </table>
-</div> -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<div class="card" *ngIf="selectedUser">
+  <div class="card-body p-md-5 ">
+    
+    <div class="d-flex flex-column gap-2">
+      
+      <div class="d-flex flex-row gap-2">
+        <!--img-->
+        <div class="mt-n8">
+          <img class="gradient-background rounded-top-3" style="height: 150px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoHIA0cB4zks9zjyvc4HBBAMf3EYKfd8MHMw&s" alt="mentor 1" class="img-fluid rounded-4 mt-n8">
+        </div>
+        <div class="d-flex flex-column gap-2">
+          <div class="d-flex flex-md-row flex-column justify-content-between gap-2">
+            <!--heading-->
+            <div>
+              <h1 class="mb-0">{{selectedUser.userName}} </h1> <span><small>{{selectedUser.customerType}}</small></span>
+              <!--content-->
+              <div class="d-flex flex-lg-row flex-column gap-2">
+                <small class="fw-medium text-gray-800">{{selectedUser.emailId}}</small>
+              </div>
+            </div>          
+          </div>
+          <div class="d-flex flex-md-row flex-column gap-md-4 gap-2">            
+            <div class="d-flex flex-row gap-2 align-items-center lh-1">
+              <!--icon-->
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-geo-alt-fill text-danger" viewBox="0 0 16 16">
+                  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"></path>
+                </svg>
+              </span>
+              <!--text-->
+              <span>India</span>
+            </div>
 
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
- <div class="user">
+          </div>          
+        </div>  
+      </div>
+      <div class="d-flex flex-column flex-md-row gap-4">
+        <div class="list-group">
+          <div *ngFor="let items of userPrefList">
+            <a  class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+            <img [src]="items.plant.imgUrl" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+            <div class="d-flex gap-2 w-100 justify-content-between">
+              <div>
+                <h6 class="mb-0">{{items.plant.name}}</h6>
+                <p class="mb-0 opacity-75">{{items.plant.description}}</p>
+              </div>
+              <small class="opacity-50 text-nowrap"></small>
+            </div>
+            <i class="fas fa-save save-icon" title="Save" (click)="SaveUserPreference(items.plant)" [ngStyle]="{'color' : CheckIsPrefered(items.plant) ? 'green' : 'black'}"></i>
+            <svg  (click)="ViewPlantInfo(items.plant.id)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+              <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+              <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+            </svg>
+          </a>
+        
+         </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- user profile V1 -->
+<!-- <div class="user">
 <div class="user-profile-container" *ngIf="selectedUser">
   
       <div>
@@ -45,28 +79,5 @@
         <p><b>subscriptionType :</b> {{selectedUser.subscriptionType}}</p>
       </div>
       
-  
-</div>
-<div class="search-container">
-<input type="text" class="search-box "  placeholder="Filter by Plant Name..." #searchText>
-<!-- <button class="btn search-button"  (click)="UpdateTableData()">Search</button>  -->
-<!-- <button class="btn search-button"    [routerLink]="'/user'" [queryParams]="{search: searchText.value }">Search</button>  -->
-<button class="btn search-button"  (click)="onSearchUpdated(searchText.value)">Search</button> 
-</div>
-<div class="parent">
-  <p><b>Preference List:</b></p>
-  <ng-container *ngFor="let items of userPrefList" class="container">
-    <div class="bar-item">
-      <img [src]="items.plant.imgUrl" class="prod-image" alt="plant image">
-      <h6 class="content">{{items.plant.name}}</h6>
-      <p>{{items.plant.description}}</p>
-      <i class="fas fa-save save-icon" title="Save" (click)="SaveUserPreference(items.plant)" [ngStyle]="{'color' : CheckIsPrefered(items.plant) ? 'green' : 'black'}"></i>
-      <button class="btn btn-primary"   (click)="ViewPlantInfo(items.plant.id)">View Details</button>
-
-    </div>
-    <hr class="horizontal-line">
-
-  </ng-container>
-</div>
-
-</div>
+  </div>
+</div> -->

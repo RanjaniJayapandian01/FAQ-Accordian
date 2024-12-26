@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject } from "@angular/core";
+import { Component, EventEmitter, inject, Inject } from "@angular/core";
 import { UserService } from "../../Services/user.service";
 import { UserProfile } from "../../models/userProfile";
 import { User } from "../../products/user";
@@ -6,6 +6,7 @@ import { UserRequest } from "../../models/UserRequest";
 import { HttpClient } from "@angular/common/http";
 import { Member } from "../../models/member";
 import { map } from "rxjs/internal/operators/map";
+import { FireBaseService } from "../../Services/firebase.service";
 
 
 @Component({
@@ -271,12 +272,17 @@ export class AdminComponent{
      plan: string[] = ['Quarterly', 'Monthly', 'Yearly'];
      model : any;
      requests: UserRequest[];
+     private fb= inject(FireBaseService);
+     community_members : Member[];
+
     constructor(@Inject('USER_TOKEN') private userService: UserService, private http: HttpClient) {
         this.users= this.userService.getUserList();  
        this.model  = new UserProfile((this.users && this.users.length >0) ? this.users.length+1 :  1 ,'','','','', new Date(),new Date(),false,'');
        this.initializeModel();
         console.log(this.users.length)      ;
-        this.fetchCommunityMembers();
+        this.fb.fetchCommunityMembers().subscribe( (data)=>{
+          this.community_members=data;
+        });
 
       //  this.requests=this.userService.getUserRequest();
     }
@@ -285,7 +291,10 @@ export class AdminComponent{
       this.users= this.userService.getUserList();  
       this.requests=this.userService.getUserRequest();
       console.log(this.requests);
-      this.fetchCommunityMembers();
+      this.fb.fetchCommunityMembers().subscribe( (data)=>{
+        this.community_members=data;
+      });    
+    
     }
     initializeModel() {
         this.model = new UserProfile(
@@ -317,34 +326,15 @@ export class AdminComponent{
       this.userService.getSelectedUser(userObj);
     }
 
-    community_members : Member[];
-    fetchCommunityMembers(){
-      this.http.get<{[key:string]: Member}>('https://my-awesome-c993d-default-rtdb.firebaseio.com/community_members.json')
-     .pipe(map(response => {
-        let tasks=[];
-        for(let key in response){
-          if (response.hasOwnProperty(key)) {
-          tasks.push({...response[key], id: key})
-          }
-        }
-        return tasks;
-        })
-      ).subscribe(
-        (response)=>{
-          this.community_members=response;
-          console.log(response);
-        }
-      );
-    }
+   // .subscribe(
+  //   (response)=>{
+  //     this.community_members=response;
+  //     console.log(response);
+  //   }
+  // );
 
-
-    RemoveMember(id: number){
-      console.log(id);
-      this.http.delete('https://my-awesome-c993d-default-rtdb.firebaseio.com/community_members/'+id+'.json').subscribe((i)=>{      this.fetchCommunityMembers();
-      } )
-    }
-
-
-    
+  RemoveMember(id: number){
+    this.fb.DeleteCommunityMember(id);
+  }
 
 }

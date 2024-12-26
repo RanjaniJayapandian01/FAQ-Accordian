@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AbstractControl, NgForm } from '@angular/forms';
+import { FireBaseService } from '../Services/firebase.service';
 
 @Component({
   selector: 'app-form-exercise',
@@ -9,7 +10,8 @@ import { AbstractControl, NgForm } from '@angular/forms';
 })
 export class FormExerciseComponent {
 
-
+  private fb: FireBaseService=inject(FireBaseService);
+  private _http: HttpClient = inject(HttpClient);
   constructor(private http: HttpClient){
 
   }
@@ -27,16 +29,8 @@ export class FormExerciseComponent {
     const member = {username: form.value.username, email: form.value.email, location: form.value.location, isinterested: form.value.interest, experience: form.value.experience, preferredType: ["email", "sms"] };
     console.log(member);
     const headers={header: 'test'}
-//    console.log(form.value);
-    this.http.post('https://my-awesome-c993d-default-rtdb.firebaseio.com/community_members.json', member ).subscribe(
-      (response)=>{
-        console.log(response)
-       }
-       //,
-      // (error)=>{
-      //   console.log(error);
-      // }
-    );
+    this.fb.CreateCommunityMember(member);
+   
   }
 
   

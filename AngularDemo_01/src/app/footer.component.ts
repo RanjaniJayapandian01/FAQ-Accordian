@@ -48,7 +48,8 @@ import { Component } from "@angular/core";
 .footer-links a, .social-media a {
   text-decoration: none;
   color: #1b372a;
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .footer-links a:hover, .social-media a:hover {
@@ -56,7 +57,7 @@ import { Component } from "@angular/core";
 }
 
 .footer-bottom p {
-  font-size: 12px;
+  font-size: 10px;
 }
 
     `

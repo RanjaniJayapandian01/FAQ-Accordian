@@ -16,7 +16,7 @@ import { SnackBarService } from '../Services/snackBar.service';
   providers: [ExerciseService],
 })
 export class ExerciseComponent {
-@Input()  updatecartList: CartItem[]=[]
+@Input()  updatecartList: CartItem[]=[];
           cartList : CartItem[]=[];
           cobj: CartItem;
           plantTypes: string[]=["Herbs", "Shrubs", "Medicinal Plants", "Climbers", "Creepers" ,"Flowers"];

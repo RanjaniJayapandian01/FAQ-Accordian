@@ -13,6 +13,7 @@ export class FilterComponent {
   selectedOptions: { [key: string]: boolean } = {};  // Tracks selected options dynamically
   filteredOptions: any=this.options;// Options filtered based on search term  
   searchTerm: string = '';  // Search term for filtering
+  @Input() FilterTerm: string ='';
   constructor() {    
   }
   @Output()

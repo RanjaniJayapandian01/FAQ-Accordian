@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
+import { AuthenticationService } from "./Services/auth.service";
 
 
 @Component({
@@ -26,16 +27,16 @@ import { Component } from "@angular/core";
         <li><a routerLink="event-registration" routerLinkAcitve="ractive" class="text">Event</a></li>
         <li><a  routerLink="home" fragment="testimonials"  class="text">Testimonials</a></li>
         <li><a  routerLink="home" fragment="contact"  class="text">Contact</a></li>
-        <li><a  routerLink="home" fragment="release" class="text">Best Sellers<img style="width: 30px ; height: 25px;" src="https://img.freepik.com/premium-vector/sparkles-icon-isolated-white-background-vector-illustration_736051-308.jpg?w=360"></a></li>
+        <li><a  routerLink="home" fragment="release" class="text">Best Sellers<img style="width: 20px ; height: 15px;" src="https://img.freepik.com/premium-vector/sparkles-icon-isolated-white-background-vector-illustration_736051-308.jpg?w=360"></a></li>
         <li><a  routerLink="plants" routerLinkActive="ractive" [routerLinkActiveOptions]="{exact: true}" class="text">Plants</a></li>
-        <li><a  routerLink="form"   routerLinkActive="ractive" [routerLinkActiveOptions]="{exact: true}" class="text">Register User</a></li>
-        <li><a  routerLink="login"  routerLinkActive="ractive" class="text">Login</a></li>
         <li><a  routerLink="blog"   routerLinkActive="ractive" class="text">Blog</a></li>   
-        <li><a  routerLink="join"   routerLinkActive="ractive">Join Community</a></li>
-        <li><a  routerLink="admin"  routerLinkActive="ractive" class="text">Admin</a></li>  
-        <li><a  routerLink="user"   routerLinkActive="ractive" class="text"><i class="fas fa-user"></i></a></li>
-        <li><a  routerLink="cart"   routerLinkActive="ractive" class="text"><i class="fas fa-shopping-cart"></i></a></li>
-        <li><a  routerLink="login"  [queryParams]="{'logout': true}" routerLinkActive="ractive" class="text">Logout</a></li>
+        <li [hidden]="!isLoggedIn"><a  routerLink="join"   routerLinkActive="ractive" class="text">Join Community</a></li>
+        <li [hidden]="!isLoggedIn"> <a  routerLink="admin"  routerLinkActive="ractive" class="text">Admin</a></li>  
+        <li [hidden]="!isLoggedIn"><a  routerLink="user"   routerLinkActive="ractive" class="text"><i class="fas fa-user"></i> Profile</a></li>
+        <li [hidden]="!isLoggedIn"><a  routerLink="cart"   routerLinkActive="ractive" class="text"><i class="fas fa-shopping-cart"></i> Orders & Returns</a></li>
+        <li [hidden]="isLoggedIn"><a  routerLink="form"   routerLinkActive="ractive" [routerLinkActiveOptions]="{exact: true}" class="text">Sign In</a></li>
+        <li [hidden]="isLoggedIn"> <a  routerLink="login"  routerLinkActive="ractive" class="text" [routerLinkActiveOptions]="{exact: true}">Login</a></li>
+        <li [hidden]="!isLoggedIn"><a  routerLink="login"  [queryParams]="{'logout': true}" routerLinkActive="ractive" class="text"  >Sign out</a></li>
       </ul>
     </nav>
   </div>
@@ -105,16 +106,40 @@ import { Component } from "@angular/core";
  
 .ractive{
   font-weight: bold;
-  font-size: 20px;  /* Change the font size when selected */
-  
-  padding: 5px;
+  font-size: 12px;  /* Change the font size when selected */
+  color: #007bff;
+ /* padding: 5px;*/
   border-radius: 12px;
 }
 
+
+li{
+  font-size : 12px;
+}
 
     `
 })
 
 export class HeaderComponent{
+
+
+  isLoggedIn: boolean = false;
+
+  authService: AuthenticationService = inject(AuthenticationService);
+
+  ngOnInit(){
+    this.authService.isAuthenticatedObservable().subscribe((data)=>{
+      console.log(data);
+      this.isLoggedIn= data;
+    });
+    console.log(this.isLoggedIn);
+  }
+  ngDoCheck(){
+    this.authService.isAuthenticatedObservable().subscribe((data)=>{
+      this.isLoggedIn= data;
+    });
+    console.log(this.isLoggedIn);
+
+  }
 
 }
