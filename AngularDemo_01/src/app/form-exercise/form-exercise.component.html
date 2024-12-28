@@ -1,14 +1,14 @@
 <div class="container g5">
     <div class="bg-img">
-        <h1 class="">Community Garden Form</h1>
+        <h1 class="">{{editMode? "Update": "Join"}} Community Garden Form</h1>
     </div>
 
     <div class="pt-2">
         <form (ngSubmit)="onSubmit(communityform)" #communityform = "ngForm">
             <div class="form-group item mb4">
             
-                <label for="name" class="col-4">Name</label>
-                <input type="text" class="form-control  col-8" ngModel name="username" #username="ngModel">
+                <label for="name" class="col-4">User Name</label>
+                <input type="text" class="form-control  col-8" ngModel name="username" #username="ngModel" [readonly]="editMode">
             </div>
             <div class="form-group item mb4">
             
@@ -38,7 +38,7 @@
                 <label class="interest col-4">
                     Are you interested in participating in plant care workshops or events?
                 </label>
-                <select id="interest" class="form-control  col-8"  ngModel name="interest" #interest="ngModel">
+                <select id="interest" class="form-control  col-8"  ngModel name="isinterested" #interest="ngModel">
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
@@ -57,15 +57,13 @@
             
                 <div class="fitem">
                         <div class="form-check"  *ngFor="let st of subscriptionType">
-                            <input class="form-check-input " type="checkbox" id={{st.id}} name="updatemethod" [value]="st.value"   [(ngModel)]="selectedUpdateMethods"   #updatemethod="ngModel">
+                            <input class="form-check-input " type="checkbox" id={{st.id}} name="preferredType" [value]="st.value"   [(ngModel)]="selectedUpdateMethods"   #updatemethod="ngModel">
                             <label class="form-check-label " for={{st.id}}>{{st.label}}</label>
                         </div>                   
                 </div>
-            </div>
-
-            
+            </div>            
             <div class="center">
-                <button type="submit" class="btn btn-dark btnalign" >Join</button>
+                <button type="submit" class="btn btn-dark btnalign" >{{editMode? "Update": "Join"}}</button>
             </div>  
             
         </form>

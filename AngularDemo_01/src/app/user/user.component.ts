@@ -7,6 +7,8 @@ import { userPreferences } from '../models/userPreferences';
 import { Plant } from '../models/Plant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { query } from '@angular/animations';
+import { Member } from '../models/member';
+import { FireBaseService } from '../Services/firebase.service';
 
 @Component({
   selector: 'app-user',
@@ -23,39 +25,37 @@ export class UserComponent {
   route=inject(Router);
   activatedRoute=inject(ActivatedRoute);
   userPrefList: userPreferences[];
+  updateForm: boolean =false;
+  isMember: boolean = false;
+  memberShipData : Member;
+  updateUser : Member;
+  _fbService= inject(FireBaseService);
+  
   constructor(@Inject('USER_TOKEN') private userService: UserService) {
     this.users= this.userService.getUserList();  
     //this.userPreferenceItems=this.plantservice.getUserPreferences().filter(x=> x.IsSaved===true);
     this.userPreferenceItems=this.activatedRoute.snapshot.data['data']?.filter(x=> x.IsSaved===true);
-    console.log((this.userPreferenceItems));
    // this.model  = new UserProfile((this.users && this.users.length >0) ? this.users.length+1 :  1 ,'','','','', new Date(),new Date(),false,'');
-    console.log('user component',this.users);
     //this.userService.shareSelectedUser.subscribe((data: any) => this.selectedUser=data);
-    this.selectedUser=this.userService.currentUser;
-    console.log(this.selectedUser);
+    this.selectedUser=this.userService.currentUser;    
   }
 
   ngOnInit(){
     
    // this.userService.shareSelectedUser.subscribe( (data: any) => this.selectedUser=data);
     this.selectedUser=this.userService.currentUser;
-    console.log(this.selectedUser);
     //this.userPrefList= this.plantservice.getUserPreferences().filter(x=> x.IsSaved===true);
     this.userPrefList=this.activatedRoute.snapshot.data['data']?.filter(x=> x.IsSaved===true);
-    console.log((this.userPrefList));
+    this._fbService.fetchCommunityMembers().subscribe((data) => {
+      if (this.selectedUser && this.selectedUser.userName) {
 
-
-// dirty code
-  //   this.activatedRoute.queryParamMap.subscribe(x => this.searchString = x.get('search'));
-  //   if(this.searchString.length>0){
-  //     if(this.searchString!==null || this.searchString!== undefined)  {
-  //       this.userPrefList= this.userPrefList.filter(x=> x.plant.name.toLowerCase().includes(this.searchString.toLowerCase()))      
-  //     }
-  // }
-  // else{
-  //   this.userPrefList=this.plantservice.getUserPreferences().filter(x=> x.IsSaved===true);    
-  // }
-
+        this.memberShipData = data.find(x => x.username === this.selectedUser.userName);
+        if (this.memberShipData) {
+          this.isMember = true;
+        }
+      }
+    });
+    
   }
 
   SaveUserPreference(obj: Plant){
@@ -74,7 +74,6 @@ export class UserComponent {
   CheckIsPrefered( plant : Plant){
    // this.userPrefList= this.plantservice.getUserPreferences().filter(x=> x.IsSaved===true);
    this.userPreferenceItems=this.activatedRoute.snapshot.data['data']?.filter(x=> x.IsSaved===true);
-
   return  this.userPreferenceItems.some( x => (JSON.stringify(x.plant) === JSON.stringify(plant) && x.IsSaved === true));        
   }
 
@@ -93,4 +92,10 @@ export class UserComponent {
       this.route.navigate(['/plants', id]);
   }
 
+  UpdateCommunityMember(){
+    this.updateForm=!this.updateForm;
+    this.updateUser=this.memberShipData;
+    console.log(this.memberShipData);
+  }
+  
 }

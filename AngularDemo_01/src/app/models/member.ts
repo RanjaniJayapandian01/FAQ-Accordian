@@ -16,6 +16,7 @@ export class Member{
         this.location=location;
         this.isinterested=memberinterest;
         this.preferredType=type;
+        this.experience=experience;
         
     }
 }
