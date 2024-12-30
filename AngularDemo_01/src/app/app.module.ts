@@ -39,7 +39,7 @@ import { UserService } from './Services/user.service';
 import { LoggerService } from './Services/logger.service';
 import { NewTaskComponent } from './products/new-task.component';
 import { ShowTaskComponent } from './products/show-task.component';
-import { HttpClient, HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NotFoundComponent } from './exercise/notfound.component';
 import { HeaderComponent } from './header.component';
 import { FooterComponent } from './footer.component';
@@ -56,6 +56,7 @@ import { DeliveryComponenet } from './cart/delivery.component';
 import { PaymentComponent } from './cart/payment.component';
 import { EventformComponent } from './eventform/eventform.component';
 import { FormExerciseComponent } from './form-exercise/form-exercise.component';
+import { AuthInterceptorService } from './Services/auth.interceptors';
 
 export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
 @NgModule({
@@ -119,7 +120,8 @@ export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
     AuthenticationService,
    NavigateGuard,
    provideHttpClient(withInterceptorsFromDi()),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
   ],
   bootstrap: [AppComponent]
 })

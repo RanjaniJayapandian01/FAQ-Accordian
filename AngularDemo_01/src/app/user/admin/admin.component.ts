@@ -7,6 +7,8 @@ import { HttpClient } from "@angular/common/http";
 import { Member } from "../../models/member";
 import { map } from "rxjs/internal/operators/map";
 import { FireBaseService } from "../../Services/firebase.service";
+import { SnackBarService } from "../../Services/snackBar.service";
+import { Subscription } from "rxjs";
 
 
 @Component({
@@ -274,28 +276,40 @@ export class AdminComponent{
      requests: UserRequest[];
      private fb= inject(FireBaseService);
      community_members : Member[];
-
+     private _snackbar: SnackBarService =inject(SnackBarService);
+     
+    destroyErrorSub: Subscription;
     constructor(@Inject('USER_TOKEN') private userService: UserService, private http: HttpClient) {
         this.users= this.userService.getUserList();  
        this.model  = new UserProfile((this.users && this.users.length >0) ? this.users.length+1 :  1 ,'','','','', new Date(),new Date(),false,'');
-       this.initializeModel();
-        console.log(this.users.length)      ;
-        this.fb.fetchCommunityMembers().subscribe( (data)=>{
-          this.community_members=data;
-        });
-
+       this.initializeModel();        
+        this.fb.fetchCommunityMembers().subscribe(
+          {next:  (data) => {        
+              this.community_members = data;          
+          }}          
+         );
       //  this.requests=this.userService.getUserRequest();
     }
     
     ngOnInit(){
       this.users= this.userService.getUserList();  
-      this.requests=this.userService.getUserRequest();
-      console.log(this.requests);
-      this.fb.fetchCommunityMembers().subscribe( (data)=>{
-        this.community_members=data;
-      });    
-    
+      this.requests=this.userService.getUserRequest();            
+      this.fb.fetchCommunityMembers().subscribe(
+        {next:  (data) => {        
+            this.community_members = data;          
+        }},      
+       );
+       this.destroyErrorSub = this.fb.errorSubject.subscribe({next: (httpErrorResponse)=>{      
+        console.log(httpErrorResponse);
+        this._snackbar.openSnackBar(httpErrorResponse.error.error, "");
+      }});    
     }
+
+    ngOnDestroy(){
+      console.log("I am destroyed");
+      this.destroyErrorSub.unsubscribe();
+    }
+
     initializeModel() {
         this.model = new UserProfile(
             this.getNextUserId(),
@@ -309,6 +323,7 @@ export class AdminComponent{
             ''
         );
     }
+    
     getNextUserId(): number {
         // Generate next user ID based on current users
         return this.users.length > 0 ? Math.max(...this.users.map(user => user.id)) + 1 : 1;
@@ -321,20 +336,11 @@ export class AdminComponent{
         //this.users=this.userService.getUserList();
     }
 
-
     ShowSelectedUser(userObj: UserProfile){
       this.userService.getSelectedUser(userObj);
     }
-
-   // .subscribe(
-  //   (response)=>{
-  //     this.community_members=response;
-  //     console.log(response);
-  //   }
-  // );
-
   RemoveMember(id: number){
-    this.fb.DeleteCommunityMember(id);
+    this.fb.DeleteCommunityMember(id);        
   }
 
 }

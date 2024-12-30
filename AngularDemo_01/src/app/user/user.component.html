@@ -64,7 +64,7 @@
             <button type="button " (click)="UpdateCommunityMember()" class="btn-close bg-dark text-light" aria-label="Close"></button>
           </div>
           <div class="popup-content">
-            <app-form-exercise [editMode]="true" [selectedUser]="memberShipData"></app-form-exercise>
+            <app-form-exercise [editMode]="true" [selectedUser]="memberShipData" (CloseForm)="UpdateUserInfo()"></app-form-exercise>
           </div>
           </div>
       </div>

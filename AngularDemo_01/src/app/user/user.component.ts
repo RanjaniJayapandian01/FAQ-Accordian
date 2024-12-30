@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { query } from '@angular/animations';
 import { Member } from '../models/member';
 import { FireBaseService } from '../Services/firebase.service';
+import { SnackBarService } from '../Services/snackBar.service';
 
 @Component({
   selector: 'app-user',
@@ -30,6 +31,9 @@ export class UserComponent {
   memberShipData : Member;
   updateUser : Member;
   _fbService= inject(FireBaseService);
+  private _snackbar: SnackBarService =inject(SnackBarService);
+
+  
   
   constructor(@Inject('USER_TOKEN') private userService: UserService) {
     this.users= this.userService.getUserList();  
@@ -40,22 +44,80 @@ export class UserComponent {
     this.selectedUser=this.userService.currentUser;    
   }
 
+
   ngOnInit(){
     
    // this.userService.shareSelectedUser.subscribe( (data: any) => this.selectedUser=data);
     this.selectedUser=this.userService.currentUser;
     //this.userPrefList= this.plantservice.getUserPreferences().filter(x=> x.IsSaved===true);
     this.userPrefList=this.activatedRoute.snapshot.data['data']?.filter(x=> x.IsSaved===true);
-    this._fbService.fetchCommunityMembers().subscribe((data) => {
-      if (this.selectedUser && this.selectedUser.userName) {
+    // v1
+    /*  this._fbService.fetchCommunityMembers().subscribe((data) => {
+    //   if (this.selectedUser && this.selectedUser.userName) {
 
-        this.memberShipData = data.find(x => x.username === this.selectedUser.userName);
-        if (this.memberShipData) {
-          this.isMember = true;
+    //     this.memberShipData = data.find(x => x.username === this.selectedUser.userName);
+    //     if (this.memberShipData) {
+    //       this.isMember = true;
+    //     }
+    //   }
+     }); */
+
+     // v2
+    this._fbService.fetchCommunityMembers().subscribe(
+      {next:  (data) => {
+        console.log("hey......");
+        if (this.selectedUser && this.selectedUser.userName) {
+  
+          this.memberShipData = data.find(x => x.username === this.selectedUser.userName);
+          if (this.memberShipData) {
+            this.isMember = true;
+          }
         }
-      }
-    });
+      },
+        error: (err)=>{
+            console.log(err);
+            if(err.error.error === 'Permission denied'){
+              setTimeout(()=>{this._snackbar.openSnackBar("Access Denied", "")}, 3000);              
+            }
+        }
+      },
+      
+     );
+     
     
+     // v3
+    // this._fbService.fetchCommmunityMemberById(this.selectedUser.userName).subscribe({next: (data)=>{
+    //   //this.memberShipData=data;
+    // }, error: (err)=>{console.log(err);
+    //   if(err.error.error === 'Permission denied'){
+    //     setTimeout(()=>{this._snackbar.openSnackBar("Access Denied", "")}, 3000);              
+    //   }
+    // }
+    // });
+  }
+
+  UpdateUserInfo(){
+    this.updateForm=!this.updateForm;
+    this._fbService.fetchCommunityMembers().subscribe(
+      {next:  (data) => {
+        console.log("hey......");
+        if (this.selectedUser && this.selectedUser.userName) {
+  
+          this.memberShipData = data.find(x => x.username === this.selectedUser.userName);
+          if (this.memberShipData) {
+            this.isMember = true;
+          }
+        }
+      },
+        error: (err)=>{
+            console.log(err);
+            if(err.error.error === 'Permission Denied'){
+              setTimeout(()=>{this._snackbar.openSnackBar("Access Denied", "")}, 3000);              
+            }
+        }
+      },
+      
+     );
   }
 
   SaveUserPreference(obj: Plant){

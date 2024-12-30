@@ -26,11 +26,11 @@ export class AppComponent {
     this.cartItemsFromApp.push(cartitem);
      console.log("From App component :",this.cartItemsFromApp);
      //this.cartItemsFromApp = [...plants]; // Use spread operator to create a new reference
-    }
-    RemoveCartItems(newItems : CartItem[]){
+  }
+  RemoveCartItems(newItems : CartItem[]){
       this.cartItemsFromApp=newItems;
       this.changeCartDataInOrgin.emit(this.cartItemsFromApp);
-    }
+  }
   // ngOnChanges(changes: SimpleChanges): void {
   //   if (changes['cartItemsFromApp']) {
   //     this.cartItemsFromApp = this.cartItemsFromApp; // Update filtered items
