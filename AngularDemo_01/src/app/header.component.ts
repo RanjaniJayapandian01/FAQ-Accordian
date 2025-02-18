@@ -132,13 +132,13 @@ export class HeaderComponent{
       console.log(data);
       this.isLoggedIn= data;
     });
-    console.log(this.isLoggedIn);
+  //  console.log(this.isLoggedIn);
   }
   ngDoCheck(){
     this.authService.isAuthenticatedObservable().subscribe((data)=>{
       this.isLoggedIn= data;
     });
-    console.log(this.isLoggedIn);
+  //  console.log(this.isLoggedIn);
 
   }
 

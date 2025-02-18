@@ -57,6 +57,7 @@ import { PaymentComponent } from './cart/payment.component';
 import { EventformComponent } from './eventform/eventform.component';
 import { FormExerciseComponent } from './form-exercise/form-exercise.component';
 import { AuthInterceptorService } from './Services/auth.interceptors';
+import { LoginInterceptor } from './Services/login.interceptor.service';
 
 export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
 @NgModule({
@@ -121,7 +122,8 @@ export const USER_TOKEN= new InjectionToken<UserService>('USER_SERVICE');
    NavigateGuard,
    provideHttpClient(withInterceptorsFromDi()),
     provideAnimationsAsync(),
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoginInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
